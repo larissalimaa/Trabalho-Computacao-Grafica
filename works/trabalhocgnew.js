@@ -4,34 +4,46 @@ import Stats from '../build/jsm/libs/stats.module.js';
 import KeyboardState from '../libs/util/KeyboardState.js';
 import { TrackballControls } from '../build/jsm/controls/TrackballControls.js';
 import {
-    initRenderer,
-    degreesToRadians,
-    onWindowResize,
-    initDefaultBasicLight,
-    InfoBox
+  initRenderer,
+  degreesToRadians,
+  onWindowResize,
+  initDefaultBasicLight,
+  InfoBox
 } from "../libs/util/util.js";
+import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 
 
 //Classe Pista que cria o cubo, e coloca na posicao por parametro, o bloco inicial eh marcado com laranja
 export default class Pista extends THREE.Mesh {
 
-    constructor(x, z, inicio = false) {
+  constructor(x, z, inicio = false) {
 
-        const cubeGeometry = new THREE.BoxGeometry(30, 0.3, 30);
-        let cubeMaterial
-        if (inicio) cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xfd8612 });
-        else cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
-        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-        if (inicio) cube.name = 'PosicaoInicial'
-        cube.position.set(x, 0, z)
-        return cube;
+    const cubeGeometry = new THREE.BoxGeometry(30, 0.3, 30);
+    let cubeMaterial
+    if (inicio) cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xfd8612 });
+    else cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    if (inicio) cube.name = 'PosicaoInicial'
+    cube.position.set(x, 0, z)
+    return cube;
 
 
-    }
+  }
 
 }
 
 //Constantes e Variaveis Globais
+
+//TODO: comentar 
+const top_speed = 1.3;
+
+//TODO: comentar
+const additional_speed_speed = 0.02;
+
+//TODO: comentar
+var speed = 0;
+
+var time = 0;
 
 //array que contem coordenadas da Pista
 var arrayPista = new Array();
@@ -67,6 +79,7 @@ var camera = new THREE.PerspectiveCamera(49, window.innerWidth / window.innerHei
 var perspec_cam = new THREE.Group();
 perspec_cam.rotateY(degreesToRadians(-90));
 
+
 //create Scene
 var scene = new THREE.Scene();
 
@@ -76,8 +89,8 @@ initDefaultBasicLight(scene, true);
 //Cria o plano base
 var planeGeometry2 = new THREE.PlaneGeometry(150, 150);
 var planeMaterial2 = new THREE.MeshPhongMaterial({
-    color: "rgb(127, 128, 118)",
-    side: THREE.DoubleSide,
+  color: "rgb(127, 128, 118)",
+  side: THREE.DoubleSide,
 });
 var plane2 = new THREE.Mesh(planeGeometry2, planeMaterial2);
 plane2.rotateX(degreesToRadians(-90));
@@ -93,6 +106,15 @@ window.addEventListener('resize', function () { onWindowResize(camera, renderer)
 
 showInformation();
 
+//Cria o carro de "createTruck.js"
+var truck = new THREE.Group();
+truck = createTruck();
+
+//Recupera rodas
+var roda1 = getRoda1();
+var roda2 = getRoda2();
+var roda3 = getRoda3();
+var roda4 = getRoda4();
 
 
 render();
@@ -101,110 +123,123 @@ render();
 
 function createPista(npista) {
 
-    //indica qual pista
-    var track = npista;
+  //indica qual pista
+  var track = npista;
 
-    //posicao inicial x do primeiro bloco
-    var xPos = 25.00;
+  //posicao inicial x do primeiro bloco
+  var xPos = 25.00;
 
-    //posicao inicial z do primeiro bloco
-    var zPos = 50;
+  //posicao inicial z do primeiro bloco
+  var zPos = 50;
 
-    //tamanho do bloco
-    var blockSize = 32;
+  //tamanho do bloco
+  var blockSize = 32;
+  
+  //matriz de orientacao de criacao dos blocos
+  let layout;
 
-    //matriz de orientacao de criacao dos blocos
-    let layout;
+  if (track == 1) {
+    layout = [[-1, 0, 10],
+    [0, -1, 10],
+    [1, 0, 10],
+    [0, 1, 10],
+    ]
+  } else {
+    if (track == 2) {
+      layout = [[-1, 0, 10],
+      [0, -1, 10],
+      [1, 0, 5],
+      [0, 1, 5],
+      [1, 0, 5],
+      [0, 1, 5],
+      ]
+    }
+    else {
+      if (track == 3) {
 
-    if (track == 1) {
-        layout = [[-1, 0, 10],
-        [0, -1, 10],
-        [1, 0, 10],
-        [0, 1, 10],
+        layout = [[-1, 0, 6],
+        [0, -1, 3],
+        [-1, 0, 4],
+        [0, -1, 6],
+        [1, 0, 4],
+        [0, 1, 3],
+        [1, 0, 6],
+        [0, 1, 6],
         ]
-    } else {
+
+      }
+      else {
+        if (track == 4) {
+          layout = [[-1, 0, 8],
+          [0, -1, 8],
+          [-1, 0, 6],
+          [0, -1, 6],
+          [-1, 0, 4],
+          [0, -1, 4],
+          [1, 0, 4],
+          [0, 1, 4],
+          [1, 0, 6],
+          [0, 1, 6],
+          [1, 0, 8],
+          [0, 1, 8]
+          ]
+        }
+      }
+    }
+  }
+
+
+  let cube
+  for (let i = 0; i < layout.length; i++) {
+    let dir = layout[i]
+    for (let j = 0; j < dir[2]; j++) {
+      //posicao inicial
+      if (i == 0 && j == 0) {
+        cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1)
+      }
+      else {
+        cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos)
+      }
+
+      if (track == 1) {
+        arrayPistaOne.push(cube)
+      }
+      else {
         if (track == 2) {
-            layout = [[-1, 0, 10],
-            [0, -1, 10],
-            [1, 0, 5],
-            [0, 1, 5],
-            [1, 0, 5],
-            [0, 1, 5],
-            ]
+          arrayPistaTwo.push(cube)
         }
         else {
-            if (track == 3) {
-
-                layout = [[-1, 0, 6],
-                [0, -1, 3],
-                [-1, 0, 4],
-                [0, -1, 6],
-                [1, 0, 4],
-                [0, 1, 3],
-                [1, 0, 6],
-                [0, 1, 6],
-                ]
-
+          if (track == 3) {
+            arrayPistaThree.push(cube)
+          }
+          else {
+            if (track == 4) {
+              arrayPistaFour.push(cube)
             }
-            else {
-                if (track == 4) {
-                    layout = [[-1, 0, 8],
-                    [0, -1, 8],
-                    [-1, 0, 6],
-                    [0, -1, 6],
-                    [-1, 0, 4],
-                    [0, -1, 4],
-                    [1, 0, 4],
-                    [0, 1, 4],
-                    [1, 0, 6],
-                    [0, 1, 6],
-                    [1, 0, 8],
-                    [0, 1, 8]
-                    ]
-                }
-            }
+          }
         }
+      }
+      //array de coordenadas
+      arrayPista.push(xPos);
+
+      //20/12 -----------------------------------------------------//
+
+      //var knot = new THREE.Mesh(
+      // new THREE.TorusKnotGeometry(0.5, 0.1),
+      //new MeshNormalMaterial({}));
+
+      cube.geometry.computeBoundingBox();
+
+
+      cubeBBox.setFromObject(cube);
+
+
+      //-----------------------------------------------------------//
+
+      xPos += dir[0] * blockSize
+      zPos += dir[1] * blockSize
     }
-
-
-    let cube
-    for (let i = 0; i < layout.length; i++) {
-        let dir = layout[i]
-        for (let j = 0; j < dir[2]; j++) {
-            //posicao inicial
-            if (i == 0 && j == 0) {
-                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1)
-            }
-            else {
-                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos)
-            }
-
-            if (track == 1) {
-                arrayPistaOne.push(cube)
-            }
-            else {
-                if (track == 2) {
-                    arrayPistaTwo.push(cube)
-                }
-                else {
-                    if (track == 3) {
-                        arrayPistaThree.push(cube)
-                    }
-                    else {
-                        if (track == 4) {
-                            arrayPistaFour.push(cube)
-                        }
-                    }
-                }
-            }
-            //array de coordenadas
-            arrayPista.push(xPos);
-
-
-            xPos += dir[0] * blockSize
-            zPos += dir[1] * blockSize
-        }
-    }
+  }
 
 
 
@@ -212,191 +247,243 @@ function createPista(npista) {
 
 function cleanAmbient() {
 
-    for (var i = 0; i < arrayPistaOne.length; i++) {
-        scene.remove(arrayPistaOne[i]);
-    }
+  for (var i = 0; i < arrayPistaOne.length; i++) {
+    scene.remove(arrayPistaOne[i]);
+  }
 
-    for (var i = 0; i < arrayPistaTwo.length; i++) {
-        scene.remove(arrayPistaTwo[i]);
+  for (var i = 0; i < arrayPistaTwo.length; i++) {
+    scene.remove(arrayPistaTwo[i]);
 
-    }
-    for (var i = 0; i < arrayPistaThree.length; i++) {
-        scene.remove(arrayPistaThree[i]);
+  }
+  for (var i = 0; i < arrayPistaThree.length; i++) {
+    scene.remove(arrayPistaThree[i]);
 
-    }
-    for (var i = 0; i < arrayPistaFour.length; i++) {
-        scene.remove(arrayPistaFour[i]);
+  }
+  for (var i = 0; i < arrayPistaFour.length; i++) {
+    scene.remove(arrayPistaFour[i]);
 
-    }
+  }
 
 }
 
 function resetThings() {
 
-    truck.position.set(0.0, 0.0, -20.0);
-    cube7.position.set(-25.0, 2.2, 50.0);
-    time = 0;
+  truck.position.set(0.0, 0.0, -20.0);
+  cube7.position.set(-25.0, 2.2, 50.0);
+  time = 0;
 
 }
 
 
 function keyboardUpdate() {
 
-    keyboard.update();
+  keyboard.update();
+  var angle = Math.PI / 2 * 0.0025 * 10;
 
-
-
-    // Criacao das Pistas
-
-    if (keyboard.pressed("1")) {
-
-
-        for (var i = 0; i < arrayPistaTwo.length; i++) {
-            scene.remove(arrayPistaTwo[i]);
-
-        }
-
-        for (var i = 0; i < arrayPistaThree.length; i++) {
-            scene.remove(arrayPistaThree[i]);
-
-        }
-
-        for (var i = 0; i < arrayPistaFour.length; i++) {
-            scene.remove(arrayPistaFour[i]);
-
-        }
-
-        createPista(1);
-
-        for (var i = 0; i < arrayPistaOne.length; i++) {
-            scene.add(arrayPistaOne[i]);
-
-        }
-
-
-
+  if (keyboard.pressed("X")) {
+    if (speed < top_speed) {
+      speed += additional_speed_speed;
     }
+    if (keyboard.pressed("X")) roda3.rotateZ(-1);
+    if (keyboard.pressed("X")) roda4.rotateZ(-1);
+  }
+  if (keyboard.pressed("down")) {
 
-    if (keyboard.pressed("2")) {
-
-
-        for (var i = 0; i < arrayPistaOne.length; i++) {
-            scene.remove(arrayPistaOne[i]);
-
-        }
-
-        for (var i = 0; i < arrayPistaOne.length; i++) {
-            scene.remove(arrayPistaThree[i]);
-
-        }
-
-        for (var i = 0; i < arrayPistaOne.length; i++) {
-            scene.remove(arrayPistaFour[i]);
-
-        }
-
-
-        createPista(2);
-
-
-        for (var i = 0; i < arrayPistaTwo.length; i++) {
-            scene.add(arrayPistaTwo[i]);
-
-        }
-
-
+    if (speed > -top_speed) {
+      speed -= additional_speed_speed;
     }
-
-    if (keyboard.pressed("3")) {
-
-
-        for (var i = 0; i < arrayPistaOne.length; i++) {
-            scene.remove(arrayPistaOne[i]);
-
-        }
-
-        for (var i = 0; i < arrayPistaTwo.length; i++) {
-            scene.remove(arrayPistaTwo[i]);
-
-        }
-
-        for (var i = 0; i < arrayPistaTwo.length; i++) {
-            scene.remove(arrayPistaFour[i]);
-
-        }
-
-
-        createPista(3);
-
-
-        for (var i = 0; i < arrayPistaThree.length; i++) {
-            scene.add(arrayPistaThree[i]);
-
-        }
-
-
+    if (keyboard.pressed("down")) roda3.rotateZ(1);
+    if (keyboard.pressed("down")) roda4.rotateZ(1);
+  }
+  if (speed != 0) {
+    if (keyboard.pressed("X")) {
+      if (keyboard.pressed("left")) {
+        cube7.rotateY(angle);
+        perspec_cam.rotateY(angle);
+      }
+      if (keyboard.pressed("right")) {
+        cube7.rotateY(-angle);
+        perspec_cam.rotateY(-angle);
+      }
     }
-
-    if (keyboard.pressed("4")) {
-
-
-        for (var i = 0; i < arrayPistaOne.length; i++) {
-            scene.remove(arrayPistaOne[i]);
-
-        }
-
-        for (var i = 0; i < arrayPistaTwo.length; i++) {
-            scene.remove(arrayPistaTwo[i]);
-
-        }
-
-        for (var i = 0; i < arrayPistaTwo.length; i++) {
-            scene.remove(arrayPistaThree[i]);
-
-        }
-
-
-        createPista(4);
-
-
-        for (var i = 0; i < arrayPistaFour.length; i++) {
-            scene.add(arrayPistaFour[i]);
-
-        }
-
-
-
+    else if (keyboard.pressed("down")) {
+      if (keyboard.pressed("left")) {
+        cube7.rotateY(-angle);
+        perspec_cam.rotateY(-angle);
+      }
+      if (keyboard.pressed("right")) {
+        cube7.rotateY(angle);
+        perspec_cam.rotateY(angle);
+      }
     }
+  }
 
-    //Fim Criacao das Pistas
+  if (keyboard.pressed('left')) {
+    if (roda1.rotation._y > 1.3) {
+      roda1.rotateY(angle / 2);
+      roda2.rotateY(angle / 2);
+    }
+    else if (keyboard.pressed('X')) {
+      roda1.rotateZ(-1);
+      roda2.rotateZ(-1);
+    }
+    else if (keyboard.pressed('down')) {
+      roda1.rotateZ(1);
+      roda2.rotateZ(1);
+    }
+  }
+  else if (keyboard.pressed('right')) {
+    if (roda1.rotation._y > 1.3) {
+      roda1.rotateY(-angle / 2);
+      roda2.rotateY(-angle / 2);
+    }
+    else if (keyboard.pressed('X')) {
+      roda1.rotateZ(-1);
+      roda2.rotateZ(-1);
+    }
+    else if (keyboard.pressed('down')) {
+      roda1.rotateZ(1);
+      roda2.rotateZ(1);
+    }
+  }
+  if (!keyboard.pressed('right') && !keyboard.pressed('left')) {
+    roda1.setRotationFromEuler(new THREE.Euler(roda1.rotationX, 1.57, roda1.rotationZ, 'XYZ')
+    );
+    roda2.setRotationFromEuler(new THREE.Euler(roda1.rotationX, 1.57, roda2.rotationZ, 'XYZ')
+    );
+  }
 
+
+  if (inspec == true) {
+
+    cube7.position.x = 0;
+    cube7.position.y = 0;
+    cube7.position.z = 0;
+
+
+    camera.up.set(0, 1, 0);
+
+    cleanAmbient();
+    trackballControls.update();
+
+  }
+
+// Criacao das Pistas
+
+if (keyboard.pressed("1")) {
+
+  cleanAmbient();
+
+  createPista(1);
+
+  for (var i = 0; i < arrayPistaOne.length; i++) {
+    scene.add(arrayPistaOne[i]);
+
+  }
+  resetThings();
 }
+
+if (keyboard.pressed("2")) {
+
+  cleanAmbient();
+
+  createPista(2);
+
+
+  for (var i = 0; i < arrayPistaTwo.length; i++) {
+    scene.add(arrayPistaTwo[i]);
+
+  }
+  resetThings();
+}
+
+if (keyboard.pressed("3")) {
+
+  cleanAmbient();
+  createPista(3);
+
+
+  for (var i = 0; i < arrayPistaThree.length; i++) {
+    scene.add(arrayPistaThree[i]);
+
+  }
+  resetThings();
+}
+
+if (keyboard.pressed("4")) {
+
+  cleanAmbient();
+  createPista(4);
+
+
+  for (var i = 0; i < arrayPistaFour.length; i++) {
+    scene.add(arrayPistaFour[i]);
+
+  }
+  resetThings();
+}
+
+//Fim Criacao das Pistas
+}
+
+function acceleration() {
+
+  // Slow down Truck
+  if ((speed < additional_speed_speed && speed > 0) || speed > additional_speed_speed && speed < 0) {
+    speed = 0;
+  }
+
+  keyboard.update();
+
+  // To slow down the truck
+  if (!(keyboard.pressed("X") || keyboard.pressed("down"))) {
+    if (speed != 0 && speed > 0) {
+      speed -= additional_speed_speed;
+    }
+    if (speed != 0 && speed < 0) {
+      speed += additional_speed_speed;
+    }
+  }
+  if (speed < 0 && keyboard.pressed("XX")) {
+    speed += additional_speed_speed * 2;
+  }
+
+  if (speed > 0 && keyboard.pressed("down")) {
+    speed -= additional_speed_speed * 2;
+  }
+}
+
 
 
 // Use this to show information onscreen
 function showInformation() {
-    var controls = new InfoBox();
-    controls.addParagraph();
-    controls.add("𝗧𝗿𝗮𝗰𝗸");
-    controls.addParagraph();
-    controls.add("Press 1 to select the first track.");
-    controls.add("Press 2 to select the first track.");
-    controls.add("Press 3 to select the first track.");
-    controls.add("Press 4 to select the first track.");
-    controls.show();
-    controls.show();
+  var controls = new InfoBox();
+  controls.add("𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝘀");
+  controls.addParagraph();
+  controls.add("X to drive foward.");
+  controls.add("Down Arrow to drive backward.");
+  controls.add("Left / Right arrow to turn.");
+  controls.addParagraph();
+  controls.add("𝗧𝗿𝗮𝗰𝗸");
+  controls.addParagraph();
+  controls.add("Press 1 to select the first track.");
+  controls.add("Press 2 to select the first track.");
+  controls.add("Press 3 to select the first track.");
+  controls.add("Press 4 to select the first track.");
+  controls.show();
+  controls.show();
 }
 
 
 function render() {
-    stats.update(); // Update FPS 
-    if (inspec == true)
-        trackballControls.update();
+  stats.update(); // Update FPS 
+  if (inspec == true)
+    trackballControls.update();
 
 
-    acceleration();
-    keyboardUpdate();
-    requestAnimationFrame(render);
-    renderer.render(scene, camera) // Render scene
-    stalker_cam();
+  acceleration();
+  keyboardUpdate();
+  requestAnimationFrame(render);
+  renderer.render(scene, camera) // Render scene
+  stalker_cam();
 }
