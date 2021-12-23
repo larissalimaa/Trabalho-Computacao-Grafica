@@ -98,16 +98,22 @@ showInformation();
 render();
 
 
+
 function createPista(npista) {
 
-    //--------------------------------------------------------------------//
-    // NEW 07/12  //
-
+    //indica qual pista
     var track = npista;
+
+    //posicao inicial x do primeiro bloco
     var xPos = 25.00;
+
+    //posicao inicial z do primeiro bloco
     var zPos = 50;
+
+    //tamanho do bloco
     var blockSize = 32;
 
+    //matriz de orientacao de criacao dos blocos
     let layout;
 
     if (track == 1) {
@@ -195,7 +201,6 @@ function createPista(npista) {
             arrayPista.push(xPos);
 
 
-
             xPos += dir[0] * blockSize
             zPos += dir[1] * blockSize
         }
@@ -205,11 +210,40 @@ function createPista(npista) {
 
 }
 
+function cleanAmbient() {
+
+    for (var i = 0; i < arrayPistaOne.length; i++) {
+        scene.remove(arrayPistaOne[i]);
+    }
+
+    for (var i = 0; i < arrayPistaTwo.length; i++) {
+        scene.remove(arrayPistaTwo[i]);
+
+    }
+    for (var i = 0; i < arrayPistaThree.length; i++) {
+        scene.remove(arrayPistaThree[i]);
+
+    }
+    for (var i = 0; i < arrayPistaFour.length; i++) {
+        scene.remove(arrayPistaFour[i]);
+
+    }
+
+}
+
+function resetThings() {
+
+    truck.position.set(0.0, 0.0, -20.0);
+    cube7.position.set(-25.0, 2.2, 50.0);
+    time = 0;
+
+}
+
 
 function keyboardUpdate() {
 
     keyboard.update();
-   
+
 
 
     // Criacao das Pistas
@@ -239,7 +273,7 @@ function keyboardUpdate() {
 
         }
 
-     
+
 
     }
 
@@ -270,7 +304,7 @@ function keyboardUpdate() {
 
         }
 
-     
+
     }
 
     if (keyboard.pressed("3")) {
@@ -300,7 +334,7 @@ function keyboardUpdate() {
 
         }
 
-       
+
     }
 
     if (keyboard.pressed("4")) {
@@ -330,8 +364,8 @@ function keyboardUpdate() {
 
         }
 
-    
-        
+
+
     }
 
     //Fim Criacao das Pistas
