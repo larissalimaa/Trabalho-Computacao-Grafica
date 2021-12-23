@@ -149,6 +149,12 @@ var roda2 = getRoda2();
 var roda3 = getRoda3();
 var roda4 = getRoda4();
 
+//Recupera rodas
+var roda1 = getRoda1();
+var roda2 = getRoda2();
+var roda3 = getRoda3();
+var roda4 = getRoda4();
+
 // Camera
 
 //colocar objeto para add a camera
@@ -552,6 +558,7 @@ function calculator() {
   time++;
   time_counter.changeMessage("Time: " + time + "s.");
 }
+
 
 // Use this to show information onscreen
 function showInformation() {
