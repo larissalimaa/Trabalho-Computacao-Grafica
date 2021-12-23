@@ -344,29 +344,24 @@ function resetThings() {
 
 }
 
-
+//////////////////////////---alterado dia 23/12 por hugo---//////////////////////////////////////
 function keyboardUpdate() {
 
   keyboard.update();
   var angle = Math.PI / 2 * 0.0025 * 10;
 
   if (keyboard.pressed("X")) {
-    if (speed < top_speed) {
-      speed += additional_speed_speed;
-    }
-    if (keyboard.pressed("X")) roda3.rotateZ(-1);
-    if (keyboard.pressed("X")) roda4.rotateZ(-1);
+  if (speed < top_speed) {
+   speed += additional_speed_speed;
+   }
   }
   if (keyboard.pressed("down")) {
 
-    if (speed > -top_speed) {
-      speed -= additional_speed_speed;
-    }
-    if (keyboard.pressed("down")) roda3.rotateZ(1);
-    if (keyboard.pressed("down")) roda4.rotateZ(1);
+  if (speed > -top_speed) {
+  speed -= additional_speed_speed;
+   }
   }
-  if (speed != 0) {
-    if (keyboard.pressed("X")) {
+  if (speed >  0.1) {
       if (keyboard.pressed("left")) {
         cube7.rotateY(angle);
         perspec_cam.rotateY(angle);
@@ -376,53 +371,56 @@ function keyboardUpdate() {
         perspec_cam.rotateY(-angle);
       }
     }
-    else if (keyboard.pressed("down")) {
-      if (keyboard.pressed("left")) {
-        cube7.rotateY(-angle);
-        perspec_cam.rotateY(-angle);
-      }
-      if (keyboard.pressed("right")) {
-        cube7.rotateY(angle);
-        perspec_cam.rotateY(angle);
-      }
+  
+    if (speed < -0.1) {
+          if (keyboard.pressed("left")) {
+            cube7.rotateY(-angle);
+            perspec_cam.rotateY(-angle);
+          }
+          if (keyboard.pressed("right")) {
+            cube7.rotateY(angle);
+            perspec_cam.rotateY(angle);
+          }
     }
+
+   if( speed > 0.1  ){
+     
+     roda1.rotateZ(angle);
+     roda2.rotateZ(angle);
+     roda3.rotateZ(angle);
+     roda4.rotateZ(angle);
+    
+     }
+   
+    else if( speed < -0.1 ){
+    roda1.rotateZ(-angle);
+    roda2.rotateZ(-angle);
+    roda3.rotateZ(-angle);
+    roda4.rotateZ(-angle);
+
   }
 
-  if (keyboard.pressed('left')) {
-    if (roda1.rotation._y > 1.3) {
-      roda1.rotateY(angle / 2);
-      roda2.rotateY(angle / 2);
+    if (keyboard.pressed('left')) {
+      if (roda1.rotation._y > 1.3) {
+        roda1.rotateY(-angle / 2);
+        roda2.rotateY(-angle / 2);
+       }
+    } 
+    else if (keyboard.pressed('right')) {
+      if (roda1.rotation._y > 1.3) {
+        roda1.rotateY(angle / 2);
+        roda2.rotateY(angle / 2);
+      }
+     }
+    
+     if (!keyboard.pressed('left') && !keyboard.pressed('right') && (!keyboard.pressed('X') && !keyboard.pressed('down'))){
+      roda1.setRotationFromEuler(new THREE.Euler(roda1.rotationX, 1.57, 3.14, 'XYZ')
+      );
+      roda2.setRotationFromEuler(new THREE.Euler(roda1.rotationX, 1.57, 3.14, 'XYZ')
+      );
     }
-    else if (keyboard.pressed('X')) {
-      roda1.rotateZ(-1);
-      roda2.rotateZ(-1);
-    }
-    else if (keyboard.pressed('down')) {
-      roda1.rotateZ(1);
-      roda2.rotateZ(1);
-    }
-  }
-  else if (keyboard.pressed('right')) {
-    if (roda1.rotation._y > 1.3) {
-      roda1.rotateY(-angle / 2);
-      roda2.rotateY(-angle / 2);
-    }
-    else if (keyboard.pressed('X')) {
-      roda1.rotateZ(-1);
-      roda2.rotateZ(-1);
-    }
-    else if (keyboard.pressed('down')) {
-      roda1.rotateZ(1);
-      roda2.rotateZ(1);
-    }
-  }
-  if (!keyboard.pressed('right') && !keyboard.pressed('left')) {
-    roda1.setRotationFromEuler(new THREE.Euler(roda1.rotationX, 1.57, roda1.rotationZ, 'XYZ')
-    );
-    roda2.setRotationFromEuler(new THREE.Euler(roda1.rotationX, 1.57, roda2.rotationZ, 'XYZ')
-    );
-  }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   if (inspec == true) {
 
