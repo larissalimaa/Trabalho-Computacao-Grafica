@@ -254,7 +254,7 @@ scene.add(perspec_cam);
 scene.add(cube7);
 lightSphere42.add(light); //Davi: 02/01
 cube7.add(truck);
-scene.add(camera2); //Davi: 03/01
+//scene.add(camera2); //Davi: 03/01
 scene.add(camera);
 camera2.add(pl);
 
@@ -288,9 +288,6 @@ document.addEventListener('keypress', function (e) {
 });
 
 
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0xFF9900);
 
 
 // Atualiza o timer
@@ -511,7 +508,7 @@ function keyboardUpdate() {
 
         }
         resetThings(30, 2.2, -60);
-        truck.rotation.y = - Math.PI / 2;
+        //truck.rotation.y = - Math.PI / 2;
         camera2.position.copy(camPosition);
         camera2.up.set(-1.0, 1.0, 0.0);
         camera2.lookAt(0.0, 0.0, -180.0);
@@ -533,7 +530,7 @@ function keyboardUpdate() {
 
         }
         resetThings(-270, 2.2, -210);
-        truck.rotation.y = Math.PI / 2;
+        //truck.rotation.y = Math.PI / 2;
         camera2.position.copy(camPosition);
         camera2.up.set(-1.0, 1.0, 0.0);
         camera2.lookAt(0.0, 0.0, -180.0);

@@ -17,6 +17,8 @@ var arrayPistaThree = new Array();
 //variavel do tamanho do bloco, comprimento/profundidade 
 var blockSize = 30;
 
+var cube1,cube2,cube3,cube4,cube5,cube6,cube7,cube8,cube9,cube10,cube11,cube12,cube13,cube14,cube15
+
 //Larissa: 23/12/////////////////////////////////////////////////////
 //Classe Pista que cria o cubo, e coloca na posicao por parametro, o bloco inicial eh marcado com laranja
 export default class Pista extends THREE.Mesh {
@@ -74,49 +76,49 @@ export function createFinishLine(x, z, scene, npista) {
     let cubeMaterial_black = new THREE.MeshPhongMaterial({ color: 'rgb(0,0,0)' });
     let cubeMaterial_write = new THREE.MeshPhongMaterial({ color: 'rgb(255,255,255)' });
 
-    const cube1 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube1 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
     cube1.position.set(auxX - 12, 0.1, auxZ + 0);
 
-    const cube2 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube2 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
     cube2.position.set(auxX - 12, 0.1, auxZ + 2);
 
-    const cube3 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube3 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
     cube3.position.set(auxX - 12, 0.1, auxZ - 2);
 
-    const cube4 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube4 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
     cube4.position.set(auxX - 12, 0.1, auxZ - 4);
 
-    const cube5 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube5 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
     cube5.position.set(auxX - 12, 0.1, auxZ  + 4);
 
-    const cube6 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube6 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
     cube6.position.set(auxX - 12, 0.1, auxZ  + 6);
 
-    const cube7 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube7 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
     cube7.position.set(auxX - 12, 0.1, auxZ  + 8);
 
-    const cube8 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube8 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
     cube8.position.set(auxX - 12, 0.1, auxZ  + 10);
 
-    const cube9 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube9 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
     cube9.position.set(auxX - 12, 0.1, auxZ  + 12);
 
-    const cube10 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube10 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
     cube10.position.set(auxX - 12, 0.1, auxZ  + 14);
 
-    const cube11 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube11 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
     cube11.position.set(auxX - 12, 0.1, auxZ - 6);
 
-    const cube12 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube12 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
     cube12.position.set(auxX - 12, 0.1, auxZ - 8);
 
-    const cube13 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube13 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
     cube13.position.set(auxX - 12, 0.1, auxZ - 10);
 
-    const cube14 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube14 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
     cube14.position.set(auxX - 12, 0.1, auxZ - 12);
 
-    const cube15 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube15 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
     cube15.position.set(auxX - 12, 0.1, auxZ - 14);
 
     if(npista == 2 || npista == 3){
@@ -365,6 +367,22 @@ export function cleanAmbient(scene) {
         scene.remove(arrayPistaFour[i]);
 
     }
+
+    scene.remove(cube1);
+    scene.remove(cube2);
+    scene.remove(cube3);
+    scene.remove(cube4);
+    scene.remove(cube5);
+    scene.remove(cube6);
+    scene.remove(cube7);
+    scene.remove(cube8);
+    scene.remove(cube9);
+    scene.remove(cube10);
+    scene.remove(cube11);
+    scene.remove(cube12);
+    scene.remove(cube13);
+    scene.remove(cube14);
+    scene.remove(cube15);
 
 }
 
