@@ -21,25 +21,32 @@ var blockSize = 30;
 //Classe Pista que cria o cubo, e coloca na posicao por parametro, o bloco inicial eh marcado com laranja
 export default class Pista extends THREE.Mesh {
 
-    constructor(x, z, inicio = false) {
+    constructor(x, z, inicio = false, scene, npista) {
 
         const cubeGeometry = new THREE.BoxGeometry(30, 0.3, 30);
-        let cubeMaterial;
+        var cubeMaterial;
         //Larissa: 23/12/////////////////////////////////////////////////////
         if (inicio) {
+            
             cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xfd8612 });
-            //createFinishLine(x, z);
+            createFinishLine(x, z, scene, npista);
         }
 
         //Larissa: 23/12/////////////////////////////////////////////////////
-        else
-            cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+        else{
+        var floorTexture = new THREE.TextureLoader().load('asfalto.jpg');;
+        floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
+        //cubeMaterial = new THREE.MeshPhongMaterial({ map: floorTexture, side: THREE.DoubleSide });
+        
+            cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x999999 });
+        }
         const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        cube.receiveShadow = true;
         if (inicio)
             cube.name = 'PosicaoInicial';
         cube.position.set(x, 0, z);
         //Larissa: 27/12/////////////////////////////////////////////////////
-        //arrayPista.push({ x: x, z: z });
+        //arrayPista.push({ x: x, auxZ: auxZ });
         //Descomente para ver arrayPista (coordenadas)
         //console.log(arrayPista);
         //Larissa: 23/12/////////////////////////////////////////////////////
@@ -51,33 +58,109 @@ export default class Pista extends THREE.Mesh {
 }
 
 //Larissa: 23/12/////////////////////////////////////////////////////
-export function createFinishLine(x, z) {
-    const cubeGeometry = new THREE.BoxGeometry(5, 0.3, 7.5);
+export function createFinishLine(x, z, scene, npista) {
+
+    //console.log("linha");
+    ///console.log(x);
+    //console.log(auxZ);
+    //console.log("--");
+
+    var auxX = x;
+    var auxZ = z;
+
+    
+
+    const cubeGeometry = new THREE.BoxGeometry(2, 0.3, 2);
     let cubeMaterial_black = new THREE.MeshPhongMaterial({ color: 'rgb(0,0,0)' });
     let cubeMaterial_write = new THREE.MeshPhongMaterial({ color: 'rgb(255,255,255)' });
 
     const cube1 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
-    cube1.position.set(x - 12, 0.1, z + 4.5);
+    cube1.position.set(auxX - 12, 0.1, auxZ + 0);
 
     const cube2 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
-    cube2.position.set(x - 12, 0.1, z + 12);
+    cube2.position.set(auxX - 12, 0.1, auxZ + 2);
 
     const cube3 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
-    cube3.position.set(x - 12, 0.1, z - 3);
+    cube3.position.set(auxX - 12, 0.1, auxZ - 2);
 
     const cube4 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
-    cube4.position.set(x - 12, 0.1, z - 10.5);
+    cube4.position.set(auxX - 12, 0.1, auxZ - 4);
 
+    const cube5 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube5.position.set(auxX - 12, 0.1, auxZ  + 4);
 
-    //scene.add(cube1);
-    //scene.add(cube2);
-    //scene.add(cube3);
-    //scene.add(cube4);
+    const cube6 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube6.position.set(auxX - 12, 0.1, auxZ  + 6);
+
+    const cube7 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube7.position.set(auxX - 12, 0.1, auxZ  + 8);
+
+    const cube8 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube8.position.set(auxX - 12, 0.1, auxZ  + 10);
+
+    const cube9 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube9.position.set(auxX - 12, 0.1, auxZ  + 12);
+
+    const cube10 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube10.position.set(auxX - 12, 0.1, auxZ  + 14);
+
+    const cube11 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube11.position.set(auxX - 12, 0.1, auxZ - 6);
+
+    const cube12 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube12.position.set(auxX - 12, 0.1, auxZ - 8);
+
+    const cube13 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube13.position.set(auxX - 12, 0.1, auxZ - 10);
+
+    const cube14 = new THREE.Mesh(cubeGeometry, cubeMaterial_write);
+    cube14.position.set(auxX - 12, 0.1, auxZ - 12);
+
+    const cube15 = new THREE.Mesh(cubeGeometry, cubeMaterial_black);
+    cube15.position.set(auxX - 12, 0.1, auxZ - 14);
+
+    if(npista == 2 || npista == 3){
+        auxZ = -72
+        if(npista == 3){
+            auxZ = -198
+        }
+        cube1.position.set(auxX + 0 , 0.1, auxZ);
+        cube2.position.set(auxX + 2 , 0.1, auxZ);
+        cube3.position.set(auxX - 2 , 0.1, auxZ);
+        cube4.position.set(auxX - 4 , 0.1, auxZ);
+        cube5.position.set(auxX + 4 , 0.1, auxZ);
+        cube6.position.set(auxX + 6 , 0.1, auxZ);
+        cube7.position.set(auxX + 8, 0.1, auxZ);
+        cube8.position.set(auxX + 10 , 0.1, auxZ);
+        cube9.position.set(auxX + 12 , 0.1, auxZ);
+        cube10.position.set(auxX + 14 , 0.1, auxZ);
+        cube11.position.set(auxX - 6 , 0.1, auxZ);
+        cube12.position.set(auxX - 8 , 0.1, auxZ);
+        cube13.position.set(auxX - 10 , 0.1, auxZ);
+        cube14.position.set(auxX - 12 , 0.1, auxZ);
+        cube15.position.set(auxX - 14 , 0.1, auxZ);
+    }
+    
+    scene.add(cube1);
+    scene.add(cube2);
+    scene.add(cube3);
+    scene.add(cube4);
+    scene.add(cube5);
+    scene.add(cube6);
+    scene.add(cube7);
+    scene.add(cube8);
+    scene.add(cube9);
+    scene.add(cube10);
+    scene.add(cube11);
+    scene.add(cube12);
+    scene.add(cube13);
+    scene.add(cube14);
+    scene.add(cube15);
 }
 
 
 
-export function createPista(npista) {
+export function createPista(npista, scene) {
 
     //indica qual pista
     var track = npista;
@@ -85,13 +168,13 @@ export function createPista(npista) {
     //posicao inicial x do primeiro bloco
     var xPos = 30.00;
 
-    //posicao inicial z do primeiro bloco
+    //posicao inicial auxZ do primeiro bloco
     var zPos = 0;
 
     //tamanho do bloco
     //var blockSize = 30;
 
-    //matriz de orientacao de criacao dos blocos
+    //matriauxZ de orientacao de criacao dos blocos
     let layout;
 
     //---alterado dia 27/12 por larissa (arrumando pista 3)----/
@@ -127,9 +210,9 @@ export function createPista(npista) {
                 [0, -1, 4],
                 [-1, 0, 4],
                 [0, -1, 6],
-                [1, 0, 2],
+                [1, 0, 4],
                 [0, 1, 4],
-                [1, 0, 8],
+                [1, 0, 6],
                 [0, 1, 6],
                 ]
                 createPista(5);
@@ -157,7 +240,7 @@ export function createPista(npista) {
                     if (track == 5) {
                         layout = [
                             [0, -1, 4],
-                            [-1, 0, 8]
+                            [-1, 0, 6]
                         ]
                     }
                 }
@@ -173,11 +256,31 @@ export function createPista(npista) {
         //dir[2] eh a qtd dos blocos (10 etc...)
         for (let j = 0; j < dir[2]; j++) {
             //posicao inicial
-            if (i == 0 && j == 0 && track != 5) {
-                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1)
+            if (i == 0 && j == 4 && track != 5 && track != 3 && track!=2) {
+                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1 , scene, npista)
             }
             else {
-                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos)
+                //pinta laranja posicao pista 3
+                if(i == 3 && j == 2 && track == 3){
+                    //var auxX = dir[0] * blockSize + xPos;
+                    //var auxauxZ = dir[1] * blockSize + zPos;
+                    cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1, scene, npista)
+                    //console.log(auxX);
+                    //console.log(auxauxZ);
+                    
+                }
+                else{
+                if(i==5 && j==2 && track == 2){
+                    var auxX = dir[0] * blockSize + xPos;
+                    var auxauxZ = dir[1] * blockSize + zPos;
+                    cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1, scene , npista);
+                    console.log(auxX);
+                    console.log(auxauxZ);
+                }
+                else{
+                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 0 , scene, npista)
+                }
+            }
             }
 
             if (track == 1) {
@@ -206,7 +309,7 @@ export function createPista(npista) {
             }
 
             //Larissa: 27/12 ---------------------------------------------//
-            //arrayPista.push({ x: dir[0] * blockSize + xPos, z: dir[1] * blockSize + zPos });
+            //arrayPista.push({ x: dir[0] * blockSize + xPos, auxZ: dir[1] * blockSize + zPos });
             //console.log(arrayPista)
 
             //Larissa: 27/12 ---------------------------------------------//
@@ -218,7 +321,7 @@ export function createPista(npista) {
             // new THREE.TorusKnotGeometry(0.5, 0.1),
             //new MeshNormalMaterial({}));
 
-            //fazer uma chamada manual com Geometry.computeBoundingBox com antecedencia
+            //faauxZer uma chamada manual com Geometry.computeBoundingBox com antecedencia
             //cube.geometry.computeBoundingBox();
 
 
@@ -286,3 +389,4 @@ export function getArrayPistaFour()
 {
   return arrayPistaFour;
 }
+
