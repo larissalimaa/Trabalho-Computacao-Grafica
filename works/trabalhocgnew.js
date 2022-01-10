@@ -53,6 +53,8 @@ var canFinish = true;
 var time = 0;
 var actuallap = 0;
 var checkvalue = 0;
+var total = 0;
+var timerTotal = 0;
 
 
 var stringLap = 1;
@@ -321,7 +323,7 @@ function timerUpdate() {
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
   
-      var total = 0;
+       var total = 0;
       for (var i = 1; i <= lap; i++) {
         total += timerVoltas[i];
       }
@@ -340,7 +342,7 @@ function timerUpdate() {
       }
   
       var information = document.getElementById("InfoxBox");
-      information.innerHTML = "Volta (" + lap + "/4)<br><br>Tempo da volta: " + minutes + ":" + seconds + "<br>Tempo total: " + minutesTotal + ":" + secondsTotal
+      information.innerHTML = "Volta (" + lap + "/4)<br><br>Tempo da volta: " + minutes + ":" 
   
       timerVoltas[lap]++;
   
@@ -579,8 +581,8 @@ function keyboardUpdate() {
 function contaVoltasPista(truck) {
     //var checkpoint = arrayPistaOne[0]
     //checkpoint.set
-   var checkx = -270;
-  var checkz = -210;
+   var checkx = -180;
+  var checkz = 0;
 
     var cx = truck.position.x
     var cz = truck.position.z
@@ -589,7 +591,10 @@ function contaVoltasPista(truck) {
     //let bz = blocoInicial.position.z
     let bx = -120;
     let bz = 0;
-
+    //console.log("actuallap")
+    //console.log(actuallap)
+    //console.log("checkvalue")
+    //console.log(checkvalue)
     if (
 
         cx >= bx - blockSize / 2 &&
@@ -599,25 +604,30 @@ function contaVoltasPista(truck) {
         actuallap < checkvalue
     ) {
         actuallap++;
-        if(actuallap >= 15 ){
+        if(actuallap >= 10 ){
             lap = 1;
-            if(actuallap >=30)
+            if(actuallap >=20)
             {
                 lap = 2; 
             }
-            if(actuallap >=45)
+            if(actuallap >=30)
             {
                 lap = 3; 
             }
-            if(actuallap >=60)
+            if(actuallap >=40)
             {
                 lap = 4; 
             }
         }
         console.log("lap=")
         console.log(lap)
-        timerVoltas[lap] = 0;
-        canFinish = false;
+        //timerUpdate();
+        
+            //timerVoltas[lap] = total;
+            //timeTotal 
+            canFinish = false;
+            
+          
     }
     
     if (cx >= checkx - blockSize / 2 &&
@@ -628,6 +638,7 @@ function contaVoltasPista(truck) {
         console.log("checkvalue=")
         console.log(checkvalue)
         checkvalue += 1
+       
     }
    
 
@@ -804,19 +815,8 @@ function acceleration() {
 setInterval(calculator, 1000);
 
 function calculator() {
-    var min = 0;
-    var seg = 0;
-    //time++;
-    for (let i = 0; i < 2000; i++) {
-        //time++;
-        //if (time % 60 == 0) {
-            //min += 1;
-            //seg = 0;
-            //time = 0;
-        //}
-    }
 
-    time_counter.changeMessage("Time: " + min + ":" + seg + "s.");
+    time_counter.changeMessage("Velocidade: " + Math.abs(Math.round(speed * 22)) +" KM/h");
 }
 
 
