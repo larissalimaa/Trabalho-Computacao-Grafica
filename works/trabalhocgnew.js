@@ -171,26 +171,36 @@ function createSphere(radius, widthSegments, heightSegments) {
     var object = new THREE.Mesh(geometry, material);
     object.castShadow = true;
     return object;
+    
 }
+
 var trackballControls = new TrackballControls(camera, renderer.domElement);
 var light = initDefaultSpotlight(scene, new THREE.Vector3(35, 20, 30)); // Use default light
 var lightSphere42 = createSphere(0.3, 10, 10);
 lightSphere42.position.copy(light.position);
 light.position.copy(camera.position);
 
-var lightSphere42 = createSphere(0.3, 10, 10);
-var pl = new THREE.DirectionalLight( 0xffffff, 2 );
 
-pl.castShadow = true;
+//Luz Para Emitir Sombras
+var p_light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
+
+p_light.castShadow = true; // default false
+
+p_light.rotateY(degreesToRadians(-90));
 //Set up shadow properties for the light
-pl.shadow.mapSize.width = 512; // default
-pl.shadow.mapSize.height = 512; // default
-pl.shadow.camera.near = 0.5; // default
-pl.shadow.camera.far = 500; // default
-var lightSphere43 = createSphere(0.3, 10, 10);
-lightSphere43.position.copy(pl.position);
+p_light.shadow.mapSize.width = 512; // default
+p_light.shadow.mapSize.height = 512; // default
+p_light.shadow.camera.near = 0.5; // default
+p_light.shadow.camera.far = 500; // default
+
+const helper = new THREE.CameraHelper( light.shadow.camera );
+ // scene.add( helper );
+
+
+//Cria Sphere42
+var lightSphere42 = createSphere(0.3, 10, 10);
 lightSphere42.position.copy(light.position);
-//light.position.copy(camera.position);
+
 
 
 //Cria o plano base
@@ -258,7 +268,8 @@ lightSphere42.add(light); //Davi: 02/01
 cube7.add(truck);
 //scene.add(camera2); //Davi: 03/01
 scene.add(camera);
-camera2.add(pl);
+scene.add(p_light);
+//p_light.position.copy(camera);
 
 
 //Davi: 03/01//////////////////INICIO///////////////////////////
@@ -272,11 +283,6 @@ initDefaultBasicLight(scene, true);
 cube7.translateY(20.0);
 cube7.rotateY(degreesToRadians(-90));
 cube7.position.set(xInicial, yInicial, zInicial);
-
-
-var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-scene.add(directionalLight);
-camera.add(directionalLight);
 
 //POSICAO INICIAL DO CARRINHO 
 //truck.position.set(-7, 2.2, 50.0);
@@ -373,10 +379,12 @@ function keyboardUpdate() {
         if (keyboard.pressed("left")) {
             cube7.rotateY(angle);
             perspec_cam.rotateY(angle);
+            p_light.rotateY(angle);
         }
         if (keyboard.pressed("right")) {
             cube7.rotateY(-angle);
             perspec_cam.rotateY(-angle);
+            p_light.rotateY(-angle);
         }
     }
 
@@ -384,10 +392,12 @@ function keyboardUpdate() {
         if (keyboard.pressed("left")) {
             cube7.rotateY(-angle);
             perspec_cam.rotateY(-angle);
+            p_light.rotateY(-angle);
         }
         if (keyboard.pressed("right")) {
             cube7.rotateY(angle);
             perspec_cam.rotateY(angle);
+            p_light.rotateY(angle);
         }
     }
 
@@ -458,7 +468,7 @@ function keyboardUpdate() {
 
     if (inspec == true) {
 
-
+        scene.remove (p_light);
         speed = 0.1; //Adicionei essa redução de velocidade para que o carro não saia do lugar no modo inspecionar (Davi: 03/01)
         cube7.position.x = 0;
         cube7.position.y = 0;
@@ -485,7 +495,7 @@ function keyboardUpdate() {
         scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
-
+        scene.add(p_light);
         for (var i = 0; i < arrayPistaOne.length; i++) {
             scene.add(arrayPistaOne[i]);
 
@@ -507,7 +517,7 @@ function keyboardUpdate() {
         scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
-
+        scene.add(p_light);
 
         for (var i = 0; i < arrayPistaTwo
             .length; i++) {
@@ -532,7 +542,7 @@ function keyboardUpdate() {
         scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
-
+        scene.add(p_light);
 
         for (var i = 0; i < arrayPistaThree.length; i++) {
             scene.add(arrayPistaThree
@@ -557,7 +567,7 @@ function keyboardUpdate() {
         scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
-
+        scene.add(p_light);
 
         for (var i = 0; i < arrayPistaFour.length; i++) {
             scene.add(arrayPistaFour[i]);
@@ -849,9 +859,14 @@ function stalker_cam() {
         perspec_cam.translateZ(displacement);
         perspec_cam.position.x = cube7.position.x;
         perspec_cam.position.y = cube7.position.y;
-        perspec_cam.position.z = cube7.position.z;
+        perspec_cam.position.z = cube7.position.z; 
+        p_light.translateZ(displacement);
+        p_light.position.x = cube7.position.x;
+        p_light.position.y = cube7.position.y;
+        p_light.position.z = cube7.position.z; 
         scene.remove(lightSphere42); //(Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
+        
         camera.position.z = perspec_cam.position.z + 50;
         camera.position.y = camera_position_y;
         camera.position.x = perspec_cam.position.x + 50;
@@ -861,6 +876,7 @@ function stalker_cam() {
             perspec_cam.position.z,
         );
 
+            
     }
 }
 
@@ -891,29 +907,25 @@ function controlledRender() {
 
 function render() {
     stats.update(); // Update FPS 
+if (inspec == false) {
+    
+
+}
 
     //verifica se carro esta dentro da pista
     verificaCarro();
 
     contaVoltasPista(cube7);
-
     //checkpoint
     // contaVoltasPista(cube7);
-
     if (inspec == true)
-        trackballControls.update(); //Faz a luz acompanhar a camera no modo inspecionar (Davi: 03/01)
+    trackballControls.update(); //Faz a luz acompanhar a camera no modo inspecionar (Davi: 03/01)
     light.position.copy(camera.position);
     keyboardUpdate();
     acceleration();
     requestAnimationFrame(render);
-
-
     renderer.render(scene, camera,) // Render scene
     stalker_cam();
-
-    //directionalLight.position.copy( camera.position );
-
-
     controlledRender() //Renderiza o mini mapa (Davi: 03/01)
 }
 

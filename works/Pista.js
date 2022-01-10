@@ -43,18 +43,16 @@ export default class Pista extends THREE.Mesh {
             cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x999999 });
         }
         const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-        cube.receiveShadow = true;
         if (inicio)
-            cube.name = 'PosicaoInicial';
+        cube.name = 'PosicaoInicial';
         cube.position.set(x, 0, z);
+        cube.receiveShadow = true;
         //Larissa: 27/12/////////////////////////////////////////////////////
         //arrayPista.push({ x: x, auxZ: auxZ });
         //Descomente para ver arrayPista (coordenadas)
         //console.log(arrayPista);
         //Larissa: 23/12/////////////////////////////////////////////////////
         return cube;
-
-
     }
 
 }

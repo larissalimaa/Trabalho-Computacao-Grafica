@@ -175,11 +175,10 @@ var cubeMaterial = new THREE.MeshPhongMaterial({
   }); 
   var cube16 = new THREE.Mesh(cubeGeometry, cubeMaterial);
   var cube16 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-  cube16.castShadow = true;
   
-  cube16.position.set(0.0, 1.2, -0.8)
+cube16.position.set(0.0, 1.2, -0.8)
 cube16.rotateZ(degreesToRadians(90));
-
+cube16.castShadow = true;
 /////////////////////////////vidros//////////////////////
 var cubeGeometry = new THREE.BoxGeometry(5.8, 7, 6);
 var cubeMaterial = new THREE.MeshPhongMaterial({
