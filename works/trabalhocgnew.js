@@ -295,13 +295,17 @@ timerUpdate();
 render();
 
 
-function resetThings(x, y, z) {
+function resetThings(x, y, z, rt) {
 
-    truck.position.set(0, 0, 0);
+    //truck.position.set(0, 0, 0);
     cube7.position.set(x, 2.2, z);
+    cube7.rotation.x = 0;
+    //cube7.rotation.y = 0;
+    cube7.rotation.z = 0;
     time = 0;
-    truck.rotation.y = 0;
+    //truck.rotation.y = 0;
     lap = 0;
+    cube7.rotation.y = rt ;
 
 }
 
@@ -484,7 +488,9 @@ function keyboardUpdate() {
             scene.add(arrayPistaOne[i]);
 
         }
-        resetThings(-120, 2.2, 0);
+        resetThings(-120, 2.2, 0 , degreesToRadians(-90));
+        
+        //cube7.rotation.y =   Math.PI ;
         camera2.position.copy(camPosition);
         camera2.up.set(-1.0, 1.0, 0.0);
         camera2.lookAt(0.0, 0.0, -180.0);
@@ -507,8 +513,10 @@ function keyboardUpdate() {
             [i]);
 
         }
-        resetThings(30, 2.2, -60);
-        //truck.rotation.y = - Math.PI / 2;
+        resetThings(30, 2.2, -60, degreesToRadians(180));
+        //cube7.rotation.y =  - Math.PI;
+        //2truck.rotation.y = -Math.PI /2;
+       
         camera2.position.copy(camPosition);
         camera2.up.set(-1.0, 1.0, 0.0);
         camera2.lookAt(0.0, 0.0, -180.0);
@@ -529,8 +537,10 @@ function keyboardUpdate() {
             [i]);
 
         }
-        resetThings(-270, 2.2, -210);
-        //truck.rotation.y = Math.PI / 2;
+        resetThings(-270, 2.2, -210, degreesToRadians(-360));
+        //cube7.rotation.y =   Math.PI ;
+        //truck.rotation.y = Math.PI ;
+        
         camera2.position.copy(camPosition);
         camera2.up.set(-1.0, 1.0, 0.0);
         camera2.lookAt(0.0, 0.0, -180.0);
@@ -551,7 +561,8 @@ function keyboardUpdate() {
             scene.add(arrayPistaFour[i]);
 
         }
-        resetThings(-120, 2.2, 0);
+        resetThings(-120, 2.2, 0, degreesToRadians(-90));
+        //cube7.rotation.y =   Math.PI ;
         //var camera2 = new THREE.PerspectiveCamera(50, MP_Width / MP_Heidth, 1.0, 1000 + 2);
         const camPosition1 = new THREE.Vector3(0.0, 700, -180.0);
         camera2.position.copy(camPosition1);
@@ -863,7 +874,7 @@ function controlledRender() {
     // Set main viewport
     renderer.setViewport(0, 0, width, height);
     renderer.setScissorTest(false);
-    renderer.setClearColor(0x0B5394);
+    renderer.setClearColor(0x312A2A);
     renderer.clear();
     renderer.render(scene, camera);
 
@@ -871,7 +882,7 @@ function controlledRender() {
     renderer.setViewport(0, height - MP_Heidth, MP_Width, MP_Heidth);
     renderer.setScissor(0, height - MP_Heidth, MP_Width, MP_Heidth);
     renderer.setScissorTest(true);
-    renderer.setClearColor(0x3D85C6);
+    renderer.setClearColor("rgb(60, 50, 150)");
     renderer.clear();
     renderer.render(scene, camera2);
 }
