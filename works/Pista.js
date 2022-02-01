@@ -1,4 +1,4 @@
-import { arrayCubeBBox } from "./trabalhocgnew.js";
+import { arrayCubeBBox } from "./trabalhocg_new.js";
 import * as THREE from '../build/three.module.js';
 
 
@@ -15,7 +15,7 @@ var arrayPistaThree = new Array();
  var arrayPistaFour = new Array();
 
 //variavel do tamanho do bloco, comprimento/profundidade 
-var blockSize = 30;
+var blockSize = 60;
 
 var cube1,cube2,cube3,cube4,cube5,cube6,cube7,cube8,cube9,cube10,cube11,cube12,cube13,cube14,cube15
 
@@ -25,7 +25,7 @@ export default class Pista extends THREE.Mesh {
 
     constructor(x, z, inicio = false, scene, npista) {
 
-        const cubeGeometry = new THREE.BoxGeometry(30, 0.3, 30);
+        const cubeGeometry = new THREE.BoxGeometry(60, 0.3, 60);
         var cubeMaterial;
         //Larissa: 23/12/////////////////////////////////////////////////////
         if (inicio) {
@@ -38,9 +38,9 @@ export default class Pista extends THREE.Mesh {
         else{
         var floorTexture = new THREE.TextureLoader().load('asfalto.jpg');;
         floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
-        //cubeMaterial = new THREE.MeshPhongMaterial({ map: floorTexture, side: THREE.DoubleSide });
+        cubeMaterial = new THREE.MeshPhongMaterial({ map: floorTexture, side: THREE.DoubleSide });
         
-            cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x999999 });
+            //cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x999999 });
         }
         const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
         if (inicio)
@@ -120,9 +120,9 @@ export function createFinishLine(x, z, scene, npista) {
     cube15.position.set(auxX - 12, 0.1, auxZ - 14);
 
     if(npista == 2 || npista == 3){
-        auxZ = -72
+        auxZ = -132
         if(npista == 3){
-            auxZ = -198
+            auxZ = -406
         }
         cube1.position.set(auxX + 0 , 0.1, auxZ);
         cube2.position.set(auxX + 2 , 0.1, auxZ);
@@ -179,10 +179,10 @@ export function createPista(npista, scene) {
 
     //---alterado dia 27/12 por larissa (arrumando pista 3)----/
 
-    //variacao da pista 3 (sub_bloco)
+    //variacao da pista 3 (sub_bloco) //antigo bloco 33 do console p bloco tamanho 30
     if (track == 5) {
         xPos = 30;
-        zPos = -180;
+        zPos = -360;
         //inicio = false;
     }
     //---alterado dia 27/12 por larissa----/
