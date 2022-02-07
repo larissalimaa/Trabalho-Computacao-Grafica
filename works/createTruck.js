@@ -12,339 +12,261 @@ export var roda4;
 export function createTruck() {
 
   
-    var truck = new THREE.Group();
-  
-///////////////////////parte de baixo do carro
+  var truck = new THREE.Group();
+
+/////////////////texturas///////////
+const loader = new THREE.TextureLoader();
+const metaltexture = loader.load('../assets/textures/metal.jpg');
+const metal = new THREE.MeshLambertMaterial({
+map: metaltexture
+});
+
+const fibratexture = loader.load('../assets/textures/fibra.jpg');
+const fibra = new THREE.MeshLambertMaterial({
+map: fibratexture
+});
+
+const paineltexture = loader.load('../assets/textures/painel.jpg');
+const painel = new THREE.MeshLambertMaterial({
+map: paineltexture
+});
+
+//////////////////////parte de baixo do carro//////////////////
+//////////////////parachoque f e t///////////////
+var cubeGeometry = new THREE.BoxGeometry(2.0, 1, 8.6);
+var cube22 = new THREE.Mesh(cubeGeometry, fibra);
+cube22.position.set(0.0, -0.5 , 11.4)
+cube22.rotateY(degreesToRadians(90));
+cube22.castShadow = true;
+
+var cubeGeometry = new THREE.BoxGeometry(3.0, 1, 8.6);
+var cube23 = new THREE.Mesh(cubeGeometry, fibra);
+cube23.position.set(0.0, -0.5 , -12.4)
+cube23.rotateY(degreesToRadians(90));
+cube23.castShadow = true;
+////////////////////////////////////////////////////////////
 var cubeGeometry = new THREE.BoxGeometry(0.8, 1, 8.9);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-      
-  });
-var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube = new THREE.Mesh(cubeGeometry, fibra);
 cube.position.set(3.9, -0.2, 0.0)
 cube.rotateZ(degreesToRadians(103));
+cube.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(0.8, 1, 8.9);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
- 
-  });
-var cube1 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube1 = new THREE.Mesh(cubeGeometry, fibra);
 cube1.position.set(-3.9, -0.2, 0.0)
 cube1.rotateZ(degreesToRadians(-103));
+cube1.castShadow = true;
 ////////////////////////////////////////////
 var cubeGeometry = new THREE.BoxGeometry(0.8, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-   
-  });
-
-  var cube2 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube2.position.set(3.8, 2.8, 8.0)
+var cube2 = new THREE.Mesh(cubeGeometry, fibra);
+cube2.position.set(3.801, 2.8, 8.0)
 cube2.rotateZ(degreesToRadians(90));
+cube2.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(1.0, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-       
-  });
-var cube3 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube3 = new THREE.Mesh(cubeGeometry, fibra);
 cube3.position.set(3.8, 1.212, 5.4)
 cube3.rotateX(degreesToRadians(120));
+cube3.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(1.0, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-     
-  });
-var cube4 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube4 = new THREE.Mesh(cubeGeometry, fibra);
 cube4.position.set(3.8, 1.212, 10.6)
 cube4.rotateX(degreesToRadians(-120));
+cube4.castShadow = true;
 /////////////////////////////////////////////////////////////////
 var cubeGeometry = new THREE.BoxGeometry(0.8, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-      
-  });
-
-  var cube5 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube5 = new THREE.Mesh(cubeGeometry, fibra);
 cube5.position.set(-3.8, 2.8, 8.0)
 cube5.rotateZ(degreesToRadians(90));
+cube5.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(1.0, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-      
-  });
-var cube6 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube6 = new THREE.Mesh(cubeGeometry, fibra);
 cube6.position.set(-3.8, 1.212, 5.4)
 cube6.rotateX(degreesToRadians(120));
+cube6.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(1.0, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-     
-  });
-var cube7 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube7 = new THREE.Mesh(cubeGeometry, fibra);
 cube7.position.set(-3.8, 1.212, 10.6)
 cube7.rotateX(degreesToRadians(-120));
+cube7.castShadow = true;
 ///////////////////////////////////////////////////////////////////////
 ///
 var cubeGeometry = new THREE.BoxGeometry(0.8, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-  
-  });
-var cube8 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube8 = new THREE.Mesh(cubeGeometry, fibra);
 cube8.position.set(3.8, 2.8, -8.0)
 cube8.rotateZ(degreesToRadians(90));
+cube8.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(1.0, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-  
-  });
-var cube9 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube9 = new THREE.Mesh(cubeGeometry, fibra);
 cube9.position.set(3.8, 1.212, -10.6)
 cube9.rotateX(degreesToRadians(120));
+cube9.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(1.0, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-  
-  });
-var cube10 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube10 = new THREE.Mesh(cubeGeometry, fibra);
 cube10.position.set(3.8, 1.212, -5.4)
 cube10.rotateX(degreesToRadians(-120));
+cube10.castShadow = true;
+
 /////////////////////////////////////////////////////////////////
 var cubeGeometry = new THREE.BoxGeometry(0.8, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-
-  });
-
-  var cube11 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube11 = new THREE.Mesh(cubeGeometry, fibra);
 cube11.position.set(-3.8, 2.8, -8.0)
 cube11.rotateZ(degreesToRadians(90));
+cube11.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(1.0, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-   
-  });
-var cube12 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube12 = new THREE.Mesh(cubeGeometry, fibra);
 cube12.position.set(-3.8, 1.212, -10.6)
 cube12.rotateX(degreesToRadians(120));
+cube12.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(1.0, 1, 4.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-   
-  });
-var cube13 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube13 = new THREE.Mesh(cubeGeometry, fibra);
 cube13.position.set(-3.8, 1.212, -5.4)
 cube13.rotateX(degreesToRadians(-120));
-
+cube13.castShadow = true;
 ///////////////////////////////////////
 //
 
 var cubeGeometry = new THREE.BoxGeometry(6.0, 3, 5.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-      
-  });
-var cube14 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube14 = new THREE.Mesh(cubeGeometry, metal);
 cube14.position.set(0.0, 1.69, 11.0)
 cube14.rotateX(degreesToRadians(103));
+cube14.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(6.0, 5.5, 2.5);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-    
-  });
-var cube15 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube15 = new THREE.Mesh(cubeGeometry, metal);
 cube15.position.set(0.0, 3.9, 9.9)
 cube15.rotateX(degreesToRadians(109));
-
+cube15.castShadow = true;
 //////////cubo grande de baixo
 var cubeGeometry = new THREE.BoxGeometry(4.5, 7, 26.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  
-  color: 	'#C0C0C0' ,
-   
-  }); 
-  var cube16 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-  var cube16 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-  
+var cube16 = new THREE.Mesh(cubeGeometry, metal);
 cube16.position.set(0.0, 1.2, -0.8)
 cube16.rotateZ(degreesToRadians(90));
 cube16.castShadow = true;
 /////////////////////////////vidros//////////////////////
 var cubeGeometry = new THREE.BoxGeometry(5.8, 7, 6);
 var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 'rgb(0,0,0)',
-  opacity: 0.6,
-  transparent: true,
-  wireframe: false
+color: 'rgb(0,0,0)',
+opacity: 0.6,
+transparent: true,
+wireframe: false
 });
 var cube17 = new THREE.Mesh(cubeGeometry, cubeMaterial);
 cube17.position.set(0.01, 4.0, 3.4)
 cube17.rotateX(degreesToRadians(109));
 
+
 var cubeGeometry = new THREE.BoxGeometry(5.8, 7.5, 6);
 var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 'rgb(0,0,0)',
-  opacity: 0.6,
-  transparent: true,
-  wireframe: false
+color: 'rgb(0,0,0)',
+opacity: 0.6,
+transparent: true,
+wireframe: false
 });
 var cube18 = new THREE.Mesh(cubeGeometry, cubeMaterial);
 cube18.position.set(0, 4.4, -2.1)
 cube18.rotateX(degreesToRadians(-100));
+
 ////////////////////////////////////////////
 ////////virada lateral
 var cubeGeometry = new THREE.BoxGeometry(0.8, 1, 27.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-     
-  });
-var cube19 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube19 = new THREE.Mesh(cubeGeometry, metal);
 cube19.position.set(2.9, 3.6, -0.6)
 cube19.rotateZ(degreesToRadians(103));
+cube19.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(0.8, 1, 27.0);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-     
-  });
-var cube20 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube20 = new THREE.Mesh(cubeGeometry, metal);
 cube20.position.set(-2.9, 3.6, -0.6)
 cube20.rotateZ(degreesToRadians(-103));
-
+cube20.castShadow = true;
 //////////////////////////////////////////////
 
 ///////////////////////////cubos traseiros//////////////////
 
 
 var cubeGeometry = new THREE.BoxGeometry(5.8, 8.5, 6.5);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-      
-  });
-var cube21 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube21 = new THREE.Mesh(cubeGeometry, metal);
 cube21.position.set(0.0, 3.23, -10.0)
 cube21.rotateX(degreesToRadians(-100));
+cube21.castShadow = true;
 /////////////////////////////////////////////////////////////////
-//////////////////parachoque f e t///////////////
-var cubeGeometry = new THREE.BoxGeometry(2.0, 1, 8.6);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-      
-  });
-var cube22 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube22.position.set(0.0, -0.5 , 11.4)
-cube22.rotateY(degreesToRadians(90));
-
-var cubeGeometry = new THREE.BoxGeometry(3.0, 1, 8.6);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#A9A9A9' ,
-    
-  });
-var cube23 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube23.position.set(0.0, -0.5 , -12.4)
-cube23.rotateY(degreesToRadians(90));
-////////////////////////////////////////////////////////////
 
 var cubeGeometry = new THREE.BoxGeometry(0.5, 8, 0.5);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-    
-  });
-var cube24 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube24 = new THREE.Mesh(cubeGeometry, metal);
 cube24.position.set(2.6, 7.54, -2.76)
 cube24.rotateX(degreesToRadians(-100));
+cube24.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(0.5, 7.5, 0.5);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-    
-  });
-var cube25 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube25 = new THREE.Mesh(cubeGeometry, metal);
 cube25.position.set(-2.6, 7.54, -2.76)
 cube25.rotateX(degreesToRadians(-100));
+cube23.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(0.5, 7.3, 0.5);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-   
-  });
-var cube26 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube26 = new THREE.Mesh(cubeGeometry, metal);
 cube26.position.set(2.6, 7.0, 4.2)
 cube26.rotateX(degreesToRadians(109));
+cube26.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(0.5, 7.3, 0.5);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-  
-  });
-var cube27 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube27 = new THREE.Mesh(cubeGeometry, metal);
 cube27.position.set(-2.6, 7.0, 4.2)
 cube27.rotateX(degreesToRadians(109));
+cube27.castShadow = true;
 
 var cubeGeometry = new THREE.BoxGeometry(0.5, 5.8, 0.5);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#C0C0C0' ,
-   
-  });
-var cube28 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube28 = new THREE.Mesh(cubeGeometry, metal);
 cube28.position.set(0.0, 8.4, 1.0)
 cube28.rotateZ(degreesToRadians(90));
-
+cube28.castShadow = true;
 ////////////////////////////////////////////////////////////
 /////////////////////bancos do carro////////////////////
 var cubeGeometry = new THREE.BoxGeometry(4.5, 0.8, 5.8);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#000000' ,
-    
-  });
-var cube29 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube29 = new THREE.Mesh(cubeGeometry, fibra);
 cube29.position.set(0.0, 3.9, -5.0)
 cube29.rotateX(degreesToRadians(-100));
 
 var cubeGeometry = new THREE.BoxGeometry(4.5, 0.8, 5.8);
-var cubeMaterial = new THREE.MeshPhongMaterial({
-  color: 	'#000000' ,
- 
-  });
-var cube30 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+var cube30 = new THREE.Mesh(cubeGeometry, fibra);
 cube30.position.set(0.0, 3.9, 1.5)
 cube30.rotateX(degreesToRadians(-100));
 
 
+var cubeGeometry = new THREE.BoxGeometry(1.2, 0.3, 0.3);
+var cube31 = new THREE.Mesh(cubeGeometry, fibra);
+cube31.position.set(3.5, 3.5, 2.0)
+cube31.rotateY(degreesToRadians(90));
+
+var cubeGeometry = new THREE.BoxGeometry(1.2, 0.3, 0.3);
+var cube32 = new THREE.Mesh(cubeGeometry, fibra);
+cube32.position.set(3.5, 3.5, -4.0)
+cube32.rotateY(degreesToRadians(90));
+
+var cubeGeometry = new THREE.BoxGeometry(1.2, 0.3, 0.3);
+var cube33 = new THREE.Mesh(cubeGeometry, fibra);
+cube33.position.set(-3.5, 3.5, 2.0)
+cube33.rotateY(degreesToRadians(90));
+
+var cubeGeometry = new THREE.BoxGeometry(1.2, 0.3, 0.3);
+var cube34 = new THREE.Mesh(cubeGeometry, fibra);
+cube34.position.set(-3.5, 3.5, -4.0)
+cube34.rotateY(degreesToRadians(90));
+
+var cubeGeometry = new THREE.BoxGeometry(5.8, 0.3, 3.3);
+var cube35 = new THREE.Mesh(cubeGeometry, painel);
+cube35.position.set(0.0, 4.2, 6.8)
+cube35.rotateX(degreesToRadians(110));
 
 
-
-
-
-
-
-
-
-var det = createCylinder1(0.1, 0.1, 1.0, 10, 10, false);
-det.rotateX(degreesToRadians(90));
-det.position.set(3.5, 3.5, 2.0);
-
-var det1 = createCylinder1(0.1, 0.1, 1.0, 10, 10, false);
-det1.rotateX(degreesToRadians(90));
-det1.position.set(3.5, 3.5, -4.0);
-
-var det2 = createCylinder1(0.1, 0.1, 1.0, 10, 10, false);
-det2.rotateX(degreesToRadians(90));
-det2.position.set(-3.5, 3.5, 2.0);
-
-var det3 = createCylinder1(0.1, 0.1, 1.0, 10, 10, false);
-det3.rotateX(degreesToRadians(90));
-det3.position.set(-3.5, 3.5, -4.0);
 ///////////////////volante/////////////////////////
 var det4 = createCylinder1(0.6, 0.6, 1.0, 10, 10, false);
 det4.rotateX(degreesToRadians(106));
@@ -363,68 +285,68 @@ det6.position.set(-3.5, 2.35, 8.0);
 
 
 
-var axis1 = createCylinder(0.3, 0.3, 7.2, 10, 10, false);
-  axis1.rotateZ(degreesToRadians(90));
-  axis1.position.set(0.0, -0.1, 8.0);
+var axis1 = createCylinder(0.4, 0.4, 7.9, 10, 10, false);
+axis1.rotateZ(degreesToRadians(90));
+axis1.position.set(0.0, -0.1, 8.0);
 
-var axis2 = createCylinder(0.3, 0.3, 7.2, 10, 10, false);
-  axis2.rotateZ(degreesToRadians(90));
-  axis2.position.set(0.0, -0.1, -8.0);
+var axis2 = createCylinder(0.4, 0.4, 7.9, 10, 10, false);
+axis2.rotateZ(degreesToRadians(90));
+axis2.position.set(0.0, -0.1, -8.0);
 
-  roda1 = createTorus1(1.9, 0.3, 20, 20, Math.PI * 17);
-  roda1.position.set( 3.8, -0.1, 8.0);
-  
-  var roda12 = createTorus(2.0, 0.5, 20, 20, Math.PI * 6);
-  roda12.rotateY(degreesToRadians(90));
+roda1 = createTorus1(1.9, 0.3, 20, 20, Math.PI * 17);
+roda1.position.set( 3.8, -0.1, 8.0);
+
+var roda12 = createTorus(2.0, 0.5, 20, 20, Math.PI * 2);
+roda12.rotateY(degreesToRadians(90));
 ///////////
 roda2 = createTorus1(1.8, 0.3, 20, 20, Math.PI * 17);
-  roda2.position.set(-3.8, -0.1, 8.0);
-  
-  var roda21 = createTorus(2.0, 0.5, 20, 20, Math.PI * 6);
-  roda21.rotateY(degreesToRadians(90));
+roda2.position.set(-3.8, -0.1, 8.0);
+
+var roda21 = createTorus(2.0, 0.5, 20, 20, Math.PI * 2);
+roda21.rotateY(degreesToRadians(90));
 ////////////
-  roda3 = createTorus1(1.8, 0.3, 20, 20, Math.PI * 17);
-  roda3.position.set(3.8, -0.1, -8.0);
-  
-  var roda31 = createTorus(2.0, 0.5, 20, 20, Math.PI * 6);
-  roda31.rotateY(degreesToRadians(90));
+roda3 = createTorus1(1.8, 0.3, 20, 20, Math.PI * 17);
+roda3.position.set(3.8, -0.1, -8.0);
+
+var roda31 = createTorus(2.0, 0.5, 20, 20, Math.PI * 2);
+roda31.rotateY(degreesToRadians(90));
 ////////////
- roda4 = createTorus1(1.8, 0.3, 20, 20, Math.PI * 17);
-  roda4.position.set(-3.8, -0.1, -8.0);
-  
-  var roda41 = createTorus(2.0, 0.5, 20, 20, Math.PI * 6);
-  roda41.rotateY(degreesToRadians(90));
+roda4 = createTorus1(1.8, 0.3, 20, 20, Math.PI * 17);
+roda4.position.set(-3.8, -0.1, -8.0);
+
+var roda41 = createTorus(2.0, 0.5, 20, 20, Math.PI * 2);
+roda41.rotateY(degreesToRadians(90));
 //////////
 
- ////////////////lanternas
- var lightSphere1 = createSphere(0.3, 10, 10);
- lightSphere1.position.set(2.7, 3.9, 13.0);
- 
- var lightSphere2 = createSphere(0.3, 10, 10);
- lightSphere2.position.set(2.5, 3.9, 13.0);
- 
- var lightSphere3 = createSphere(0.3, 10, 10);
- lightSphere3.position.set(2.2, 3.9, 13.0);
- 
- var lightSphere4 = createSphere(0.3, 10, 10);
- lightSphere4.position.set(2.0, 3.9, 13.0);
- 
- var lightSphere5 = createSphere(0.3, 10, 10);
- lightSphere5.position.set(1.8, 3.9, 13.0);
- 
- var lightSphere6 = createSphere(0.3, 10, 10);
- lightSphere6.position.set(1.6, 3.9, 13.0);
- 
- var lightSphere7 = createSphere(0.3, 10, 10);
- lightSphere7.position.set(1.4, 3.9, 13.0);
- 
- var lightSphere8 = createSphere(0.3, 10, 10);
- lightSphere8.position.set(1.2, 3.9, 13.0);
- 
- var lightSphere9 = createSphere(0.3, 10, 10);
- lightSphere9.position.set(-2.7, 3.9, 13.0);
- 
- var lightSphere10 = createSphere(0.3, 10, 10);
+////////////////lanternas
+var lightSphere1 = createSphere(0.3, 10, 10);
+lightSphere1.position.set(2.7, 3.9, 13.0);
+
+var lightSphere2 = createSphere(0.3, 10, 10);
+lightSphere2.position.set(2.5, 3.9, 13.0);
+
+var lightSphere3 = createSphere(0.3, 10, 10);
+lightSphere3.position.set(2.2, 3.9, 13.0);
+
+var lightSphere4 = createSphere(0.3, 10, 10);
+lightSphere4.position.set(2.0, 3.9, 13.0);
+
+var lightSphere5 = createSphere(0.3, 10, 10);
+lightSphere5.position.set(1.8, 3.9, 13.0);
+
+var lightSphere6 = createSphere(0.3, 10, 10);
+lightSphere6.position.set(1.6, 3.9, 13.0);
+
+var lightSphere7 = createSphere(0.3, 10, 10);
+lightSphere7.position.set(1.4, 3.9, 13.0);
+
+var lightSphere8 = createSphere(0.3, 10, 10);
+lightSphere8.position.set(1.2, 3.9, 13.0);
+
+var lightSphere9 = createSphere(0.3, 10, 10);
+lightSphere9.position.set(-2.7, 3.9, 13.0);
+
+var lightSphere10 = createSphere(0.3, 10, 10);
 lightSphere10.position.set(-2.5, 3.9, 13.0);
 
 var lightSphere11 = createSphere(0.3, 10, 10);
@@ -572,13 +494,13 @@ lightSphere56.position.set(2.63, 5.3, -14.7);
 /////////////////////////////
 var lightSphere57 = createSphere(0.3, 10, 10);
 lightSphere57.position.set(3.1, 3.8, -14.1);
- 
+
 var lightSphere28 = createSphere(0.3, 10, 10);
 lightSphere28.position.set(3.1, 3.5, -14.1);
 
 var lightSphere58 = createSphere(0.3, 10, 10);
 lightSphere58.position.set(-3.1, 3.8, -14.1);
- 
+
 var lightSphere59 = createSphere(0.3, 10, 10);
 lightSphere59.position.set(-3.1, 3.5, -14.1);
 //////////////////////
@@ -668,7 +590,7 @@ lightSphere86.position.set(2.43, 8.4, 1.3);
 
 var lightSphere87 = createSphere(0.3, 10, 10);
 lightSphere87.position.set(2.63, 8.4, 1.3);
-// 
+
 //truck.add( axesHelper );
 truck.add( axis1);
 truck.add( axis2);
@@ -714,11 +636,16 @@ truck.add( cube27);
 truck.add( cube28);
 truck.add( cube29);
 truck.add( cube30);
-truck.add( det);
-truck.add( det1);
-truck.add( det2);
-truck.add( det3);
-truck.add( det4);
+truck.add( cube31);
+truck.add( cube32);
+truck.add( cube33);
+truck.add( cube34);
+truck.add( cube35);
+//truck.add( det);
+//truck.add( det1);
+//truck.add( det2);
+//truck.add( det3);
+//truck.add( det4);
 truck.add( det5);
 truck.add( det6);
 

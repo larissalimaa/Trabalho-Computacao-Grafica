@@ -441,6 +441,52 @@ function melhorVoltaCarro(){
     }
 }
 //////////////////////////---alterado dia 23/12 por hugo---//////////////////////////////////////
+
+//////////////////////////////////////////
+var textureLoader = new THREE.TextureLoader();
+//Skybox
+let materialArray = [];
+let textura_ft = textureLoader.load('../assets/textures/sky.png');
+
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
+
+for (let i = 0; i < 6; i++) {
+    materialArray[i].side = THREE.BackSide;
+}
+
+let skyboxGeo = new THREE.BoxGeometry(1500, 1500, 600);
+let skybox = new THREE.Mesh(skyboxGeo, materialArray);
+//scene.add(skybox);
+
+
+////////////////////////////////////
+//atualiza
+// roda1.matrixAutoUpdate = false;
+// roda2.matrixAutoUpdate = false;
+// skybox.matrixAutoUpdate = false;
+
+
+var mat4 = new THREE.Matrix4();
+//var angulo = 0;
+
+// /////////identidade
+// roda1.matrix.identity();
+// roda2.matrix.identity();
+
+skybox.matrix.identity();
+skybox.matrix.multiply(mat4.makeRotationX(degreesToRadians(90)));
+
+
+
+
+
+
+
 function keyboardUpdate() {
 
     keyboard.update();

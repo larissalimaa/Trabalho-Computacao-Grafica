@@ -30,9 +30,13 @@ export function createCylinder1(radiusTop, radiusBottom, height, radialSegments,
 
 export function createTorus(radius, tube, radialSegments, tubularSegments, arc)
 {
+  const loader = new THREE.TextureLoader();
+  const pneutexture = loader.load('../assets/textures/pneu.jpg');
+const pneu = new THREE.MeshLambertMaterial({
+  map: pneutexture
+});
   var geometry = new THREE.TorusGeometry(radius, tube, radialSegments, tubularSegments, arc);
-  var material = new THREE.MeshPhongMaterial({color:"rgb(54,54,54)"});
-  var object = new THREE.Mesh(geometry, material);
+  var object = new THREE.Mesh(geometry, pneu);
     object.castShadow = true;
     object.rotateY(degreesToRadians(90));
   return object;
@@ -40,9 +44,13 @@ export function createTorus(radius, tube, radialSegments, tubularSegments, arc)
 
 export function createTorus1(radius, tube, radialSegments, tubularSegments, arc)
 {
+  const loader = new THREE.TextureLoader();
+  const fibratexture = loader.load('../assets/textures/fibra.jpg');
+  const fibra = new THREE.MeshLambertMaterial({
+    map: fibratexture
+  });
   var geometry = new THREE.TorusGeometry(radius, tube, radialSegments, tubularSegments, arc);
-  var material = new THREE.MeshPhongMaterial({color:"rgb(0,0,0)"});
-  var object = new THREE.Mesh(geometry, material);
+  var object = new THREE.Mesh(geometry, fibra);
     object.castShadow = true;
     object.rotateY(degreesToRadians(90));
   return object;
