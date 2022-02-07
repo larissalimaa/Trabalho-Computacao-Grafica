@@ -14,9 +14,10 @@ import {
     
 
 } from "../libs/util/util.js";
+
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
-
+import {plane2, plane3, plane4, plane5, plane6, plane7} from './Texturas.js';
 
 //Constantes e Variaveis Globais
 
@@ -44,6 +45,10 @@ const displacement = 22.3;
 //variavel booleana para ativar ou modo de inspensao
 var inspec = false;
 
+
+//Para texturas
+var repeatFactor = 4;
+
 //
 var time_counter = new SecondaryBox("Loading...");
 
@@ -66,7 +71,38 @@ var totalTimer = new THREE.Clock();
 timer.start();
 totalTimer.start();
 
+//LARISSA 03/02 --------------------------------------------//
+//bounding box
 
+/*
+var knot = new THREE.Mesh(
+    new THREE.TorusKnotGeometry(0.5, 0.1),
+    new THREE.MeshNormalMaterial({}));*/
+
+    var knot = new THREE.Mesh(
+        new THREE.TorusKnotGeometry(0.5, 0.1), new THREE.MeshNormalMaterial({}));
+    knot.position.x = -290;
+    knot.position.z = 0;
+    knot.position.y = 2.2;
+    var knotBoxHelper = new THREE.BoxHelper(knot, 0x00ff00);
+    knotBoxHelper.update();
+    var knotBBox = new THREE.Box3();
+    knotBBox.setFromObject(knotBoxHelper);
+    knotBoxHelper.visible = true;
+  
+  //var knotBBox = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+  //knotBBox.setFromObject(knot);
+
+  //var knotBoxHelper = new THREE.BoundingBoxHelper(knot, 0x00ff00);
+  //knotBoxHelper.position.set(-290, 2.2, 0)
+
+var geometryT = new THREE.BoxGeometry(1, 2, 3)
+var material = new THREE.MeshPhongMaterial({ color: '#A9A9A9',})
+var mesh = new THREE.Mesh(geometryT, material)
+mesh.position.set(-320, 2.2, 0)
+
+
+//LARISSA 03/02 --------------------------------------------//
 
 var stringLap = 1;
 
@@ -183,6 +219,8 @@ function createSphere(radius, widthSegments, heightSegments) {
 
 }
 
+
+
 var trackballControls = new TrackballControls(camera, renderer.domElement);
 var light = initDefaultSpotlight(scene, new THREE.Vector3(35, 20, 30)); // Use default light
 var lightSphere42 = createSphere(0.3, 10, 10);
@@ -210,32 +248,6 @@ const helper = new THREE.CameraHelper(light.shadow.camera);
 var lightSphere42 = createSphere(0.3, 10, 10);
 lightSphere42.position.copy(light.position);
 
-
-//Cria o plano centro da pista 1
-var planeGeometry2 = new THREE.PlaneGeometry(540,540);
-//var floorTexture2 = new THREE.TextureLoader().load('grama.jpg');
-//floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
-//var planeMaterial2 = new THREE.MeshPhongMaterial({ map: floorTexture2, side: THREE.DoubleSide });
-var planeMaterial2 = new THREE.MeshPhongMaterial({
-color: 0x4F614F,
-side: THREE.DoubleSide,
-});
-var plane2 = new THREE.Mesh(planeGeometry2, planeMaterial2);
-plane2.rotateX(degreesToRadians(-90));
-plane2.position.x = -270;
-plane2.position.y = 0.2;
-plane2.position.z = -300;
-
-//Cria o plano centro da pista 1
-var planeGeometry3 = new THREE.PlaneGeometry(900,300);
-var floorTexture = new THREE.TextureLoader().load('agua.png');
-//floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
-var planeMaterial3 = new THREE.MeshPhongMaterial({ map: floorTexture, side: THREE.DoubleSide });
-var plane3 = new THREE.Mesh(planeGeometry3, planeMaterial3);
-plane3.rotateX(degreesToRadians(-90));
-plane3.position.x = -270;
-plane3.position.y = 0.2;
-plane3.position.z = 170;
 
 
 
@@ -292,6 +304,10 @@ cube7.add(truck);
 scene.add(camera);
 scene.add(p_light);
 //p_light.position.copy(camera);
+
+//larissa 03/02
+scene.add(mesh);
+scene.add(knotBoxHelper);
 
 
 //Davi: 03/01//////////////////INICIO///////////////////////////
@@ -352,8 +368,11 @@ function resetThings(x, y, z, rt) {
     }
     timerVoltas[0] = 0;
     timerVoltas[lap] = 0;
+    melhorVolta = 0;
 
     scene.remove(plane2)
+    //scene.remove(plane3)
+    //scene.remove(plane5)
     
     
 
@@ -585,9 +604,16 @@ function keyboardUpdate() {
         camera2.translateZ(330);
 
 
-        
+        //adicao dos planos e texturas
         scene.add(plane2);  
         scene.add(plane3);
+        //linha de chegada
+        //scene.add(plane4);
+        //
+        scene.add(plane5);
+
+        scene.add(plane6);
+        scene.add(plane7); 
 
 
     }
@@ -692,31 +718,37 @@ function contaVoltasPista(truck) {
     //var checkpoint = arrayPistaOne[0]
     //checkpoint.set
 
-    //TODO: Primeiro problema: o valor do primeiro check point ser do bloco inicial, para o timer
-    // comecar no inicio do jogo, como colocado a baixo
-    var checkpoint_x = -270;
-    var checkpoint_z = 0;
-
-    var checkx2 = -510;
-    var checkz2 = -600;
-
+    var checkpoint_x;
+    var checkpoint_z;
+    var checkx2;
+    var checkz2;
+    let posicaoBlocoInicial_x;
+    let posicaoBlocoInicial_z;
     var posicaoCarroX = truck.position.x
     var posicaoCarroZ = truck.position.z
 
-     //console.log("posicaoCarroX=")
-    //console.log(posicaoCarroX)
+    //TODO: Primeiro problema: o valor do primeiro check point ser do bloco inicial, para o timer
+    // comecar no inicio do jogo, como colocado a baixo
+    if(pista == 1){
+        checkpoint_x = -270;
+        checkpoint_z = 0;
+        checkx2 = -510;
+        checkz2 = -600;
+        posicaoBlocoInicial_x = -270;
+        posicaoBlocoInicial_z = 0;
+    }
 
-   // console.log("posicaoCarroZ=")
-    // console.log(posicaoCarroZ)
+    if(pista == 2){
+        checkpoint_x = 30;
+        checkpoint_z = -120;
+        //FIXME: 
+        checkx2 = -510;
+        checkz2 = -600;
+        posicaoBlocoInicial_x = 30;
+        posicaoBlocoInicial_z = -120;
+    }
 
 
-    let posicaoBlocoInicial_x = -270;
-    let posicaoBlocoInicial_z = 0;
-
-    //console.log("voltaAtual")
-    //console.log(voltaAtual)
-    //console.log("contadorCheck")
-    //console.log(contadorCheck)
     if (
 
         posicaoCarroX >= posicaoBlocoInicial_x
@@ -1096,6 +1128,12 @@ function render() {
     //verifica se carro esta dentro da pista
     verificaCarro();
 
+    var delta = 0.2;
+    //bounding box
+    //larissa 03/02
+    //knot.rotation.x += (Math.PI / 4) * delta;
+    //knotBoxHelper.update();
+    knotBBox.setFromObject(knotBoxHelper);
 
 
     contaVoltasPista(cube7);
