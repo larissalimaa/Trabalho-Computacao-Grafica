@@ -17,6 +17,13 @@ var arrayPistaThree = new Array();
 //variavel do tamanho do bloco, comprimento/profundidade 
 var blockSize = 60;
 
+//Para texturas
+var repeatFactor = 2;
+var wrapModeS  = THREE.RepeatWrapping;
+var wrapModeT  = THREE.RepeatWrapping;
+var minFilter = THREE.LinearFilter;
+var magFilter = THREE.LinearFilter;
+
 var cube1,cube2,cube3,cube4,cube5,cube6,cube7,cube8,cube9,cube10,cube11,cube12,cube13,cube14,cube15
 
 //Larissa: 23/12/////////////////////////////////////////////////////
@@ -25,7 +32,7 @@ export default class Pista extends THREE.Mesh {
 
     constructor(x, z, inicio = false, scene, npista) {
 
-        const cubeGeometry = new THREE.BoxGeometry(60, 0.3, 60);
+        var cubeGeometry = new THREE.BoxGeometry(60, 0.3, 60);
         var cubeMaterial;
         //Larissa: 23/12/////////////////////////////////////////////////////
         if (inicio) {
@@ -36,13 +43,31 @@ export default class Pista extends THREE.Mesh {
 
         //Larissa: 23/12/////////////////////////////////////////////////////
         else{
-        var floorTexture = new THREE.TextureLoader().load('asfalto.jpg');;
+
+           
+        var floorTexture = new THREE.TextureLoader().load('asfalto5.jpg');
         floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
-        cubeMaterial = new THREE.MeshPhongMaterial({ map: floorTexture, side: THREE.DoubleSide });
+        floorTexture.repeat.set(repeatFactor, repeatFactor);
+
+        //var textureLoader = new THREE.TextureLoader();
+        //var floor  = textureLoader.load('asfalto.jpg');
+        
+        cubeMaterial = new THREE.MeshPhongMaterial({map: floorTexture , side: THREE.DoubleSide });
         
             //cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x999999 });
         }
-        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+
+        
+        var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+        //cube.material.map = floor;
+        //cube.material.map.wrapS = wrapModeS;
+        //cube.material.map.wrapT = wrapModeT;
+        //cube.material.map.minFilter = minFilter;
+        //cube.material.map.magFilter = magFilter;
+        //cube.material.map.repeat.set(repeatFactor,repeatFactor);
+
         if (inicio)
         cube.name = 'PosicaoInicial';
         cube.position.set(x, 0, z);
