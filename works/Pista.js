@@ -19,10 +19,7 @@ var blockSize = 60;
 
 //Para texturas
 var repeatFactor = 2;
-var wrapModeS  = THREE.RepeatWrapping;
-var wrapModeT  = THREE.RepeatWrapping;
-var minFilter = THREE.LinearFilter;
-var magFilter = THREE.LinearFilter;
+
 
 var cube1,cube2,cube3,cube4,cube5,cube6,cube7,cube8,cube9,cube10,cube11,cube12,cube13,cube14,cube15
 

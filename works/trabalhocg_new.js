@@ -17,7 +17,11 @@ import {
 
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
-import {plane2, plane3, plane4, plane5, plane6, plane7} from './Texturas.js';
+import {planoCentral, planoDireita, planoEsquerda, planoFrente, planoTras,
+
+    planoCentral2, planoCentral3
+
+} from './Texturas.js';
 
 //Constantes e Variaveis Globais
 
@@ -370,9 +374,13 @@ function resetThings(x, y, z, rt) {
     timerVoltas[lap] = 0;
     melhorVolta = 0;
 
-    scene.remove(plane2)
-    //scene.remove(plane3)
-    //scene.remove(plane5)
+    scene.remove(planoCentral);
+    scene.remove(planoEsquerda);
+    scene.remove(planoDireita);
+    scene.remove(planoFrente);
+    scene.remove(planoTras);
+    scene.remove(planoCentral2);
+    scene.remove(planoCentral3)
     
     
 
@@ -651,15 +659,17 @@ function keyboardUpdate() {
 
 
         //adicao dos planos e texturas
-        scene.add(plane2);  
-        scene.add(plane3);
+        
+        scene.add(planoCentral);  //plano central
+        scene.add(planoEsquerda); //planoEsquerda
         //linha de chegada
         //scene.add(plane4);
         //
-        scene.add(plane5);
+        scene.add(planoDireita);
 
-        scene.add(plane6);
-        scene.add(plane7); 
+        scene.add(planoFrente);
+        scene.add(planoTras);
+
 
 
     }
@@ -690,6 +700,24 @@ function keyboardUpdate() {
         camera2.translateX(120);
 
         camera2.translateZ(330);
+
+
+        //adicao dos planos e texturas
+        
+        scene.add(planoCentral2);  //plano central
+        //scene.add(planoEsquerda2); //planoEsquerda
+        //linha de chegada
+        //scene.add(plane4);
+        //
+        //scene.add(planoDireita2);
+
+        //scene.add(planoFrente2);
+        //scene.add(planoTras2);
+        //scene.add(planoExt2);
+        //scene.add(planoCentral21);
+
+
+
     }
 
     if (keyboard.pressed("3")) {
@@ -718,6 +746,7 @@ function keyboardUpdate() {
         camera2.translateX(120);
 
         camera2.translateZ(330);
+        scene.add(planoCentral3);  //plano central
     }
 
     if (keyboard.pressed("4")) {
@@ -792,6 +821,18 @@ function contaVoltasPista(truck) {
         checkz2 = -600;
         posicaoBlocoInicial_x = 30;
         posicaoBlocoInicial_z = -120;
+        
+    }
+
+    if(pista == 3){
+        checkpoint_x = -570;
+        checkpoint_z = -420;
+        //FIXME: 
+        checkx2 = 30;
+        checkz2 = -420;
+        posicaoBlocoInicial_x = -570;
+        posicaoBlocoInicial_z = -420;
+       
     }
 
 
