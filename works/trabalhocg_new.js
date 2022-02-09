@@ -17,9 +17,9 @@ import {
 
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
-import {planoCentral, planoDireita, planoEsquerda, planoFrente, planoTras,
+import {planoCentral,
 
-    planoCentral2, planoCentral3
+    planoCentral2, planoCentral3, planoCentral4
 
 } from './Texturas.js';
 
@@ -375,12 +375,14 @@ function resetThings(x, y, z, rt) {
     melhorVolta = 0;
 
     scene.remove(planoCentral);
-    scene.remove(planoEsquerda);
-    scene.remove(planoDireita);
-    scene.remove(planoFrente);
-    scene.remove(planoTras);
+    //scene.remove(planoEsquerda);
+    //scene.remove(planoDireita);
+    //scene.remove(planoFrente);
+    //scene.remove(planoTras);
     scene.remove(planoCentral2);
-    scene.remove(planoCentral3)
+    scene.remove(planoCentral3);
+    scene.remove(planoCentral4);
+
     
     
 
@@ -661,14 +663,14 @@ function keyboardUpdate() {
         //adicao dos planos e texturas
         
         scene.add(planoCentral);  //plano central
-        scene.add(planoEsquerda); //planoEsquerda
+        //scene.add(planoEsquerda); //planoEsquerda
         //linha de chegada
         //scene.add(plane4);
         //
-        scene.add(planoDireita);
+        //scene.add(planoDireita);
 
-        scene.add(planoFrente);
-        scene.add(planoTras);
+        //scene.add(planoFrente);
+        //scene.add(planoTras);
 
 
 
@@ -746,6 +748,7 @@ function keyboardUpdate() {
         camera2.translateX(120);
 
         camera2.translateZ(330);
+        //textura
         scene.add(planoCentral3);  //plano central
     }
 
@@ -783,6 +786,9 @@ function keyboardUpdate() {
         camera2.translateX(350);
 
         camera2.translateZ(850);
+
+        //textura
+        scene.add(planoCentral4);  //plano central
 
     }
 

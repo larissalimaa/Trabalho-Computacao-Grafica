@@ -9,10 +9,10 @@ var repeatFactor = 4;
 
 //-----------------------------------------------PISTA 1----------------------------------------//
 //Cria o plano centro da pista 1
-var planeGeometry2 = new THREE.PlaneGeometry(545,545);
+var planeGeometry2 = new THREE.PlaneGeometry(1500,1500);
 var floorTexture2 = new THREE.TextureLoader().load('sand.jpg');
 floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
-floorTexture2.repeat.set(repeatFactor, repeatFactor);
+floorTexture2.repeat.set(15,15);
 var planeMaterial2 = new THREE.MeshPhongMaterial({ map: floorTexture2, side: THREE.DoubleSide });
 //var planeMaterial2 = new THREE.MeshPhongMaterial({
 //color: 0x4F614F,
@@ -21,9 +21,12 @@ var planeMaterial2 = new THREE.MeshPhongMaterial({ map: floorTexture2, side: THR
 export var planoCentral = new THREE.Mesh(planeGeometry2, planeMaterial2);
 planoCentral.rotateX(degreesToRadians(-90));
 planoCentral.position.x = -270;
-planoCentral.position.y = 0.2;
+planoCentral.position.y = 0;
 planoCentral.position.z = -300;
 
+
+
+/*
 //Cria o plano fora da pista 1 ''esquerda''
 //TODO: Arrumar o rotation dele
 var planeGeometry3 = new THREE.PlaneGeometry(1200,1200);
@@ -35,7 +38,7 @@ export var planoEsquerda = new THREE.Mesh(planeGeometry3, planeMaterial3);
 planoEsquerda.rotateX(degreesToRadians(-90));
 planoEsquerda.position.x = -270;
 planoEsquerda.position.y = 0.2;
-planoEsquerda.position.z = 620;
+planoEsquerda.position.z = 630;
 
 //linha de chegada pista 1
 
@@ -63,7 +66,7 @@ export var planoDireita = new THREE.Mesh(planeGeometry3, planeMaterial3);
 planoDireita.rotateX(degreesToRadians(-90));
 planoDireita.position.x = 0;
 planoDireita.position.y = 0.2;
-planoDireita.position.z = -1230;
+planoDireita.position.z = -1240;
 
 //externo ''tras''
 var planeGeometry7 = new THREE.PlaneGeometry(650,650);
@@ -79,7 +82,7 @@ planoTras.position.x = 380;
 planoTras.position.y = 0.2;
 planoTras.position.z = -305;
 
-
+*/
 //---------------------------------------------FIM--PISTA 1----------------------------------------//
 
 //-----------------------------------------------PISTA 2----------------------------------------//
@@ -88,7 +91,7 @@ planoTras.position.z = -305;
 var planeGeometry2 = new THREE.PlaneGeometry(1500,1500);
 var floorTexture2 = new THREE.TextureLoader().load('grass.jpg');
 floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
-floorTexture2.repeat.set(10,10);
+floorTexture2.repeat.set(15,15);
 var planeMaterial2 = new THREE.MeshPhongMaterial({ map: floorTexture2, side: THREE.DoubleSide });
 //var planeMaterial2 = new THREE.MeshPhongMaterial({
 //color: 0x4F614F,
@@ -201,7 +204,7 @@ planoTras2.position.z = -305;
 var planeGeometry2 = new THREE.PlaneGeometry(1500,1500);
 var floorTexture2 = new THREE.TextureLoader().load('grass1.jpg');
 floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
-floorTexture2.repeat.set(10,10);
+floorTexture2.repeat.set(25,25);
 var planeMaterial2 = new THREE.MeshPhongMaterial({ map: floorTexture2, side: THREE.DoubleSide });
 //var planeMaterial2 = new THREE.MeshPhongMaterial({
 //color: 0x4F614F,
@@ -214,3 +217,23 @@ planoCentral3.position.y = 0;
 planoCentral3.position.z = -150;
 
 //FIM PISTA 3
+
+//PISTA 4//
+
+//Cria o plano centro da pista 1
+var planeGeometry4 = new THREE.PlaneGeometry(2000,2000);
+var floorTexture4 = new THREE.TextureLoader().load('grass1.jpg');
+floorTexture4.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
+floorTexture4.repeat.set(25,25);
+var planeMaterial4 = new THREE.MeshPhongMaterial({ map: floorTexture2, side: THREE.DoubleSide });
+//var planeMaterial2 = new THREE.MeshPhongMaterial({
+//color: 0x4F614F,
+//side: THREE.DoubleSide,
+//});
+export var planoCentral4 = new THREE.Mesh(planeGeometry4, planeMaterial4);
+planoCentral4.rotateX(degreesToRadians(-90));
+planoCentral4.position.x = -270;
+planoCentral4.position.y = 0;
+planoCentral4.position.z = -150;
+
+//FIM PISTA 4
