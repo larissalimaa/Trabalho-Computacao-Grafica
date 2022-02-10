@@ -18,6 +18,7 @@ import {
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
 import {plane2, plane3, plane4, plane5, plane6, plane7} from './Texturas.js';
+import{ cone1, cone2 , cone3, cone4, cone5, cone6, cone7, cone8, cone9, cone10, cone11 } from './objetos.js';
 
 //Constantes e Variaveis Globais
 
@@ -45,7 +46,7 @@ const displacement = 22.3;
 //variavel booleana para ativar ou modo de inspensao
 var inspec = false;
 
-
+var third_person = false;
 //Para texturas
 var repeatFactor = 4;
 
@@ -170,8 +171,10 @@ var renderer = initRenderer();
 renderer.setClearColor('rgb(9, 9, 42)');
 
 //Create camera and Init position
-var camera = new THREE.PerspectiveCamera(49, window.innerWidth / window.innerHeight, 1, 1000);
-
+var camera = new THREE.PerspectiveCamera(49, window.innerWidth / window.innerHeight, 1, 4000);
+var camera3 = new THREE.PerspectiveCamera(49, window.innerWidth / window.innerHeight, 1, 4000);
+// camera3.near = 2000;
+// camera3.far = 4000;
 
 //Davi: 03/01//////////////////INICIO///////////////////////////
 
@@ -179,7 +182,7 @@ const camPosition = new THREE.Vector3(0.0, 500, -180.0);
 const MP_Width = 200;
 const MP_Heidth = 200;
 
-var camera2 = new THREE.PerspectiveCamera(50, MP_Width / MP_Heidth, 1.0, 1500 + 2);
+var camera2 = new THREE.PerspectiveCamera(50, MP_Width / MP_Heidth, 1.0, 4000);
 camera2.position.copy(camPosition);
 camera2.up.set(-1.0, 1.0, 1.0);
 camera2.lookAt(0.0, -400, -500);
@@ -198,8 +201,8 @@ parte superior). */
 //Davi: 03/01//////////////////FIM///////////////////////////
 
 //Perspec Cam
-var perspec_cam = new THREE.Group();
-perspec_cam.rotateY(degreesToRadians(-90));
+var camera_look = new THREE.Group();
+camera_look.rotateY(degreesToRadians(-90));
 
 
 // Listen window size changes
@@ -214,26 +217,26 @@ function createSphere(radius, widthSegments, heightSegments) {
     var geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments, 0, Math.PI * 2, 0, Math.PI);
     var material = new THREE.MeshBasicMaterial({ color: "rgb(255,255,50)" });
     var object = new THREE.Mesh(geometry, material);
-    object.castShadow = true;
+    //object.castShadow = true;
     return object;
-
+    
 }
 
 
 
 var trackballControls = new TrackballControls(camera, renderer.domElement);
 var light = initDefaultSpotlight(scene, new THREE.Vector3(35, 20, 30)); // Use default light
-var lightSphere42 = createSphere(0.3, 10, 10);
-lightSphere42.position.copy(light.position);
+var lightSphere42 = createSphere(15, 50, 50);
+//lightSphere42.position.copy(light.position);
 light.position.copy(camera.position);
 
 
 //Luz Para Emitir Sombras
-var p_light = new THREE.DirectionalLight(0xffffff, 1, 100);
+var p_light = new THREE.DirectionalLight(0xffffff, 0.5, 100);
 
 p_light.castShadow = true; // default false
 
-p_light.rotateY(degreesToRadians(-90));
+//p_light.rotateY(degreesToRadians(-90));
 //Set up shadow properties for the light
 p_light.shadow.mapSize.width = 512; // default
 p_light.shadow.mapSize.height = 512; // default
@@ -245,11 +248,8 @@ const helper = new THREE.CameraHelper(light.shadow.camera);
 
 
 //Cria Sphere42
-var lightSphere42 = createSphere(0.3, 10, 10);
-lightSphere42.position.copy(light.position);
-
-
-
+//var lightSphere42 = createSphere(0.3, 10, 10);
+//lightSphere42.position.copy(light.position);
 
 
 // Listen window size changes
@@ -262,7 +262,7 @@ window.addEventListener('resize', function () { onWindowResize(camera, renderer)
 //Cria o carro de "createTruck.js"
 var truck = new THREE.Group();
 truck = createTruck();
-
+truck.castShadow = true;
 //Recupera rodas
 var roda1 = getRoda1();
 var roda2 = getRoda2();
@@ -271,12 +271,21 @@ var roda4 = getRoda4();
 
 
 
-
 // Camera
 
 //colocar objeto para add a camera
 var cube7Geometry = new THREE.BoxGeometry(2, 2, 2);
 //var cube7Material = new THREE.MeshPhongMaterial({ color: "rgb(255, 69, 0)" });
+var cubeGeometry = new THREE.BoxGeometry(2, 2, 2);
+var baseMaterial = new THREE.MeshLambertMaterial({
+    color: "rgb(255, 69, 0)",
+    opacity: 0,
+    transparent: true,
+    wireframe: false,
+});
+var cube71 = new THREE.Mesh(cubeGeometry, baseMaterial);
+cube71.position.set(0.0, 20.0, -65.0);
+truck.add(cube71);
 
 //////////////////////////---alterado dia 27/12 por larissa---//////////////////////////////////////
 var baseMaterial = new THREE.MeshLambertMaterial({
@@ -296,15 +305,16 @@ cube7.position.set(-5.5, 2.2, 50.0);
 
 
 //Adiciona carro/camera a cena
-scene.add(perspec_cam);
+scene.add(camera_look);
 scene.add(cube7);
-lightSphere42.add(light); //Davi: 02/01
+//lightSphere42.add(light); //Davi: 02/01
 cube7.add(truck);
 //scene.add(camera2); //Davi: 03/01
 scene.add(camera);
-scene.add(p_light);
+camera.add(p_light);
+//scene.add(p_light);
 //p_light.position.copy(camera);
-
+cube71.add(camera3);
 //larissa 03/02
 scene.add(mesh);
 scene.add(knotBoxHelper);
@@ -356,7 +366,6 @@ function resetThings(x, y, z, rt) {
     lap = 0;
     cube7.rotation.y = rt;
     canFinish = true;
-
     //alteracao 31/01 larissa
     voltaAtual = 0;
     contadorCheck = 0;
@@ -373,8 +382,17 @@ function resetThings(x, y, z, rt) {
     scene.remove(plane2)
     //scene.remove(plane3)
     //scene.remove(plane5)
-    
-    
+    scene.remove(cone1);
+    scene.remove(cone2);
+    scene.remove(cone3);
+    scene.remove(cone4);
+    scene.remove(cone5);
+    scene.remove(cone6);
+    scene.remove(cone7);
+    scene.remove(cone8);
+    scene.remove(cone9);
+    scene.remove(cone10);
+    scene.remove(cone11);
 
 }
 
@@ -440,52 +458,6 @@ function melhorVoltaCarro(){
         }
     }
 }
-//////////////////////////---alterado dia 23/12 por hugo---//////////////////////////////////////
-
-//////////////////////////////////////////
-var textureLoader = new THREE.TextureLoader();
-//Skybox
-let materialArray = [];
-let textura_ft = textureLoader.load('../assets/textures/sky.png');
-
-materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
-
-for (let i = 0; i < 6; i++) {
-    materialArray[i].side = THREE.BackSide;
-}
-
-let skyboxGeo = new THREE.BoxGeometry(1500, 1500, 600);
-let skybox = new THREE.Mesh(skyboxGeo, materialArray);
-//scene.add(skybox);
-
-
-////////////////////////////////////
-//atualiza
-// roda1.matrixAutoUpdate = false;
-// roda2.matrixAutoUpdate = false;
-// skybox.matrixAutoUpdate = false;
-
-
-var mat4 = new THREE.Matrix4();
-//var angulo = 0;
-
-// /////////identidade
-// roda1.matrix.identity();
-// roda2.matrix.identity();
-
-skybox.matrix.identity();
-skybox.matrix.multiply(mat4.makeRotationX(degreesToRadians(90)));
-
-
-
-
-
-
 
 function keyboardUpdate() {
 
@@ -506,97 +478,32 @@ function keyboardUpdate() {
     if (speed > 0.1) {
         if (keyboard.pressed("left")) {
             cube7.rotateY(angle);
-            perspec_cam.rotateY(angle);
-            p_light.rotateY(angle);
+            camera_look.rotateY(angle);
+            //p_light.rotateY(angle);
         }
         if (keyboard.pressed("right")) {
             cube7.rotateY(-angle);
-            perspec_cam.rotateY(-angle);
-            p_light.rotateY(-angle);
+            camera_look.rotateY(-angle);
+            //p_light.rotateY(-angle);
         }
     }
 
     if (speed < -0.1) {
         if (keyboard.pressed("left")) {
             cube7.rotateY(-angle);
-            perspec_cam.rotateY(-angle);
-            p_light.rotateY(-angle);
+            camera_look.rotateY(-angle);
+            //p_light.rotateY(-angle);
         }
         if (keyboard.pressed("right")) {
             cube7.rotateY(angle);
-            perspec_cam.rotateY(angle);
-            p_light.rotateY(angle);
+            camera_look.rotateY(angle);
+            //p_light.rotateY(angle);
         }
     }
-
-
-
-    if (speed > 0.1) {
-
-        roda1.rotateZ(angle);
-        roda2.rotateZ(angle);
-        roda3.rotateZ(angle);
-        roda4.rotateZ(angle);
-
-    }
-
-    else if (speed < -0.1) {
-        roda1.rotateZ(-angle);
-        roda2.rotateZ(-angle);
-        roda3.rotateZ(-angle);
-        roda4.rotateZ(-angle);
-
-    }
-
-    if (keyboard.pressed('left')) {
-        if (roda1.rotation._y > 1.3) {
-            roda1.rotateY(-angle / 2);
-            roda2.rotateY(-angle / 2);
-        }
-    }
-    else if (keyboard.pressed('right')) {
-        if (roda1.rotation._y > 1.3) {
-            roda1.rotateY(angle / 2);
-            roda2.rotateY(angle / 2);
-        }
-    }
-
-    //logica: se eu nao estiver apertando nada, resert as rodas para voltar 
-    //problema: so volta para a posicao "normal" quando paro de apertar X
-    //problema: se aperta para a direita, ela fica na direita ate soltar o X,
-    //problema: se aperta para a esquerda, ela fica na esquerda ate soltar o X,
-
-    //&& (!keyboard.pressed('X') && !keyboard.pressed('down'))
-
-    //talvez varios if's? (se estiver precionando para esquerda e nao precionando na direita faca...)
-    /*
-    if (!keyboard.pressed('left') && !keyboard.pressed('right')) {
-        if (keyboard.pressed('X')) {
-
-        }
-        else {
-            roda1.setRotationFromEuler(new THREE.Euler(3.14, 1.57, 3.14, 'XYZ')
-            );
-            roda2.setRotationFromEuler(new THREE.Euler(3.14, 1.57, 3.14, 'XYZ')
-            );
-        }
-    }*/
-
-
-    if (!keyboard.pressed('left') && !keyboard.pressed('right')) {
-        roda1.setRotationFromEuler(new THREE.Euler(roda1.rotationX, 1.57, 3.14, 'XYZ')
-        );
-        roda2.setRotationFromEuler(new THREE.Euler(roda2.rotationX, 1.57, 3.14, 'XYZ')
-        );
-    }
-
-
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     if (inspec == true) {
 
-        scene.remove(p_light);
+        //scene.remove(p_light);
         speed = 0.1; //Adicionei essa redução de velocidade para que o carro não saia do lugar no modo inspecionar (Davi: 03/01)
         cube7.position.x = 0;
         cube7.position.y = 0;
@@ -609,21 +516,36 @@ function keyboardUpdate() {
         trackballControls.update();
 
     }
+//adiciona objetos
+if (keyboard.pressed("1")) {
 
 
 
 
+  }
+    
+  if (keyboard.pressed("2")) {
 
-    // Criacao das Pistas
+   
+    
+    
+      }
+  
+  
+  
+  
+  
+  
+  // Criacao das Pistas
 
     if (keyboard.pressed("1")) {
-
         pista = 1;
         cleanAmbient(scene);
-        scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
+        //scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
-        scene.add(p_light);
+        //scene.add(p_light);
+      
         for (var i = 0; i < arrayPistaOne.length; i++) {
             scene.add(arrayPistaOne[i]);
 
@@ -633,10 +555,19 @@ function keyboardUpdate() {
         console.log(arrayPistaOne);
 
         resetThings(-270, 2.2, 0, degreesToRadians(-90));
-
-
-
-        //TODO: nao zera quando aperta as teclas
+        
+        scene.add(cone1);
+        scene.add(cone2);
+        scene.add(cone3);
+        scene.add(cone4);
+        scene.add(cone5);
+        scene.add(cone6);
+        scene.add(cone7);
+        scene.add(cone8);
+        scene.add(cone9);
+        scene.add(cone10);
+        scene.add(cone11);
+      //TODO: nao zera quando aperta as teclas
 
 
         //cube7.rotation.y =   Math.PI ;
@@ -661,17 +592,38 @@ function keyboardUpdate() {
         scene.add(plane6);
         scene.add(plane7); 
 
+        // var cubeGeometry = new THREE.BoxGeometry(5.8, 7, 6);
+        // var cubeMaterial = new THREE.MeshPhongMaterial({
+        // color: 'rgb(0,0,0)',
+        // opacity: 0.6,
+        // transparent: false,
+        // wireframe: false
+        // });
+        // var cube88 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        // cube88.position.set(0.01, 4.0, 3.4)
+        // cube88.rotateX(degreesToRadians(90));
+        // scene.add(cube88);
+
+        // const geometry = new THREE.ConeGeometry( 2, 10, 16 );
+        // const material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+        // const cone = new THREE.Mesh( geometry, material );
+        // cone.position.set(0.0, 10.0, 13.4)
+        // scene.add( cone );
+
+
+
+
 
     }
 
     if (keyboard.pressed("2")) {
         pista = 2;
         cleanAmbient(scene);
-        scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
+        //scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
-        scene.add(p_light);
-
+        //scene.add(p_light);
+    
         for (var i = 0; i < arrayPistaTwo
             .length; i++) {
             scene.add(arrayPistaTwo
@@ -681,7 +633,7 @@ function keyboardUpdate() {
         resetThings(30, 2.2, -120, degreesToRadians(180));
         //cube7.rotation.y =  - Math.PI;
         //2truck.rotation.y = -Math.PI /2;
-
+      
         camera2.position.copy(camPosition);
         camera2.up.set(-100, 10, 0);
         camera2.lookAt(0, 0, -180);
@@ -695,10 +647,10 @@ function keyboardUpdate() {
     if (keyboard.pressed("3")) {
         pista = 3;
         cleanAmbient(scene);
-        scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
+        //scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
-        scene.add(p_light);
+        //scene.add(p_light);
 
         console.log(arrayPistaThree);
 
@@ -714,7 +666,7 @@ function keyboardUpdate() {
         camera2.up.set(-100, 10, 0);
         camera2.lookAt(0, 0, -180);
         camera2.translateY(250);
-        
+       
         camera2.translateX(120);
 
         camera2.translateZ(330);
@@ -724,10 +676,10 @@ function keyboardUpdate() {
 
         pista = 4;
         cleanAmbient(scene);
-        scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
+        //scene.remove(lightSphere42); //Assim como no modo inspecionar, havia problemas com as duas luzes conflitando, isso arruma o conflito, o mesmo serve pra variavel "light". (Davi: 03/01)
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
-        scene.add(p_light);
+        //scene.add(p_light);
 
         for (var i = 0; i < arrayPistaFour.length; i++) {
             scene.add(arrayPistaFour[i]);
@@ -750,7 +702,6 @@ function keyboardUpdate() {
         camera2.up.set(-100, 10, 0);
         camera2.lookAt(0, 0, -180);
         camera2.translateY(500);
-        
         camera2.translateX(350);
 
         camera2.translateZ(850);
@@ -759,6 +710,130 @@ function keyboardUpdate() {
 
     //Fim Criacao das Pistas
 }
+
+ //////////////////////////////////////////
+
+ var textureLoader = new THREE.TextureLoader();
+ //Skybox
+ let materialArray = [];
+ let textura_ft = textureLoader.load('../assets/textures/teste.jpg');
+ let textura_f = textureLoader.load('../assets/textures/floresta.jpg');
+ let textura_t = textureLoader.load('../assets/textures/t.jpg');
+ let textura_a = textureLoader.load('../assets/textures/sky.png');
+ let textura_d = textureLoader.load('../assets/textures/d.png');
+ let textura_e = textureLoader.load('../assets/textures/e.png');
+ 
+ var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/arvores.png');
+ floorTexture4.wrapS = floorTexture4.wrapT = THREE.RepeatWrapping;
+ floorTexture4.repeat.set(2,2);
+
+
+ 
+ materialArray.push(new THREE.MeshBasicMaterial({ map: textura_f }));
+ materialArray.push(new THREE.MeshBasicMaterial({ map: textura_t }));
+ materialArray.push(new THREE.MeshBasicMaterial({ map: textura_d }));//
+ materialArray.push(new THREE.MeshBasicMaterial({ map: textura_e }));
+ materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
+ materialArray.push(new THREE.MeshBasicMaterial({map: floorTexture4}));
+ 
+ for (let i = 0; i < 6; i++) {
+     materialArray[i].side = THREE.BackSide;
+ }
+ 
+ var skyboxGeo = new THREE.BoxGeometry(1000, 1000, 600);
+ var skybox = new THREE.Mesh(skyboxGeo, materialArray);
+ skybox.position.set(-250,90,-300);
+ skybox.rotateX(degreesToRadians(90));
+ console.log(skybox.position);
+ scene.add(skybox);
+
+////////////////////////////////////
+//atualiza
+roda1.matrixAutoUpdate = false;
+roda2.matrixAutoUpdate = false;
+roda3.matrixAutoUpdate = false;
+roda4.matrixAutoUpdate = false;
+
+//skybox.matrixAutoUpdate = false;
+
+
+var mat4 = new THREE.Matrix4();
+var angulo = 0;
+
+/////////identidade
+roda1.matrix.identity();
+roda2.matrix.identity();
+roda3.matrix.identity();
+roda4.matrix.identity();
+
+//skybox.matrix.identity();
+//skybox.matrix.multiply(mat4.makeRotationX(degreesToRadians(90)));
+
+
+function commandKeyboard() {
+
+    keyboard.update();
+    
+    
+    if (keyboard.pressed("left")) {
+
+            if (angulo < 60) {
+                roda1.matrix.multiply(mat4.makeRotationY(angle[0]));
+                roda2.matrix.multiply(mat4.makeRotationY(angle[0]));
+                angulo = angulo + 1.1;
+            }
+        }
+
+        else if (keyboard.pressed("right")) {
+
+            if (angulo > -60) {
+                roda1.matrix.multiply(mat4.makeRotationY(angle[1]));
+                roda2.matrix.multiply(mat4.makeRotationY(angle[1]));
+                angulo = angulo - 1.1;
+            }
+        }
+        
+        if (keyboard.pressed("X")) {
+            if (speed > 0) {
+                roda1.matrix.multiply(mat4.makeRotationZ(angle1[2]));
+                roda2.matrix.multiply(mat4.makeRotationZ(angle1[2]));
+                roda3.matrix.multiply(mat4.makeRotationZ(angle1[2]));
+                roda4.matrix.multiply(mat4.makeRotationZ(angle1[2]));
+            
+            }
+        }
+        if (keyboard.pressed("down")) {
+            if (speed > 0) {
+                roda1.matrix.multiply(mat4.makeRotationZ(angle1[3]));
+                roda2.matrix.multiply(mat4.makeRotationZ(angle1[3]));
+                roda3.matrix.multiply(mat4.makeRotationZ(angle1[3]));
+                roda4.matrix.multiply(mat4.makeRotationZ(angle1[3]));
+            
+            }
+        }
+    }
+     
+roda1.matrix.multiply(mat4.makeTranslation(3.8, -0.1, 8.0));
+roda1.matrix.multiply(mat4.makeRotationY(degreesToRadians(90)));
+
+roda2.matrix.multiply(mat4.makeTranslation(-3.8, -0.1, 8.0));
+roda2.matrix.multiply(mat4.makeRotationY(degreesToRadians(90)));
+
+roda3.matrix.multiply(mat4.makeTranslation(3.8, -0.1, -8.0));
+roda3.matrix.multiply(mat4.makeRotationY(degreesToRadians(90)));
+
+roda4.matrix.multiply(mat4.makeTranslation(-3.8, -0.1, -8.0));
+roda4.matrix.multiply(mat4.makeRotationY(degreesToRadians(90)));
+
+var angle = [-1.57, 0, 0, 0];
+angle[0] = degreesToRadians(0.3);
+angle[1] = degreesToRadians(-0.3);
+
+var angle1 = [-1.57, 0, 0, 0];
+
+angle1[2] = degreesToRadians(5);
+angle1[3] = degreesToRadians(-5);
+
 
 function contaVoltasPista(truck) {
     //var checkpoint = arrayPistaOne[0]
@@ -1115,30 +1190,33 @@ function showInformation() {
 function stalker_cam() {
     if (inspec == false) {
 
-        perspec_cam.translateZ(displacement);
-        perspec_cam.position.x = cube7.position.x;
-        perspec_cam.position.y = cube7.position.y;
-        perspec_cam.position.z = cube7.position.z;
-        p_light.translateZ(displacement);
-        p_light.position.x = cube7.position.x;
-        p_light.position.y = cube7.position.y;
-        p_light.position.z = cube7.position.z;
-        scene.remove(lightSphere42); //(Davi: 03/01)
-        scene.remove(light); //(Davi: 03/01)
+        camera_look.translateZ(displacement);
+        camera_look.position.x = cube7.position.x;
+        camera_look.position.y = cube7.position.y;
+        camera_look.position.z = cube7.position.z;
+        
+        p_light.add(lightSphere42);
+        p_light.target = cube7;
+        p_light.shadow.autoUpdate = false;
+        p_light.position.x = camera.position.x;
+        p_light.position.y = camera.position.y-7.5;
+        p_light.position.z = camera.position.z+15;
+        //scene.remove(lightSphere42); //(Davi: 03/01)
+        //scene.remove(light); //(Davi: 03/01)
 
-        camera.position.z = perspec_cam.position.z + 50;
+        camera.position.z = camera_look.position.z + 50;
         camera.position.y = camera_position_y;
-        camera.position.x = perspec_cam.position.x + 50;
+        camera.position.x = camera_look.position.x + 50;
         camera.lookAt(
-            perspec_cam.position.x,
-            perspec_cam.position.y,
-            perspec_cam.position.z,
+            camera_look.position.x,
+            camera_look.position.y,
+            camera_look.position.z,
         );
 
 
     }
 }
-
+camera3.rotateY(degreesToRadians(180));
 
 /*Davi: 03/01//////////////////INICIO/////////////////////////// (Essa parte tem sido bastante problemática, aparentemente a resolução do mini mapa acompanha a resolução da tela,
 logo, conforme a janela do navegador é redimensionada, o minimapa se distorce. Além disso a parte superior do mesmo não é renderizada.)*/
@@ -1152,7 +1230,7 @@ function controlledRender() {
     renderer.setClearColor(0x312A2A);
     renderer.clear();
     renderer.render(scene, camera);
-
+    
     // Set virtual camera viewport 
     renderer.setViewport(0, height - MP_Heidth, MP_Width, MP_Heidth);
     renderer.setScissor(0, height - MP_Heidth, MP_Width, MP_Heidth);
@@ -1160,6 +1238,26 @@ function controlledRender() {
     renderer.setClearColor("rgb(60, 50, 150)");
     renderer.clear();
     renderer.render(scene, camera2);
+
+
+    if (keyboard.pressed("B")) {
+        scene.remove(camera);
+        renderer.setViewport(0, 0, width, height);
+        renderer.setScissorTest(false);
+        renderer.setClearColor(0x312A2A);
+        renderer.clear();
+        renderer.render(scene, camera3); 
+        
+        renderer.setViewport(0, height - MP_Heidth, MP_Width, MP_Heidth);
+        renderer.setScissor(0, height - MP_Heidth, MP_Width, MP_Heidth);
+        renderer.setScissorTest(true);
+        renderer.setClearColor("rgb(60, 50, 150)");
+        renderer.clear();
+        renderer.render(scene, camera2);
+    
+    }
+
+
 }
 
 //Davi: 03/01//////////////////FIM///////////////////////////
@@ -1173,7 +1271,6 @@ function render() {
 
     //verifica se carro esta dentro da pista
     verificaCarro();
-
     var delta = 0.2;
     //bounding box
     //larissa 03/02
@@ -1190,10 +1287,12 @@ function render() {
     light.position.copy(camera.position);
     keyboardUpdate();
     acceleration();
+    commandKeyboard();
     requestAnimationFrame(render);
     renderer.render(scene, camera,) // Render scene
     stalker_cam();
     controlledRender() //Renderiza o mini mapa (Davi: 03/01)
+    
 }
 
 

@@ -31,14 +31,21 @@ var cube1,cube2,cube3,cube4,cube5,cube6,cube7,cube8,cube9,cube10,cube11,cube12,c
 export default class Pista extends THREE.Mesh {
 
     constructor(x, z, inicio = false, scene, npista) {
-
-        var cubeGeometry = new THREE.BoxGeometry(60, 0.3, 60);
+        
+        const loader = new THREE.TextureLoader();
+        const chegadatexture = loader.load('../assets/textures/chegada.png');
+        chegadatexture.repeat.set(1,1);
+        const chegada = new THREE.MeshLambertMaterial({
+          map: chegadatexture
+        });
+        const cubeGeometry = new THREE.BoxGeometry(60, 0.3, 60);
         var cubeMaterial;
         //Larissa: 23/12/////////////////////////////////////////////////////
         if (inicio) {
             
-            cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xfd8612 });
-            createFinishLine(x, z, scene, npista);
+            cubeMaterial = chegada;
+            //createFinishLine(x, z, scene, npista);
+        
         }
 
         //Larissa: 23/12/////////////////////////////////////////////////////
