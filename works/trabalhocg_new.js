@@ -17,7 +17,7 @@ import {
 
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
-import {plane2, plane3, plane4, plane5, plane6, plane7} from './Texturas.js';
+import {planoCentral,planoCentral2, planoCentral3, planoCentral4} from './Texturas.js';
 import{ cone1, cone2 , cone3, cone4, cone5, cone6, cone7, cone8, cone9, cone10, cone11 } from './objetos.js';
 
 //Constantes e Variaveis Globais
@@ -222,8 +222,6 @@ function createSphere(radius, widthSegments, heightSegments) {
     
 }
 
-
-
 var trackballControls = new TrackballControls(camera, renderer.domElement);
 var light = initDefaultSpotlight(scene, new THREE.Vector3(35, 20, 30)); // Use default light
 var lightSphere42 = createSphere(15, 50, 50);
@@ -379,7 +377,6 @@ function resetThings(x, y, z, rt) {
     timerVoltas[lap] = 0;
     melhorVolta = 0;
 
-    scene.remove(plane2)
     //scene.remove(plane3)
     //scene.remove(plane5)
     scene.remove(cone1);
@@ -393,6 +390,12 @@ function resetThings(x, y, z, rt) {
     scene.remove(cone9);
     scene.remove(cone10);
     scene.remove(cone11);
+
+    scene.remove(planoCentral);
+    scene.remove(planoCentral2);
+    scene.remove(planoCentral3);
+    scene.remove(planoCentral4);
+
 
 }
 
@@ -567,7 +570,9 @@ if (keyboard.pressed("1")) {
         scene.add(cone9);
         scene.add(cone10);
         scene.add(cone11);
-      //TODO: nao zera quando aperta as teclas
+      
+        scene.add(planoCentral);  //plano central
+        //TODO: nao zera quando aperta as teclas
 
 
         //cube7.rotation.y =   Math.PI ;
@@ -582,38 +587,7 @@ if (keyboard.pressed("1")) {
 
 
         //adicao dos planos e texturas
-        scene.add(plane2);  
-        scene.add(plane3);
-        //linha de chegada
-        //scene.add(plane4);
-        //
-        scene.add(plane5);
-
-        scene.add(plane6);
-        scene.add(plane7); 
-
-        // var cubeGeometry = new THREE.BoxGeometry(5.8, 7, 6);
-        // var cubeMaterial = new THREE.MeshPhongMaterial({
-        // color: 'rgb(0,0,0)',
-        // opacity: 0.6,
-        // transparent: false,
-        // wireframe: false
-        // });
-        // var cube88 = new THREE.Mesh(cubeGeometry, cubeMaterial);
-        // cube88.position.set(0.01, 4.0, 3.4)
-        // cube88.rotateX(degreesToRadians(90));
-        // scene.add(cube88);
-
-        // const geometry = new THREE.ConeGeometry( 2, 10, 16 );
-        // const material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-        // const cone = new THREE.Mesh( geometry, material );
-        // cone.position.set(0.0, 10.0, 13.4)
-        // scene.add( cone );
-
-
-
-
-
+       
     }
 
     if (keyboard.pressed("2")) {
@@ -633,7 +607,7 @@ if (keyboard.pressed("1")) {
         resetThings(30, 2.2, -120, degreesToRadians(180));
         //cube7.rotation.y =  - Math.PI;
         //2truck.rotation.y = -Math.PI /2;
-      
+        scene.add(planoCentral2);  //plano central
         camera2.position.copy(camPosition);
         camera2.up.set(-100, 10, 0);
         camera2.lookAt(0, 0, -180);
@@ -661,6 +635,8 @@ if (keyboard.pressed("1")) {
         }
         resetThings(-570, 2.2, -420, degreesToRadians(-360));
         //cube7.rotation.y =   Math.PI ;
+        scene.add(planoCentral3);  //plano central
+        
         //truck.rotation.y = Math.PI ;
         camera2.position.copy(camPosition);
         camera2.up.set(-100, 10, 0);
@@ -688,7 +664,7 @@ if (keyboard.pressed("1")) {
         resetThings(-270, 2.2, 0, degreesToRadians(-90));
         //cube7.rotation.y =   Math.PI ;
         //var camera2 = new THREE.PerspectiveCamera(50, MP_Width / MP_Heidth, 1.0, 1000 + 2);
-
+        scene.add(planoCentral4);  //plano central
         //alteracao 31/01 larissa
         voltaAtual = 0;
         contadorCheck = 0;
