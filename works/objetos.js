@@ -372,11 +372,6 @@ circle21.position.set(30.0, 10, 20);
 circle21.rotation.x = -Math.PI / 2;
  
  
- 
- 
- 
- 
- 
  obj2.add(cone12);
  obj2.add(cone13);
  obj2.add(cone14);
@@ -407,6 +402,3 @@ obj2.add(cone21);
  obj2.add(circle19);
  obj2.add(circle20);
  obj2.add(circle21);
-
-
-
