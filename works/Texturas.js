@@ -9,7 +9,7 @@ var repeatFactor = 4;
 
 //-----------------------------------------------PISTA 1----------------------------------------//
 //Cria o plano centro da pista 1
-var planeGeometry2 = new THREE.PlaneGeometry(1500,1500);
+var planeGeometry2 = new THREE.PlaneGeometry(2500,2500);
 var floorTexture2 = new THREE.TextureLoader().load('sand.jpg');
 floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
 floorTexture2.repeat.set(15,15);
@@ -88,7 +88,7 @@ planoTras.position.z = -305;
 //-----------------------------------------------PISTA 2----------------------------------------//
 
 //Cria o plano centro da pista 1
-var planeGeometry2 = new THREE.PlaneGeometry(1500,1500);
+var planeGeometry2 = new THREE.PlaneGeometry(2500,2500);
 var floorTexture2 = new THREE.TextureLoader().load('grass.jpg');
 floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
 floorTexture2.repeat.set(15,15);
@@ -201,7 +201,7 @@ planoTras2.position.z = -305;
 //PISTA 3//
 
 //Cria o plano centro da pista 1
-var planeGeometry2 = new THREE.PlaneGeometry(1500,1500);
+var planeGeometry2 = new THREE.PlaneGeometry(2500,2500);
 var floorTexture2 = new THREE.TextureLoader().load('grass1.jpg');
 floorTexture2.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
 floorTexture2.repeat.set(25,25);

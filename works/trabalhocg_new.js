@@ -18,10 +18,10 @@ import {
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
 import {planoCentral,planoCentral2, planoCentral3, planoCentral4} from './Texturas.js';
-import{ cone1, cone2 , cone3, cone4, cone5, cone6, cone7, cone8, cone9, cone10, cone11 } from './objetos.js';
+import{ cone1, cone2 , cone3, cone4, cone5, cone6, cone7, cone8, cone9, cone10, cone11, cylinder63, cylinder64, cylinder65,cylinder66,cylinder67,cylinder68,cylinder69,cylinder70,cylinder71,cylinder72,cylinder73, circle, circle2,circle4,circle5,circle6,circle7,circle8,circle9,circle10,circle11 } from './objetos.js';
 
 //Constantes e Variaveis Globais
-
+console.log(cylinder64);
 //velocidade maxima a ser atingida 
 var top_speed = 2.0;
 
@@ -314,8 +314,8 @@ camera.add(p_light);
 //p_light.position.copy(camera);
 cube71.add(camera3);
 //larissa 03/02
-scene.add(mesh);
-scene.add(knotBoxHelper);
+//scene.add(mesh);
+//scene.add(knotBoxHelper);
 
 
 //Davi: 03/01//////////////////INICIO///////////////////////////
@@ -336,7 +336,6 @@ cube7.position.set(xInicial, yInicial, zInicial);
 // Modo inspecionar
 document.addEventListener('keypress', function (e) {
     if (e.keyCode === 32) {
-        plane2.visible = inspec;
         inspec == true ? (inspec = false) : (inspec = true);
     }
 });
@@ -390,7 +389,27 @@ function resetThings(x, y, z, rt) {
     scene.remove(cone9);
     scene.remove(cone10);
     scene.remove(cone11);
-
+    scene.remove(cylinder63);
+    scene.remove(cylinder64);
+    scene.remove(cylinder65);
+    scene.remove(cylinder66);
+    scene.remove(cylinder67);
+    scene.remove(cylinder68);
+    scene.remove(cylinder69);
+    scene.remove(cylinder70);
+    scene.remove(cylinder71);
+    scene.remove(cylinder72);
+    scene.remove(cylinder73);
+    scene.remove(circle);
+    scene.remove(circle2);
+    scene.remove(circle4);
+    scene.remove(circle5);
+    scene.remove(circle6);
+    scene.remove(circle7);
+    scene.remove(circle8);
+    scene.remove(circle9);
+    scene.remove(circle10);
+    scene.remove(circle11);
     scene.remove(planoCentral);
     scene.remove(planoCentral2);
     scene.remove(planoCentral3);
@@ -570,7 +589,31 @@ if (keyboard.pressed("1")) {
         scene.add(cone9);
         scene.add(cone10);
         scene.add(cone11);
-      
+        scene.add(cylinder63);
+        scene.add(cylinder64);
+        scene.add(cylinder65);
+        scene.add(cylinder66);
+    scene.add(cylinder67);
+    scene.add(cylinder68);
+    scene.add(cylinder69);
+    scene.add(cylinder70);
+    scene.add(cylinder71);
+    scene.add(cylinder72);
+    scene.add(cylinder73);
+    scene.add(circle);
+    scene.add(circle2);
+    scene.add(circle4);
+    scene.add(circle5);
+    scene.add(circle6);
+    scene.add(circle7);
+    scene.add(circle8);
+    scene.add(circle9);
+    scene.add(circle10);
+    scene.add(circle11);
+        
+        scene.add(circle);
+        scene.add(circle2);
+        
         scene.add(planoCentral);  //plano central
         //TODO: nao zera quando aperta as teclas
 
@@ -692,16 +735,16 @@ if (keyboard.pressed("1")) {
  var textureLoader = new THREE.TextureLoader();
  //Skybox
  let materialArray = [];
- let textura_ft = textureLoader.load('../assets/textures/teste.jpg');
+ let textura_ft = textureLoader.load('../assets/textures/t.jpg');
  let textura_f = textureLoader.load('../assets/textures/floresta.jpg');
  let textura_t = textureLoader.load('../assets/textures/t.jpg');
  let textura_a = textureLoader.load('../assets/textures/sky.png');
  let textura_d = textureLoader.load('../assets/textures/d.png');
  let textura_e = textureLoader.load('../assets/textures/e.png');
  
- var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/arvores.png');
+ var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/ar.jpg');
  floorTexture4.wrapS = floorTexture4.wrapT = THREE.RepeatWrapping;
- floorTexture4.repeat.set(2,2);
+ floorTexture4.repeat.set(1,1);
 
 
  
@@ -716,9 +759,9 @@ if (keyboard.pressed("1")) {
      materialArray[i].side = THREE.BackSide;
  }
  
- var skyboxGeo = new THREE.BoxGeometry(1000, 1000, 600);
+ var skyboxGeo = new THREE.BoxGeometry(2000, 2000, 600);
  var skybox = new THREE.Mesh(skyboxGeo, materialArray);
- skybox.position.set(-250,90,-300);
+ skybox.position.set(-250,90,-150);
  skybox.rotateX(degreesToRadians(90));
  console.log(skybox.position);
  scene.add(skybox);
@@ -771,19 +814,19 @@ function commandKeyboard() {
         
         if (keyboard.pressed("X")) {
             if (speed > 0) {
-                roda1.matrix.multiply(mat4.makeRotationZ(angle1[2]));
-                roda2.matrix.multiply(mat4.makeRotationZ(angle1[2]));
-                roda3.matrix.multiply(mat4.makeRotationZ(angle1[2]));
-                roda4.matrix.multiply(mat4.makeRotationZ(angle1[2]));
+                roda1.matrix.multiply(mat4.makeRotationZ(angle[2]));
+                roda2.matrix.multiply(mat4.makeRotationZ(angle[2]));
+                roda3.matrix.multiply(mat4.makeRotationZ(angle[2]));
+                roda4.matrix.multiply(mat4.makeRotationZ(angle[2]));
             
             }
         }
         if (keyboard.pressed("down")) {
             if (speed > 0) {
-                roda1.matrix.multiply(mat4.makeRotationZ(angle1[3]));
-                roda2.matrix.multiply(mat4.makeRotationZ(angle1[3]));
-                roda3.matrix.multiply(mat4.makeRotationZ(angle1[3]));
-                roda4.matrix.multiply(mat4.makeRotationZ(angle1[3]));
+                roda1.matrix.multiply(mat4.makeRotationZ(angle[3]));
+                roda2.matrix.multiply(mat4.makeRotationZ(angle[3]));
+                roda3.matrix.multiply(mat4.makeRotationZ(angle[3]));
+                roda4.matrix.multiply(mat4.makeRotationZ(angle[3]));
             
             }
         }
@@ -802,13 +845,14 @@ roda4.matrix.multiply(mat4.makeTranslation(-3.8, -0.1, -8.0));
 roda4.matrix.multiply(mat4.makeRotationY(degreesToRadians(90)));
 
 var angle = [-1.57, 0, 0, 0];
+
 angle[0] = degreesToRadians(0.3);
 angle[1] = degreesToRadians(-0.3);
 
-var angle1 = [-1.57, 0, 0, 0];
+//var angle1 = [-1.57, 0, 0, 0];
 
-angle1[2] = degreesToRadians(5);
-angle1[3] = degreesToRadians(-5);
+angle[2] = degreesToRadians(5);
+angle[3] = degreesToRadians(-5);
 
 
 function contaVoltasPista(truck) {
@@ -1216,7 +1260,7 @@ function controlledRender() {
     renderer.render(scene, camera2);
 
 
-    if (keyboard.pressed("B")) {
+    if (!keyboard.pressed("B")) {
         scene.remove(camera);
         renderer.setViewport(0, 0, width, height);
         renderer.setScissorTest(false);
