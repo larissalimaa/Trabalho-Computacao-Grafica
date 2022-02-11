@@ -21,9 +21,9 @@ var madeiraMaterial = new THREE.MeshLambertMaterial({
 var madeiratexx = new THREE.MeshLambertMaterial({
     map: madeiratex2
 });
-//////////////////////////////////////////////pista 1 inicio////////////////////////////////////////////////
+//////////////////////////////////////////////pista 3 inicio////////////////////////////////////////////////
 
-export var obj = new THREE.Group();
+export var obj3 = new THREE.Group();
 
 var cone1 = new THREE.Mesh( geometry, conet );
 var geometry = new THREE.ConeGeometry( 2, 8, 14 );
@@ -47,7 +47,7 @@ var geometry = new THREE.ConeGeometry( 2, 8, 14 );
        
  var cone6 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
- cone6.position.set(-570.0, 5.0, -10.0)
+ cone6.position.set(-150.0, 5.0, -10.0)
  
   var cone7 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
@@ -55,7 +55,7 @@ var geometry = new THREE.ConeGeometry( 2, 8, 14 );
  
  var cone8 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
- cone8.position.set(-550.0, 5.0, -160.0)
+ cone8.position.set(-450.0, 5.0, -260.0)
  
   var cone9 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
@@ -99,11 +99,11 @@ circle2.rotation.x = -Math.PI / 2;
 
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
  var cylinder66 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder66.position.set(-400.0, 5.0, 5.0);
+cylinder66.position.set(-300.0, 5.0, 5.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
  var circle4 = new THREE.Mesh(circleGeometry, cilit);
-circle4.position.set(-400.0, 10, 5);
+circle4.position.set(-300.0, 10, 5);
 circle4.rotation.x = -Math.PI / 2;
 
 ////////////////////////////////////////4///////////////////////////////////
@@ -121,22 +121,22 @@ circle5.rotation.x = -Math.PI / 2;
 
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
  var cylinder68 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder68.position.set(-570.0, 5.0, -205.0);
+cylinder68.position.set(-350.0, 5.0, -205.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
  var circle6 = new THREE.Mesh(circleGeometry, cilit);
-circle6.position.set(-570.0, 10, -205);
+circle6.position.set(-350.0, 10, -205);
 circle6.rotation.x = -Math.PI / 2;
 
 ////////////////////////////////////////////////6///////////////////////////a////////
 
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
  var cylinder69 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder69.position.set(-570.0, 5.0, -55.0);
+cylinder69.position.set(-270.0, 5.0, -355.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
  var circle7 = new THREE.Mesh(circleGeometry, cilit);
-circle7.position.set(-570.0, 10, -55);
+circle7.position.set(-270.0, 10, -355);
 circle7.rotation.x = -Math.PI / 2;
 
 ////////////////////////////////////////////////////7/////////////////////a///////
@@ -183,43 +183,43 @@ var circleGeometry = new THREE.CircleGeometry(4, 32);
 circle11.position.set(30.0, 10, 20);
 circle11.rotation.x = -Math.PI / 2;
 
-obj.add(cone1);
-obj.add(cone2);
-obj.add(cone3);
-obj.add(cone4);
-obj.add(cone5);
-obj.add(cone6);
-obj.add(cone7);
-obj.add(cone8);
-obj.add(cone9);
-obj.add(cone10);
-obj.add(cone11);
-obj.add(cylinder63);
-obj.add(cylinder64);
-obj.add(cylinder65);
-obj.add(cylinder66);
-obj.add(cylinder67);
-obj.add(cylinder68);
-obj.add(cylinder69);
-obj.add(cylinder70);
-obj.add(cylinder71);
-obj.add(cylinder72);
-obj.add(cylinder73);
-obj.add(circle);
-obj.add(circle2);
-obj.add(circle4);
-obj.add(circle5);
-obj.add(circle6);
-obj.add(circle7);
-obj.add(circle8);
-obj.add(circle9);
-obj.add(circle10);
-obj.add(circle11);
+obj3.add(cone1);
+obj3.add(cone2);
+obj3.add(cone3);
+obj3.add(cone4);
+obj3.add(cone5);
+obj3.add(cone6);
+obj3.add(cone7);
+obj3.add(cone8);
+obj3.add(cone9);
+obj3.add(cone10);
+obj3.add(cone11);
+obj3.add(cylinder63);
+obj3.add(cylinder64);
+obj3.add(cylinder65);
+obj3.add(cylinder66);
+ obj3.add(cylinder67);
+obj3.add(cylinder68);
+obj3.add(cylinder69);
+obj3.add(cylinder70);
+obj3.add(cylinder71);
+obj3.add(cylinder72);
+obj3.add(cylinder73);
+obj3.add(circle);
+obj3.add(circle2);
+obj3.add(circle4);
+obj3.add(circle5);
+obj3.add(circle6);
+obj3.add(circle7);
+obj3.add(circle8);
+obj3.add(circle9);
+obj3.add(circle10);
+obj3.add(circle11);
 
-/////////////////////////////////////////pista 1 final//////////////////////////////////////
-//////////////////////////////////pista 2 inicio////////////////////////////////
+/////////////////////////////////////////pista 3 final//////////////////////////////////////
+//////////////////////////////////pista 4 inicio////////////////////////////////
 
-export var obj2 = new THREE.Group();
+export var obj4 = new THREE.Group();
 
 var cone12 = new THREE.Mesh( geometry, conet );
 var geometry = new THREE.ConeGeometry( 2, 8, 14 );
@@ -227,11 +227,11 @@ cone12.position.set(0.0, 5.0, 0.0)
         
  var cone13 = new THREE.Mesh( geometry, conet );
 var geometry = new THREE.ConeGeometry( 2, 8, 14 );
-cone13.position.set(-250.0, 5.0, -610.0)
+cone13.position.set(-250.0, 5.0, -490.0)
        
  var cone14 = new THREE.Mesh( geometry, conet );
 var geometry = new THREE.ConeGeometry( 2, 8, 14 );
-cone14.position.set(-350.0, 5.0, 10.0)
+cone14.position.set(-800.0, 5.0, -710.0)
        
  var cone15 = new THREE.Mesh( geometry, conet );
 var geometry = new THREE.ConeGeometry( 2, 8, 14 );
@@ -239,19 +239,19 @@ var geometry = new THREE.ConeGeometry( 2, 8, 14 );
        
  var cone16 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
- cone16.position.set(-570.0, 5.0, -10.0)
+ cone16.position.set(-570.0, 5.0, -480.0)
  
   var cone17 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
- cone17.position.set(-100.0, 5.0, -280.0)
+ cone17.position.set(-1050.0, 5.0, -880.0)
  
   var cone18 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
- cone18.position.set(-550.0, 5.0, -160.0)
+ cone18.position.set(-450.0, 5.0, -160.0)
  
   var cone19 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
- cone19.position.set(-590.0, 5.0, -290.0)
+ cone19.position.set(-690.0, 5.0, -840.0)
  
  var cone20 = new THREE.Mesh( geometry, conet );
  var geometry = new THREE.ConeGeometry( 2, 8, 14 );
@@ -264,11 +264,11 @@ var geometry = new THREE.ConeGeometry( 2, 8, 14 );
  //////////////////////////////////1//////////////////////////////////////////////////////////
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder74 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder74.position.set(-200.0, 5.0, -315.0);
+cylinder74.position.set(-450.0, 5.0, -315.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle12 = new THREE.Mesh(circleGeometry, cilit);
-circle12.position.set(-200.0, 10, -315);
+circle12.position.set(-450.0, 10, -315);
 circle12.rotation.x = -Math.PI / 2;
 
 /////////////////////////////////2/////////////////////////////////////////////
@@ -309,33 +309,33 @@ circle15.rotation.x = -Math.PI / 2;
 
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder78 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder78.position.set(-570.0, 5.0, -205.0);
+cylinder78.position.set(-570.0, 5.0, -850.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle16 = new THREE.Mesh(circleGeometry, cilit);
-circle16.position.set(-570.0, 10, -205);
+circle16.position.set(-570.0, 10, -850);
 circle16.rotation.x = -Math.PI / 2;
 
 ////////////////////////////////////////////////6///////////////////////////a////////
 
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder79 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder79.position.set(-570.0, 5.0, -55.0);
+cylinder79.position.set(-870.0, 5.0, -850.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle17 = new THREE.Mesh(circleGeometry, cilit);
-circle17.position.set(-570.0, 10, -55);
+circle17.position.set(-870.0, 10, -850);
 circle17.rotation.x = -Math.PI / 2;
 
 ////////////////////////////////////////////////////7/////////////////////a///////
 
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder80 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder80.position.set(-570.0, 5.0, -615.0);
+cylinder80.position.set(-820.0, 5.0, -615.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle18 = new THREE.Mesh(circleGeometry, cilit);
-circle18.position.set(-570.0, 10, -615);
+circle18.position.set(-820.0, 10, -615);
 circle18.rotation.x = -Math.PI / 2;
 
 ////////////////////////////////////////////8//////////////////////////a//////////
@@ -353,60 +353,55 @@ circle19.rotation.x = -Math.PI / 2;
 
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder82 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder82.position.set(-280.0, 5.0, -580.0);
+cylinder82.position.set(-980.0, 5.0, -1080.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle20 = new THREE.Mesh(circleGeometry, cilit);
-circle20.position.set(-280.0, 10,-580);
+circle20.position.set(-980.0, 10,-1080);
 circle20.rotation.x = -Math.PI / 2;
 
 //////////////////////////////////////////////////10/////////////////////////a///////////
 
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder83 = new THREE.Mesh(cylinderGeometry,cilit);
-cylinder83.position.set(30.0, 5.0, 20.0);
+cylinder83.position.set(-150.0, 5.0, -470.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle21 = new THREE.Mesh(circleGeometry, cilit);
-circle21.position.set(30.0, 10, 20);
+circle21.position.set(-150.0, 10, -470);
 circle21.rotation.x = -Math.PI / 2;
  
  
- 
- 
- 
- 
- 
- obj2.add(cone12);
- obj2.add(cone13);
- obj2.add(cone14);
- obj2.add(cone15);
-obj2.add(cone16);
-obj2.add(cone17);
-obj2.add(cone18);
-obj2.add(cone19);
-obj2.add(cone20);
-obj2.add(cone21);
- obj2.add(cylinder74);
- obj2.add(cylinder75);
- obj2.add(cylinder76);
- obj2.add(cylinder77);
- obj2.add(cylinder78);
- obj2.add(cylinder79);
- obj2.add(cylinder80);
- obj2.add(cylinder81);
- obj2.add(cylinder82);
- obj2.add(cylinder83);
- obj2.add(circle12);
- obj2.add(circle13);
- obj2.add(circle14);
- obj2.add(circle15);
- obj2.add(circle16);
- obj2.add(circle17);
- obj2.add(circle18);
- obj2.add(circle19);
- obj2.add(circle20);
- obj2.add(circle21);
+ obj4.add(cone12);
+ obj4.add(cone13);
+ obj4.add(cone14);
+ obj4.add(cone15);
+ obj4.add(cone16);
+ obj4.add(cone17);
+ obj4.add(cone18);
+ obj4.add(cone19);
+ obj4.add(cone20);
+ obj4.add(cone21);
+ obj4.add(cylinder74);
+  obj4.add(cylinder75);
+  obj4.add(cylinder76);
+  obj4.add(cylinder77);
+  obj4.add(cylinder78);
+  obj4.add(cylinder79);
+  obj4.add(cylinder80);
+  obj4.add(cylinder81);
+  obj4.add(cylinder82);
+  obj4.add(cylinder83);
+  obj4.add(circle12);
+ obj4.add(circle13);
+ obj4.add(circle14);
+ obj4.add(circle15);
+ obj4.add(circle16);
+ obj4.add(circle17);
+ obj4.add(circle18);
+ obj4.add(circle19);
+ obj4.add(circle20);
+ obj4.add(circle21);
 
 
 
