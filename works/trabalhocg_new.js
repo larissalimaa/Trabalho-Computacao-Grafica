@@ -1212,7 +1212,7 @@ function controlledRender() {
     renderer.render(scene, camera2);
 
 
-    if (!keyboard.pressed("B")) {
+    if (keyboard.pressed("B")) {
         scene.remove(camera);
         scene.remove(camera2);
         renderer.setViewport(0, 0, width, height);
