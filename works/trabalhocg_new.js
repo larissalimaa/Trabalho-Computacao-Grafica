@@ -11,14 +11,14 @@ import {
     initDefaultBasicLight,
     initCamera,
     InfoBox
-    
+
 
 } from "../libs/util/util.js";
 
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
-import {planoCentral,planoCentral2, planoCentral3, planoCentral4} from './Texturas.js';
-import{ cone1, cone2 , cone3, cone4, cone5, cone6, cone7, cone8, cone9, cone10, cone11, cylinder63, cylinder64, cylinder65,cylinder66,cylinder67,cylinder68,cylinder69,cylinder70,cylinder71,cylinder72,cylinder73, circle, circle2,circle4,circle5,circle6,circle7,circle8,circle9,circle10,circle11 } from './objetos.js';
+import { planoCentral, planoCentral2, planoCentral3, planoCentral4 } from './Texturas.js';
+import { cone1, cone2, cone3, cone4, cone5, cone6, cone7, cone8, cone9, cone10, cone11, cylinder63, cylinder64, cylinder65, cylinder66, cylinder67, cylinder68, cylinder69, cylinder70, cylinder71, cylinder72, cylinder73, circle, circle2, circle4, circle5, circle6, circle7, circle8, circle9, circle10, circle11 } from './objetos.js';
 
 //Constantes e Variaveis Globais
 console.log(cylinder64);
@@ -65,7 +65,7 @@ var contadorCheck = 0;
 var checkvalue = 0;
 var total = 0;
 var timerTotal = 0;
-var melhorVolta= 0;
+var melhorVolta = 0;
 
 var timer = new THREE.Clock();
 var totalTimer = new THREE.Clock();
@@ -80,25 +80,25 @@ var knot = new THREE.Mesh(
     new THREE.TorusKnotGeometry(0.5, 0.1),
     new THREE.MeshNormalMaterial({}));*/
 
-    var knot = new THREE.Mesh(
-        new THREE.TorusKnotGeometry(0.5, 0.1), new THREE.MeshNormalMaterial({}));
-    knot.position.x = -290;
-    knot.position.z = 0;
-    knot.position.y = 2.2;
-    var knotBoxHelper = new THREE.BoxHelper(knot, 0x00ff00);
-    knotBoxHelper.update();
-    var knotBBox = new THREE.Box3();
-    knotBBox.setFromObject(knotBoxHelper);
-    knotBoxHelper.visible = true;
-  
-  //var knotBBox = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
-  //knotBBox.setFromObject(knot);
+var knot = new THREE.Mesh(
+    new THREE.TorusKnotGeometry(0.5, 0.1), new THREE.MeshNormalMaterial({}));
+knot.position.x = -290;
+knot.position.z = 0;
+knot.position.y = 2.2;
+var knotBoxHelper = new THREE.BoxHelper(knot, 0x00ff00);
+knotBoxHelper.update();
+var knotBBox = new THREE.Box3();
+knotBBox.setFromObject(knotBoxHelper);
+knotBoxHelper.visible = true;
 
-  //var knotBoxHelper = new THREE.BoundingBoxHelper(knot, 0x00ff00);
-  //knotBoxHelper.position.set(-290, 2.2, 0)
+//var knotBBox = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+//knotBBox.setFromObject(knot);
+
+//var knotBoxHelper = new THREE.BoundingBoxHelper(knot, 0x00ff00);
+//knotBoxHelper.position.set(-290, 2.2, 0)
 
 var geometryT = new THREE.BoxGeometry(1, 2, 3)
-var material = new THREE.MeshPhongMaterial({ color: '#A9A9A9',})
+var material = new THREE.MeshPhongMaterial({ color: '#A9A9A9', })
 var mesh = new THREE.Mesh(geometryT, material)
 mesh.position.set(-320, 2.2, 0)
 
@@ -219,7 +219,7 @@ function createSphere(radius, widthSegments, heightSegments) {
     var object = new THREE.Mesh(geometry, material);
     //object.castShadow = true;
     return object;
-    
+
 }
 
 var trackballControls = new TrackballControls(camera, renderer.domElement);
@@ -369,7 +369,7 @@ function resetThings(x, y, z, rt) {
     checkvalue = 0;
 
     //FIXME: Tentativa de arrumar zerar ao clicar
-    for(var i =0; i< timerVoltas.length; i++){
+    for (var i = 0; i < timerVoltas.length; i++) {
         timerVoltas[i] = 0;
     }
     timerVoltas[0] = 0;
@@ -422,7 +422,7 @@ function resetThings(x, y, z, rt) {
 function timerUpdate() {
     if (contadorCheck >= 1) {
 
-       // console.log(lap)
+        // console.log(lap)
 
         var seconds = timerVoltas[lap] % 60;
         var minutes = (timerVoltas[lap] - seconds) / 60;
@@ -431,7 +431,7 @@ function timerUpdate() {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         var total = 0;
-    
+
         for (var i = 0; i <= lap; i++) {
             total += timerVoltas[i];
             laps[i] = timerVoltas[i];
@@ -461,21 +461,21 @@ function timerUpdate() {
 
         var information = document.getElementById("InfoxBox");
         information.innerHTML = "Volta (" + lap + "/4)<br><br>Tempo da volta: " + minutes + ":" + seconds + "<br>Tempo total: " + minutesTotal + ":" + secondsTotal
-        + "<br>Melhor Volta: " + minutesMelhorVolta + ":" + secondsMelhorVolta 
+            + "<br>Melhor Volta: " + minutesMelhorVolta + ":" + secondsMelhorVolta
 
         timerVoltas[lap]++;
 
     }
-    
+
 
     setTimeout(function () {
         timerUpdate();
     }, 1000);
 }
-function melhorVoltaCarro(){
+function melhorVoltaCarro() {
     melhorVolta = timerVoltas[0];
     for (var i = 0; i <= lap; i++) {
-        if(melhorVolta > timerVoltas[i] && timerVoltas[i] != 0  ){
+        if (melhorVolta > timerVoltas[i] && timerVoltas[i] != 0) {
             melhorVolta = timerVoltas[i];
         }
     }
@@ -525,6 +525,42 @@ function keyboardUpdate() {
 
     if (inspec == true) {
 
+        scene.remove(cone1);
+        scene.remove(cone2);
+        scene.remove(cone3);
+        scene.remove(cone4);
+        scene.remove(cone5);
+        scene.remove(cone6);
+        scene.remove(cone7);
+        scene.remove(cone8);
+        scene.remove(cone9);
+        scene.remove(cone10);
+        scene.remove(cone11);
+        scene.remove(cylinder63);
+        scene.remove(cylinder64);
+        scene.remove(cylinder65);
+        scene.remove(cylinder66);
+        scene.remove(cylinder67);
+        scene.remove(cylinder68);
+        scene.remove(cylinder69);
+        scene.remove(cylinder70);
+        scene.remove(cylinder71);
+        scene.remove(cylinder72);
+        scene.remove(cylinder73);
+        scene.remove(circle);
+        scene.remove(circle2);
+        scene.remove(circle4);
+        scene.remove(circle5);
+        scene.remove(circle6);
+        scene.remove(circle7);
+        scene.remove(circle8);
+        scene.remove(circle9);
+        scene.remove(circle10);
+        scene.remove(circle11);
+        scene.remove(planoCentral);
+        scene.remove(planoCentral2);
+        scene.remove(planoCentral3);
+        scene.remove(planoCentral4);
         //scene.remove(p_light);
         speed = 0.1; //Adicionei essa redução de velocidade para que o carro não saia do lugar no modo inspecionar (Davi: 03/01)
         cube7.position.x = 0;
@@ -538,27 +574,27 @@ function keyboardUpdate() {
         trackballControls.update();
 
     }
-//adiciona objetos
-if (keyboard.pressed("1")) {
+    //adiciona objetos
+    if (keyboard.pressed("1")) {
 
 
 
 
-  }
-    
-  if (keyboard.pressed("2")) {
+    }
 
-   
-    
-    
-      }
-  
-  
-  
-  
-  
-  
-  // Criacao das Pistas
+    if (keyboard.pressed("2")) {
+
+
+
+
+    }
+
+
+
+
+
+
+    // Criacao das Pistas
 
     if (keyboard.pressed("1")) {
         pista = 1;
@@ -567,7 +603,7 @@ if (keyboard.pressed("1")) {
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
         //scene.add(p_light);
-      
+
         for (var i = 0; i < arrayPistaOne.length; i++) {
             scene.add(arrayPistaOne[i]);
 
@@ -577,7 +613,7 @@ if (keyboard.pressed("1")) {
         console.log(arrayPistaOne);
 
         resetThings(-270, 2.2, 0, degreesToRadians(-90));
-        
+
         scene.add(cone1);
         scene.add(cone2);
         scene.add(cone3);
@@ -593,27 +629,27 @@ if (keyboard.pressed("1")) {
         scene.add(cylinder64);
         scene.add(cylinder65);
         scene.add(cylinder66);
-    scene.add(cylinder67);
-    scene.add(cylinder68);
-    scene.add(cylinder69);
-    scene.add(cylinder70);
-    scene.add(cylinder71);
-    scene.add(cylinder72);
-    scene.add(cylinder73);
-    scene.add(circle);
-    scene.add(circle2);
-    scene.add(circle4);
-    scene.add(circle5);
-    scene.add(circle6);
-    scene.add(circle7);
-    scene.add(circle8);
-    scene.add(circle9);
-    scene.add(circle10);
-    scene.add(circle11);
-        
+        scene.add(cylinder67);
+        scene.add(cylinder68);
+        scene.add(cylinder69);
+        scene.add(cylinder70);
+        scene.add(cylinder71);
+        scene.add(cylinder72);
+        scene.add(cylinder73);
         scene.add(circle);
         scene.add(circle2);
-        
+        scene.add(circle4);
+        scene.add(circle5);
+        scene.add(circle6);
+        scene.add(circle7);
+        scene.add(circle8);
+        scene.add(circle9);
+        scene.add(circle10);
+        scene.add(circle11);
+
+        scene.add(circle);
+        scene.add(circle2);
+
         scene.add(planoCentral);  //plano central
         //TODO: nao zera quando aperta as teclas
 
@@ -623,14 +659,14 @@ if (keyboard.pressed("1")) {
         camera2.up.set(-100, 10, 0);
         camera2.lookAt(0, 0, -180);
         camera2.translateY(250);
-        
+
         camera2.translateX(120);
 
         camera2.translateZ(330);
 
 
         //adicao dos planos e texturas
-       
+
     }
 
     if (keyboard.pressed("2")) {
@@ -640,7 +676,7 @@ if (keyboard.pressed("1")) {
         scene.remove(light); //(Davi: 03/01)
         createPista(pista, scene);
         //scene.add(p_light);
-    
+
         for (var i = 0; i < arrayPistaTwo
             .length; i++) {
             scene.add(arrayPistaTwo
@@ -655,7 +691,7 @@ if (keyboard.pressed("1")) {
         camera2.up.set(-100, 10, 0);
         camera2.lookAt(0, 0, -180);
         camera2.translateY(250);
-        
+
         camera2.translateX(120);
 
         camera2.translateZ(330);
@@ -679,13 +715,13 @@ if (keyboard.pressed("1")) {
         resetThings(-570, 2.2, -420, degreesToRadians(-360));
         //cube7.rotation.y =   Math.PI ;
         scene.add(planoCentral3);  //plano central
-        
+
         //truck.rotation.y = Math.PI ;
         camera2.position.copy(camPosition);
         camera2.up.set(-100, 10, 0);
         camera2.lookAt(0, 0, -180);
         camera2.translateY(250);
-       
+
         camera2.translateX(120);
 
         camera2.translateZ(330);
@@ -730,41 +766,41 @@ if (keyboard.pressed("1")) {
     //Fim Criacao das Pistas
 }
 
- //////////////////////////////////////////
+//////////////////////////////////////////
 
- var textureLoader = new THREE.TextureLoader();
- //Skybox
- let materialArray = [];
- let textura_ft = textureLoader.load('../assets/textures/t.jpg');
- let textura_f = textureLoader.load('../assets/textures/floresta.jpg');
- let textura_t = textureLoader.load('../assets/textures/t.jpg');
- let textura_a = textureLoader.load('../assets/textures/sky.png');
- let textura_d = textureLoader.load('../assets/textures/d.png');
- let textura_e = textureLoader.load('../assets/textures/e.png');
- 
- var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/ar.jpg');
- floorTexture4.wrapS = floorTexture4.wrapT = THREE.RepeatWrapping;
- floorTexture4.repeat.set(1,1);
+var textureLoader = new THREE.TextureLoader();
+//Skybox
+let materialArray = [];
+let textura_ft = textureLoader.load('../assets/textures/t.jpg');
+let textura_f = textureLoader.load('../assets/textures/floresta.jpg');
+let textura_t = textureLoader.load('../assets/textures/t.jpg');
+let textura_a = textureLoader.load('../assets/textures/sky.png');
+let textura_d = textureLoader.load('../assets/textures/d.png');
+let textura_e = textureLoader.load('../assets/textures/e.png');
+
+var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/ar.jpg');
+floorTexture4.wrapS = floorTexture4.wrapT = THREE.RepeatWrapping;
+floorTexture4.repeat.set(1, 1);
 
 
- 
- materialArray.push(new THREE.MeshBasicMaterial({ map: textura_f }));
- materialArray.push(new THREE.MeshBasicMaterial({ map: textura_t }));
- materialArray.push(new THREE.MeshBasicMaterial({ map: textura_d }));//
- materialArray.push(new THREE.MeshBasicMaterial({ map: textura_e }));
- materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
- materialArray.push(new THREE.MeshBasicMaterial({map: floorTexture4}));
- 
- for (let i = 0; i < 6; i++) {
-     materialArray[i].side = THREE.BackSide;
- }
- 
- var skyboxGeo = new THREE.BoxGeometry(2000, 2000, 600);
- var skybox = new THREE.Mesh(skyboxGeo, materialArray);
- skybox.position.set(-250,90,-150);
- skybox.rotateX(degreesToRadians(90));
- console.log(skybox.position);
- scene.add(skybox);
+
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_f }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_t }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_d }));//
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_e }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
+
+for (let i = 0; i < 6; i++) {
+    materialArray[i].side = THREE.BackSide;
+}
+
+var skyboxGeo = new THREE.BoxGeometry(2000, 2000, 600);
+var skybox = new THREE.Mesh(skyboxGeo, materialArray);
+skybox.position.set(-250, 90, -150);
+skybox.rotateX(degreesToRadians(90));
+console.log(skybox.position);
+scene.add(skybox);
 
 ////////////////////////////////////
 //atualiza
@@ -792,46 +828,46 @@ roda4.matrix.identity();
 function commandKeyboard() {
 
     keyboard.update();
-    
-    
+
+
     if (keyboard.pressed("left")) {
 
-            if (angulo < 60) {
-                roda1.matrix.multiply(mat4.makeRotationY(angle[0]));
-                roda2.matrix.multiply(mat4.makeRotationY(angle[0]));
-                angulo = angulo + 1.1;
-            }
-        }
-
-        else if (keyboard.pressed("right")) {
-
-            if (angulo > -60) {
-                roda1.matrix.multiply(mat4.makeRotationY(angle[1]));
-                roda2.matrix.multiply(mat4.makeRotationY(angle[1]));
-                angulo = angulo - 1.1;
-            }
-        }
-        
-        if (keyboard.pressed("X")) {
-            if (speed > 0) {
-                roda1.matrix.multiply(mat4.makeRotationZ(angle[2]));
-                roda2.matrix.multiply(mat4.makeRotationZ(angle[2]));
-                roda3.matrix.multiply(mat4.makeRotationZ(angle[2]));
-                roda4.matrix.multiply(mat4.makeRotationZ(angle[2]));
-            
-            }
-        }
-        if (keyboard.pressed("down")) {
-            if (speed > 0) {
-                roda1.matrix.multiply(mat4.makeRotationZ(angle[3]));
-                roda2.matrix.multiply(mat4.makeRotationZ(angle[3]));
-                roda3.matrix.multiply(mat4.makeRotationZ(angle[3]));
-                roda4.matrix.multiply(mat4.makeRotationZ(angle[3]));
-            
-            }
+        if (angulo < 60) {
+            roda1.matrix.multiply(mat4.makeRotationY(angle[0]));
+            roda2.matrix.multiply(mat4.makeRotationY(angle[0]));
+            angulo = angulo + 1.1;
         }
     }
-     
+
+    else if (keyboard.pressed("right")) {
+
+        if (angulo > -60) {
+            roda1.matrix.multiply(mat4.makeRotationY(angle[1]));
+            roda2.matrix.multiply(mat4.makeRotationY(angle[1]));
+            angulo = angulo - 1.1;
+        }
+    }
+
+    if (keyboard.pressed("X")) {
+        if (speed > 0) {
+            roda1.matrix.multiply(mat4.makeRotationZ(angle[2]));
+            roda2.matrix.multiply(mat4.makeRotationZ(angle[2]));
+            roda3.matrix.multiply(mat4.makeRotationZ(angle[2]));
+            roda4.matrix.multiply(mat4.makeRotationZ(angle[2]));
+
+        }
+    }
+    if (keyboard.pressed("down")) {
+        if (speed > 0) {
+            roda1.matrix.multiply(mat4.makeRotationZ(angle[3]));
+            roda2.matrix.multiply(mat4.makeRotationZ(angle[3]));
+            roda3.matrix.multiply(mat4.makeRotationZ(angle[3]));
+            roda4.matrix.multiply(mat4.makeRotationZ(angle[3]));
+
+        }
+    }
+}
+
 roda1.matrix.multiply(mat4.makeTranslation(3.8, -0.1, 8.0));
 roda1.matrix.multiply(mat4.makeRotationY(degreesToRadians(90)));
 
@@ -870,7 +906,7 @@ function contaVoltasPista(truck) {
 
     //TODO: Primeiro problema: o valor do primeiro check point ser do bloco inicial, para o timer
     // comecar no inicio do jogo, como colocado a baixo
-    if(pista == 1){
+    if (pista == 1) {
         checkpoint_x = -270;
         checkpoint_z = 0;
         checkx2 = -510;
@@ -879,7 +915,7 @@ function contaVoltasPista(truck) {
         posicaoBlocoInicial_z = 0;
     }
 
-    if(pista == 2){
+    if (pista == 2) {
         checkpoint_x = 30;
         checkpoint_z = -120;
         //FIXME: 
@@ -1214,15 +1250,15 @@ function stalker_cam() {
         camera_look.position.x = cube7.position.x;
         camera_look.position.y = cube7.position.y;
         camera_look.position.z = cube7.position.z;
-        
+
         p_light.add(lightSphere42);
         p_light.target = cube7;
         p_light.shadow.autoUpdate = false;
         p_light.position.x = camera.position.x;
-        p_light.position.y = camera.position.y-7.5;
-        p_light.position.z = camera.position.z+15;
+        p_light.position.y = camera.position.y - 7.5;
+        p_light.position.z = camera.position.z + 15;
         //scene.remove(lightSphere42); //(Davi: 03/01)
-        //scene.remove(light); //(Davi: 03/01)
+        scene.remove(light); //(Davi: 03/01)
 
         camera.position.z = camera_look.position.z + 50;
         camera.position.y = camera_position_y;
@@ -1250,7 +1286,7 @@ function controlledRender() {
     renderer.setClearColor(0x312A2A);
     renderer.clear();
     renderer.render(scene, camera);
-    
+
     // Set virtual camera viewport 
     renderer.setViewport(0, height - MP_Heidth, MP_Width, MP_Heidth);
     renderer.setScissor(0, height - MP_Heidth, MP_Width, MP_Heidth);
@@ -1260,21 +1296,21 @@ function controlledRender() {
     renderer.render(scene, camera2);
 
 
-    if (!keyboard.pressed("B")) {
+    if (keyboard.pressed("B")) {
         scene.remove(camera);
         renderer.setViewport(0, 0, width, height);
         renderer.setScissorTest(false);
         renderer.setClearColor(0x312A2A);
         renderer.clear();
-        renderer.render(scene, camera3); 
-        
+        renderer.render(scene, camera3);
+
         renderer.setViewport(0, height - MP_Heidth, MP_Width, MP_Heidth);
         renderer.setScissor(0, height - MP_Heidth, MP_Width, MP_Heidth);
         renderer.setScissorTest(true);
         renderer.setClearColor("rgb(60, 50, 150)");
         renderer.clear();
         renderer.render(scene, camera2);
-    
+
     }
 
 
@@ -1312,7 +1348,7 @@ function render() {
     renderer.render(scene, camera,) // Render scene
     stalker_cam();
     controlledRender() //Renderiza o mini mapa (Davi: 03/01)
-    
+
 }
 
 
