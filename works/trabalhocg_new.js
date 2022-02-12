@@ -18,8 +18,8 @@ import {
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
 import { planoCentral, planoCentral2, planoCentral3, planoCentral4 } from './Texturas.js';
-import { arrayBondBoxes, arrayObjetos ,  obj, obj2 } from './objetos.js';
-import { obj3, obj4 } from './objetos2.js';
+import { arrayBondBoxes, arrayObjetos,  obj, obj2 } from './objetos.js';
+import { obj3, obj4, arrayBondBoxes_2, arrayObjetos_2 } from './objetos2.js';
 
 //Constantes e Variaveis Globais
 
@@ -77,13 +77,14 @@ totalTimer.start();
 //bounding box
 
 var knotCar = new THREE.Mesh(
-new THREE.TorusKnotGeometry(5,5), new THREE.MeshNormalMaterial({opacity: 0, transparent: true}));
+    new THREE.TorusKnotGeometry(5,5), new THREE.MeshNormalMaterial({ opacity: 0, transparent: true }));
 //knotCar.position.x = -270;
 //knotCar.position.z = 0;
 //knotCar.position.y = 5;
-//knotCar.rotateY(degreesToRadians(90));
+
 var knotBoxHelper = new THREE.BoxHelper(knotCar, 0x00ff00);
 knotBoxHelper.update();
+knotBoxHelper.rotateY(degreesToRadians(90));
 
 var knotBBox = new THREE.Box3();
 
@@ -92,7 +93,8 @@ var knotBBox = new THREE.Box3();
 knotBBox.setFromObject(knotCar);
 
 knotCar.add(knotBoxHelper);
-
+knotCar.rotateY(degreesToRadians(90));
+//knotBBox.visible = true;
 knotBoxHelper.visible = true;
 //knotCar.visible = false;
 
@@ -1013,30 +1015,43 @@ function verificaDentroPista(truck, road) {
 
 }
 //////////////////////////---alterado dia 27/12 por larissa---//////////////////////////////////////
-function verificaObjetos(){
+function verificaObjetos() {
 
     //larissa 12/02
 
-    //console.log('entrei')
-    //console.log(arrayBondBoxes.length)
+    if (pista == 1 || pista == 2) {
+        for (let i = 0; i < arrayBondBoxes.length; i++) {
 
-    for(let i=0 ; i < arrayBondBoxes.length; i++){
+            if (knotBBox.intersectsBox(arrayBondBoxes[i])) {
+                //arrayObjetos[2].material.color.set(0xff0000)
+                //var pos = new THREE.Vector3();
+                //pos.position.copy(arrayObjetos[i].position);
 
-        //var Box = arrayBondBoxes[i];
-        //console.log(arrayBondBoxes[i]);
-        //console.log(knotBBox.intersectsBox(arrayBondBoxes[i]));
-
-        if(knotBBox.intersectsBox(arrayBondBoxes[i])){
-            //arrayObjetos[2].material.color.set(0xff0000)
-            //var pos = new THREE.Vector3();
-            //pos.position.copy(arrayObjetos[i].position);
-            
-            arrayObjetos[i].position.set(arrayObjetos[i].position.x + 0.15, arrayObjetos[i].position.y, arrayObjetos[i].position.z + 0.15 )
-            console.log('conflito')
-            speed = speed - 0.25 ;
+                arrayObjetos[i].position.set(arrayObjetos[i].position.x + 0.2, arrayObjetos[i].position.y, arrayObjetos[i].position.z + 0.15)
+                console.log('conflito')
+                speed = speed - 0.1;
+            }
+            else {
+                //arrayObjetos[2].material.color.set(0x00ff00)
+            }
         }
-        else{
-            //arrayObjetos[2].material.color.set(0x00ff00)
+    }
+
+    if (pista == 3 || pista == 4) {
+        for (let i = 0; i < arrayBondBoxes_2.length; i++) {
+
+            if (knotBBox.intersectsBox(arrayBondBoxes_2[i])) {
+                //arrayObjetos[2].material.color.set(0xff0000)
+                //var pos = new THREE.Vector3();
+                //pos.position.copy(arrayObjetos[i].position);
+
+                arrayObjetos[i].position.set(arrayObjetos_2[i].position.x + 0.2, arrayObjetos_2[i].position.y, arrayObjetos_2[i].position.z + 0.15)
+                console.log('conflito')
+                speed = speed - 0.2;
+            }
+            else {
+                //arrayObjetos[2].material.color.set(0x00ff00)
+            }
         }
     }
 }
@@ -1061,7 +1076,7 @@ function acceleration() {
     //posicao atual do carrinho em z  
     var zTruck = cube7.position.z;
 
-    
+
 
     //console.log(knotBBox.intersectsBox(BoxCone3));
 

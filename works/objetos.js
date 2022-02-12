@@ -184,7 +184,7 @@ var circleGeometry = new THREE.CircleGeometry(4, 32);
 circle11.position.set(30.0, 10, 20);
 circle11.rotation.x = -Math.PI / 2;
 
-export var arrayObjetos = new Array();
+
 
 obj.add(cone1);
 obj.add(cone2);
@@ -388,7 +388,9 @@ obj2.add(cone19);
 obj2.add(cone20);
 obj2.add(cone21);
  obj2.add(cylinder74);
+ 
  obj2.add(cylinder75);
+
  obj2.add(cylinder76);
  obj2.add(cylinder77);
  obj2.add(cylinder78);
@@ -397,9 +399,15 @@ obj2.add(cone21);
  obj2.add(cylinder81);
  obj2.add(cylinder82);
  obj2.add(cylinder83);
- obj2.add(circle12);
- obj2.add(circle13);
- obj2.add(circle14);
+
+ //obj2.add(circle12); 
+ cylinder74.add(circle12);
+ cylinder75.add(circle13);
+ cylinder76.add(circle14);
+ cylinder77.add(circle15);
+
+ //obj2.add(circle13);
+ //obj2.add(circle14);
  obj2.add(circle15);
  obj2.add(circle16);
  obj2.add(circle17);
@@ -411,6 +419,7 @@ obj2.add(cone21);
 
 
  //TODO:
+ export var arrayObjetos = new Array();
 
  //add larissa 12/02
 arrayObjetos.push(cone1);

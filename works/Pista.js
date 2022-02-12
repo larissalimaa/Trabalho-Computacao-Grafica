@@ -49,7 +49,6 @@ export default class Pista extends THREE.Mesh {
 
         //i ->> Fileira
         //j ->> cubo 
-
         
        // if(i==0 && j != 9){
            // cubeMaterial = chegada;
