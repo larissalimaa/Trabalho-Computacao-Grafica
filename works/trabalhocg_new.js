@@ -793,6 +793,18 @@ function contaVoltasPista(truck) {
         checkz2 = -600;
         posicaoBlocoInicial_x = 30;
         posicaoBlocoInicial_z = -120;
+        
+    }
+
+    if(pista == 3){
+        checkpoint_x = -570;
+        checkpoint_z = -420;
+        //FIXME: 
+        checkx2 = 30;
+        checkz2 = -420;
+        posicaoBlocoInicial_x = -570;
+        posicaoBlocoInicial_z = -420;
+       
     }
 
 
