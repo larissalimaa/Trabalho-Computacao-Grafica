@@ -482,20 +482,46 @@ var BoxCone10 = new THREE.Box3();
 BoxCone10.setFromObject(cone10);
 arrayBondBoxes.push(BoxCone10);
 
-//
-/*
-cylinder63
-cylinder64
-cylinder65
-cylinder66
-cylinder67
-cylinder68
-cylinder69
-cylinder70
-cylinder71
-cylinder72
-cylinder73*/
+var BoxCilinder63 = new THREE.Box3();
+BoxCilinder63.setFromObject(cylinder63);
+arrayBondBoxes.push(BoxCilinder63);
 
-var BoxCilinder = new THREE.Box3();
-BoxCilinder.setFromObject(cylinder63);
-arrayBondBoxes.push(BoxCilinder);
+var BoxCilinder64 = new THREE.Box3();
+BoxCilinder64.setFromObject(cylinder64);
+arrayBondBoxes.push(BoxCilinder64);
+
+var BoxCilinder65 = new THREE.Box3();
+BoxCilinder65.setFromObject(cylinder65);
+arrayBondBoxes.push(BoxCilinder65);
+
+var BoxCilinder66 = new THREE.Box3();
+BoxCilinder66.setFromObject(cylinder66);
+arrayBondBoxes.push(BoxCilinder66);
+
+var BoxCilinder67 = new THREE.Box3();
+BoxCilinder67.setFromObject(cylinder67);
+arrayBondBoxes.push(BoxCilinder67);
+
+var BoxCilinder68 = new THREE.Box3();
+BoxCilinder68.setFromObject(cylinder68);
+arrayBondBoxes.push(BoxCilinder68);
+
+var BoxCilinder69 = new THREE.Box3();
+BoxCilinder69.setFromObject(cylinder69);
+arrayBondBoxes.push(BoxCilinder69);
+
+var BoxCilinder70 = new THREE.Box3();
+BoxCilinder70.setFromObject(cylinder70);
+arrayBondBoxes.push(BoxCilinder70);
+
+var BoxCilinder71 = new THREE.Box3();
+BoxCilinder71.setFromObject(cylinder71);
+arrayBondBoxes.push(BoxCilinder71);
+
+var BoxCilinder72 = new THREE.Box3();
+BoxCilinder72.setFromObject(cylinder72);
+arrayBondBoxes.push(BoxCilinder72);
+
+var BoxCilinder73 = new THREE.Box3();
+BoxCilinder73.setFromObject(cylinder73);
+arrayBondBoxes.push(BoxCilinder73);

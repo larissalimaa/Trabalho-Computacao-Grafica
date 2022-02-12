@@ -44,9 +44,16 @@ export default class Pista extends THREE.Mesh {
             //createFinishLine(x, z, scene, npista);
         
         }
-        if(i==0 && j != 9){
-            cubeMaterial = chegada;
-        }
+
+        //Para atualizar cubo especifico ou fileira
+
+        //i ->> Fileira
+        //j ->> cubo 
+
+        
+       // if(i==0 && j != 9){
+           // cubeMaterial = chegada;
+      //  }
         
         
 
