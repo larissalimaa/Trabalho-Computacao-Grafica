@@ -31,8 +31,9 @@ cone1.position.set(25.0, 5.0, -300.0)
 
  var cone2 = new THREE.Mesh( geometry, conet );
 var geometry = new THREE.ConeGeometry( 2, 8, 14 );
-cone2.position.set(0.0, 5.0, 0.0)
-        
+cone2.position.set(0.0, 5.0, 0.0);
+
+
  var cone3 = new THREE.Mesh( geometry, conet );
 var geometry = new THREE.ConeGeometry( 2, 8, 14 );
 cone3.position.set(-250.0, 5.0, -610.0)
@@ -183,6 +184,8 @@ var circleGeometry = new THREE.CircleGeometry(4, 32);
 circle11.position.set(30.0, 10, 20);
 circle11.rotation.x = -Math.PI / 2;
 
+export var arrayObjetos = new Array();
+
 obj.add(cone1);
 obj.add(cone2);
 obj.add(cone3);
@@ -215,6 +218,8 @@ obj.add(circle8);
 obj.add(circle9);
 obj.add(circle10);
 obj.add(circle11);
+
+
 
 /////////////////////////////////////////pista 1 final//////////////////////////////////////
 //////////////////////////////////pista 2 inicio////////////////////////////////
@@ -402,3 +407,95 @@ obj2.add(cone21);
  obj2.add(circle19);
  obj2.add(circle20);
  obj2.add(circle21);
+
+
+
+ //TODO:
+
+ //add larissa 12/02
+arrayObjetos.push(cone1);
+arrayObjetos.push(cone2);
+arrayObjetos.push(cone3);
+arrayObjetos.push(cone4);
+arrayObjetos.push(cone5);
+arrayObjetos.push(cone6);
+arrayObjetos.push(cone7);
+arrayObjetos.push(cone8);
+arrayObjetos.push(cone9);
+arrayObjetos.push(cone10);
+arrayObjetos.push(cone11);
+
+//
+arrayObjetos.push(cylinder63);
+arrayObjetos.push(cylinder64);
+arrayObjetos.push(cylinder65);
+arrayObjetos.push(cylinder66);
+arrayObjetos.push(cylinder67);
+arrayObjetos.push(cylinder68);
+arrayObjetos.push(cylinder69);
+arrayObjetos.push(cylinder70);
+arrayObjetos.push(cylinder71);
+arrayObjetos.push(cylinder72);
+arrayObjetos.push(cylinder73);
+
+ //FIXME: //add larissa 12/02
+
+export var arrayBondBoxes = new Array();
+
+var BoxCone1 = new THREE.Box3();
+BoxCone1.setFromObject(cone1);
+arrayBondBoxes.push(BoxCone1);
+
+var BoxCone2 = new THREE.Box3();
+BoxCone2.setFromObject(cone2);
+arrayBondBoxes.push(BoxCone2);
+
+var BoxCone3 = new THREE.Box3();
+BoxCone3.setFromObject(cone3);
+arrayBondBoxes.push(BoxCone3);
+
+var BoxCone4 = new THREE.Box3();
+BoxCone4.setFromObject(cone4);
+arrayBondBoxes.push(BoxCone4);
+
+var BoxCone5 = new THREE.Box3();
+BoxCone5.setFromObject(cone5);
+arrayBondBoxes.push(BoxCone5);
+
+var BoxCone6 = new THREE.Box3();
+BoxCone6.setFromObject(cone6);
+arrayBondBoxes.push(BoxCone6);
+
+var BoxCone7 = new THREE.Box3();
+BoxCone7.setFromObject(cone7);
+arrayBondBoxes.push(BoxCone7);
+
+var BoxCone8 = new THREE.Box3();
+BoxCone8.setFromObject(cone8);
+arrayBondBoxes.push(BoxCone8);
+
+var BoxCone9 = new THREE.Box3();
+BoxCone9.setFromObject(cone9);
+arrayBondBoxes.push(BoxCone9);
+
+var BoxCone10 = new THREE.Box3();
+BoxCone10.setFromObject(cone10);
+arrayBondBoxes.push(BoxCone10);
+
+//
+/*
+cylinder63
+cylinder64
+cylinder65
+cylinder66
+cylinder67
+cylinder68
+cylinder69
+cylinder70
+cylinder71
+cylinder72
+cylinder73*/
+
+var BoxCilinder = new THREE.Box3();
+BoxCilinder.setFromObject(cylinder63);
+arrayBondBoxes.push(BoxCilinder);

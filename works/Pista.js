@@ -27,7 +27,7 @@ var cube1,cube2,cube3,cube4,cube5,cube6,cube7,cube8,cube9,cube10,cube11,cube12,c
 //Classe Pista que cria o cubo, e coloca na posicao por parametro, o bloco inicial eh marcado com laranja
 export default class Pista extends THREE.Mesh {
 
-    constructor(x, z, inicio = false, scene, npista) {
+    constructor(x, z, inicio = false, scene, npista, i , j) {
         
         const loader = new THREE.TextureLoader();
         const chegadatexture = loader.load('../assets/textures/chegada.png');
@@ -44,6 +44,11 @@ export default class Pista extends THREE.Mesh {
             //createFinishLine(x, z, scene, npista);
         
         }
+        if(i==0 && j != 9){
+            cubeMaterial = chegada;
+        }
+        
+        
 
         //Larissa: 23/12/////////////////////////////////////////////////////
         else{
@@ -286,14 +291,14 @@ export function createPista(npista, scene) {
         for (let j = 0; j < dir[2]; j++) {
             //posicao inicial
             if (i == 0 && j == 4 && track != 5 && track != 3 && track!=2) {
-                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1 , scene, npista)
+                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1 , scene, npista, i ,j )
             }
             else {
                 //pinta laranja posicao pista 3
                 if(i == 3 && j == 2 && track == 3){
                     //var auxX = dir[0] * blockSize + xPos;
                     //var auxauxZ = dir[1] * blockSize + zPos;
-                    cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1, scene, npista)
+                    cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1, scene, npista, i, j)
                     //console.log(auxX);
                     //console.log(auxauxZ);
                     
@@ -302,12 +307,12 @@ export function createPista(npista, scene) {
                 if(i==5 && j==2 && track == 2){
                     var auxX = dir[0] * blockSize + xPos;
                     var auxauxZ = dir[1] * blockSize + zPos;
-                    cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1, scene , npista);
+                    cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 1, scene , npista, i ,j );
                     console.log(auxX);
                     console.log(auxauxZ);
                 }
                 else{
-                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 0 , scene, npista)
+                cube = new Pista(dir[0] * blockSize + xPos, dir[1] * blockSize + zPos, 0 , scene, npista, i, j)
                 }
             }
             }

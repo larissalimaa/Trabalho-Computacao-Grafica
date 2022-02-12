@@ -18,12 +18,11 @@ import {
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
 import { planoCentral, planoCentral2, planoCentral3, planoCentral4 } from './Texturas.js';
-//import { cone1, cone2, cone3, cone4, cone5, cone6, cone7, cone8, cone9, cone10, cone11, cylinder63, cylinder64, cylinder65, cylinder66, cylinder67, cylinder68, cylinder69, cylinder70, cylinder71, cylinder72, cylinder73, circle, circle2, circle4, circle5, circle6, circle7, circle8, circle9, circle10, circle11 } from './objetos.js';
-import { obj, obj2 } from './objetos.js';
+import { arrayBondBoxes, arrayObjetos ,  obj, obj2 } from './objetos.js';
 import { obj3, obj4 } from './objetos2.js';
 
 //Constantes e Variaveis Globais
-//console.log(cylinder64);
+
 //velocidade maxima a ser atingida 
 var top_speed = 2.0;
 
@@ -77,33 +76,25 @@ totalTimer.start();
 //LARISSA 03/02 --------------------------------------------//
 //bounding box
 
-/*
-var knot = new THREE.Mesh(
-    new THREE.TorusKnotGeometry(0.5, 0.1),
-    new THREE.MeshNormalMaterial({}));*/
-
-var knot = new THREE.Mesh(
-    new THREE.TorusKnotGeometry(0.5, 0.1), new THREE.MeshNormalMaterial({}));
-knot.position.x = -290;
-knot.position.z = 0;
-knot.position.y = 2.2;
-var knotBoxHelper = new THREE.BoxHelper(knot, 0x00ff00);
+var knotCar = new THREE.Mesh(
+new THREE.TorusKnotGeometry(5,5), new THREE.MeshNormalMaterial({opacity: 100, transparent: false}));
+//knotCar.position.x = -270;
+//knotCar.position.z = 0;
+//knotCar.position.y = 5;
+//knotCar.rotateY(degreesToRadians(90));
+var knotBoxHelper = new THREE.BoxHelper(knotCar, 0x00ff00);
 knotBoxHelper.update();
+
 var knotBBox = new THREE.Box3();
-knotBBox.setFromObject(knotBoxHelper);
+
+//knotBBox.setFromObject(knotBoxHelper);
+
+knotBBox.setFromObject(knotCar);
+
+knotCar.add(knotBoxHelper);
+
 knotBoxHelper.visible = true;
-
-//var knotBBox = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
-//knotBBox.setFromObject(knot);
-
-//var knotBoxHelper = new THREE.BoundingBoxHelper(knot, 0x00ff00);
-//knotBoxHelper.position.set(-290, 2.2, 0)
-
-var geometryT = new THREE.BoxGeometry(1, 2, 3)
-var material = new THREE.MeshPhongMaterial({ color: '#A9A9A9', })
-var mesh = new THREE.Mesh(geometryT, material)
-mesh.position.set(-320, 2.2, 0)
-
+//knotCar.visible = false;
 
 //LARISSA 03/02 --------------------------------------------//
 
@@ -112,22 +103,13 @@ var stringLap = 1;
 //variavel do tamanho do bloco, comprimento/profundidade 
 var blockSize = 60;
 
-//Larissa:27/12 ----------------------//
 //posicao inicial do carrinho, e camera
 var xInicial = 0;
 var yInicial = 0;
 var zInicial = 0;
-//Larissa:27/12 ----------------------//
 
 //variavel que recebe numero da pista
 var pista = 0;
-
-
-//var seconds = 9999; // Some arbitrary value
-//var date = new Date(seconds * 1000); // multiply by 1000 because Date() requires miliseconds
-//var timeStr = date.toTimeString().split(' ')[0];
-
-//var timer =  new SecondaryBox(timeStr);
 
 //array de Boundings Boxs
 export var arrayCubeBBox = new Array();
@@ -144,19 +126,6 @@ var arrayPistaFour = getArrayPistaFour();
 //array que contem coordenadas da Pista
 var arrayPista = new Array();
 
-/*
-//array de cubos contem pista 1 
-export var arrayPistaOne = new Array();
-
-//array de cubos contem pista 2 
-export var arrayPistaTwo = new Array();
-
-//array de cubos contem pista 3
-export var arrayPistaThree = new Array();
-
-//array de cubos que contem pista 4
-export var arrayPistaFour = new Array();
-*/
 //variavel booleana que recebe se carro esta fora
 var fora = true;
 
@@ -190,7 +159,6 @@ camera2.up.set(-1.0, 1.0, 1.0);
 camera2.lookAt(0.0, -400, -500);
 camera2.translateY(180);
 camera2.translateX(-50);
-
 
 /*//Change Camera2 Fov (Tentei utilizar para tentar aumentar a distancia de renderização da cena, porém não obtive resultados positivos, caso o "camera2.fov" da linha abaixo seja habilitado
 novamente, poderá ser observado que o mapa aparecerá por completo, porem totalmente fora de resolução. E caso observem atentamente o mesmo ainda continua com a faixa que não renderiza na sua
@@ -247,18 +215,12 @@ p_light.shadow.camera.far = 500; // default
 const helper = new THREE.CameraHelper(light.shadow.camera);
 // scene.add( helper );
 
-
 //Cria Sphere42
 //var lightSphere42 = createSphere(0.3, 10, 10);
 //lightSphere42.position.copy(light.position);
 
-
 // Listen window size changes
 window.addEventListener('resize', function () { onWindowResize(camera, renderer) }, false);
-
-
-
-//showInformation();
 
 //Cria o carro de "createTruck.js"
 var truck = new THREE.Group();
@@ -271,10 +233,7 @@ var roda2 = getRoda2();
 var roda3 = getRoda3();
 var roda4 = getRoda4();
 
-
-
 // Camera
-
 //colocar objeto para add a camera
 var cube7Geometry = new THREE.BoxGeometry(2, 2, 2);
 //var cube7Material = new THREE.MeshPhongMaterial({ color: "rgb(255, 69, 0)" });
@@ -289,36 +248,34 @@ var cube71 = new THREE.Mesh(cubeGeometry, baseMaterial);
 cube71.position.set(0.0, 20.0, -65.0);
 truck.add(cube71);
 
-//////////////////////////---alterado dia 27/12 por larissa---//////////////////////////////////////
 var baseMaterial = new THREE.MeshLambertMaterial({
     color: "rgb(255, 69, 0)",
     opacity: 0,
     transparent: true,
     wireframe: false,
 });
-//////////////////////////---alterado dia 27/12 por larissa---//////////////////////////////////////
-
 
 var cube7 = new THREE.Mesh(cube7Geometry, baseMaterial);
 cube7.position.set(-5.5, 2.2, 50.0);
 
-
-
-
-
 //Adiciona carro/camera a cena
+
 scene.add(camera_look);
 scene.add(cube7);
-//lightSphere42.add(light); //Davi: 02/01
 cube7.add(truck);
-//scene.add(camera2); //Davi: 03/01
 scene.add(camera);
 camera.add(p_light);
+cube71.add(camera3);
+
+//lightSphere42.add(light); //Davi: 02/01
+//scene.add(camera2); //Davi: 03/01
 //scene.add(p_light);
 //p_light.position.copy(camera);
-cube71.add(camera3);
+
+
 //larissa 03/02
 //scene.add(mesh);
+truck.add(knotCar);
 //scene.add(knotBoxHelper);
 
 
@@ -328,8 +285,6 @@ var d_light;
 d_light = initDefaultBasicLight(scene, true);
 d_light.intensity = 0.15;
 //Davi: 03/01//////////////////FIM///////////////////////////
-
-
 
 //Move para posicao inicial
 cube7.translateY(20.0);
@@ -345,9 +300,6 @@ document.addEventListener('keypress', function (e) {
         inspec == true ? (inspec = false) : (inspec = true);
     }
 });
-
-
-
 
 // Atualiza o timer
 showInformation();
@@ -413,7 +365,7 @@ function timerUpdate() {
         for (var i = 0; i <= lap; i++) {
             total += timerVoltas[i];
             laps[i] = timerVoltas[i];
-            console.log('timer=')
+            //console.log('timer=')
             //console.log(timerVoltas[i]);
         }
         //console.log(timerVoltas[0]);
@@ -559,7 +511,7 @@ function keyboardUpdate() {
         }
 
         //alteracao 23/01
-        console.log(arrayPistaOne);
+        //console.log(arrayPistaOne);
 
         resetThings(-270, 2.2, 0, degreesToRadians(-90));
         scene.add(obj);
@@ -619,7 +571,7 @@ function keyboardUpdate() {
         createPista(pista, scene);
         //scene.add(p_light);
         scene.add(d_light);
-        console.log(arrayPistaThree);
+        //console.log(arrayPistaThree);
 
         for (var i = 0; i < arrayPistaThree.length; i++) {
             scene.add(arrayPistaThree
@@ -715,7 +667,7 @@ var skyboxGeo = new THREE.BoxGeometry(2000, 2000, 600);
 var skybox = new THREE.Mesh(skyboxGeo, materialArray);
 skybox.position.set(-250, 90, -150);
 skybox.rotateX(degreesToRadians(90));
-console.log(skybox.position);
+//console.log(skybox.position);
 scene.add(skybox);
 
 ////////////////////////////////////
@@ -1061,6 +1013,33 @@ function verificaDentroPista(truck, road) {
 
 }
 //////////////////////////---alterado dia 27/12 por larissa---//////////////////////////////////////
+function verificaObjetos(){
+
+    //larissa 12/02
+
+    //console.log('entrei')
+    //console.log(arrayBondBoxes.length)
+
+    for(let i=0 ; i < arrayBondBoxes.length; i++){
+
+        //var Box = arrayBondBoxes[i];
+        //console.log(arrayBondBoxes[i]);
+        //console.log(knotBBox.intersectsBox(arrayBondBoxes[i]));
+
+        if(knotBBox.intersectsBox(arrayBondBoxes[i])){
+            //arrayObjetos[2].material.color.set(0xff0000)
+            //var pos = new THREE.Vector3();
+            //pos.position.copy(arrayObjetos[i].position);
+            
+            arrayObjetos[i].position.set(arrayObjetos[i].position.x + 0.15, arrayObjetos[i].position.y, arrayObjetos[i].position.z + 0.15 )
+            console.log('conflito')
+            speed = speed - 0.25 ;
+        }
+        else{
+            //arrayObjetos[2].material.color.set(0x00ff00)
+        }
+    }
+}
 
 function acceleration() {
 
@@ -1081,6 +1060,12 @@ function acceleration() {
 
     //posicao atual do carrinho em z  
     var zTruck = cube7.position.z;
+
+    
+
+    //console.log(knotBBox.intersectsBox(BoxCone3));
+
+    //larissa 12/02
 
     //23/12 Larissa -------------------------------------------//
 
@@ -1244,6 +1229,7 @@ function render() {
 
     //verifica se carro esta dentro da pista
     verificaCarro();
+    verificaObjetos();
     var delta = 0.2;
     //bounding box
     //larissa 03/02
