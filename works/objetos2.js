@@ -7,19 +7,14 @@ var conet = new THREE.MeshLambertMaterial({
 map: conetexture
 });
 
-var cilitexture = loader.load('../assets/textures/pneuteste.jpg');
+var cilitexture = loader.load('../assets/textures/barril.png');
 var cilit = new THREE.MeshLambertMaterial({
 map: cilitexture
 });
 
-var loader = new THREE.TextureLoader();
-var madeiratex = loader.load('../assets/textures/wood.png');
-var madeiratex2 = loader.load('../assets/textures/woodtop.png');
-var madeiraMaterial = new THREE.MeshLambertMaterial({
-    map: madeiratex
-});
-var madeiratexx = new THREE.MeshLambertMaterial({
-    map: madeiratex2
+var barriltex = loader.load('../assets/textures/barrilcima.png');
+var barrilc = new THREE.MeshLambertMaterial({
+    map: barriltex
 });
 //////////////////////////////////////////////pista 3 inicio////////////////////////////////////////////////
 
@@ -79,7 +74,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder64.position.set(10.0, 5.0, -515.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle = new THREE.Mesh(circleGeometry, cilit);
+ var circle = new THREE.Mesh(circleGeometry, barrilc);
 circle.position.set(10.0, 10, -515);
 circle.rotation.x = -Math.PI / 2;
 
@@ -90,7 +85,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder65.position.set(-180.0, 5.0, -20.0)
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle2 = new THREE.Mesh(circleGeometry, cilit);
+ var circle2 = new THREE.Mesh(circleGeometry, barrilc);
 circle2.position.set(-180.0, 10, -20.0);
 circle2.rotation.x = -Math.PI / 2;
 
@@ -102,7 +97,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder66.position.set(-300.0, 5.0, 5.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle4 = new THREE.Mesh(circleGeometry, cilit);
+ var circle4 = new THREE.Mesh(circleGeometry, barrilc);
 circle4.position.set(-300.0, 10, 5);
 circle4.rotation.x = -Math.PI / 2;
 
@@ -113,7 +108,7 @@ var cylinder67 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder67.position.set(50.0, 5.0, -205.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle5 = new THREE.Mesh(circleGeometry, cilit);
+var circle5 = new THREE.Mesh(circleGeometry, barrilc);
 circle5.position.set(50.0, 10, -205);
 circle5.rotation.x = -Math.PI / 2;
 
@@ -124,7 +119,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder68.position.set(-350.0, 5.0, -205.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle6 = new THREE.Mesh(circleGeometry, cilit);
+ var circle6 = new THREE.Mesh(circleGeometry, barrilc);
 circle6.position.set(-350.0, 10, -205);
 circle6.rotation.x = -Math.PI / 2;
 
@@ -135,7 +130,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder69.position.set(-270.0, 5.0, -355.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle7 = new THREE.Mesh(circleGeometry, cilit);
+ var circle7 = new THREE.Mesh(circleGeometry, barrilc);
 circle7.position.set(-270.0, 10, -355);
 circle7.rotation.x = -Math.PI / 2;
 
@@ -146,7 +141,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder70.position.set(-570.0, 5.0, -615.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle8 = new THREE.Mesh(circleGeometry, cilit);
+ var circle8 = new THREE.Mesh(circleGeometry, barrilc);
 circle8.position.set(-570.0, 10, -615);
 circle8.rotation.x = -Math.PI / 2;
 
@@ -157,7 +152,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder71.position.set(-140.0, 5.0, -620.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle9 = new THREE.Mesh(circleGeometry, cilit);
+ var circle9 = new THREE.Mesh(circleGeometry, barrilc);
 circle9.position.set(-140.0, 10, -620);
 circle9.rotation.x = -Math.PI / 2;
 
@@ -168,7 +163,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder72.position.set(-280.0, 5.0, -580.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle10 = new THREE.Mesh(circleGeometry, cilit);
+ var circle10 = new THREE.Mesh(circleGeometry, barrilc);
 circle10.position.set(-280.0, 10,-580);
 circle10.rotation.x = -Math.PI / 2;
 
@@ -179,7 +174,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder73.position.set(30.0, 5.0, 20.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
- var circle11 = new THREE.Mesh(circleGeometry, cilit);
+ var circle11 = new THREE.Mesh(circleGeometry, barrilc);
 circle11.position.set(30.0, 10, 20);
 circle11.rotation.x = -Math.PI / 2;
 
@@ -267,7 +262,7 @@ var cylinder74 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder74.position.set(-450.0, 5.0, -315.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle12 = new THREE.Mesh(circleGeometry, cilit);
+var circle12 = new THREE.Mesh(circleGeometry, barrilc);
 circle12.position.set(-450.0, 10, -315);
 circle12.rotation.x = -Math.PI / 2;
 
@@ -278,7 +273,7 @@ var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder75.position.set(-180.0, 5.0, -20.0)
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle13 = new THREE.Mesh(circleGeometry, cilit);
+var circle13 = new THREE.Mesh(circleGeometry, barrilc);
 circle13.position.set(-180.0, 10, -20.0);
 circle13.rotation.x = -Math.PI / 2;
 
@@ -290,7 +285,7 @@ var cylinder76 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder76.position.set(-400.0, 5.0, 5.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle14 = new THREE.Mesh(circleGeometry, cilit);
+var circle14 = new THREE.Mesh(circleGeometry, barrilc);
 circle14.position.set(-400.0, 10, 5);
 circle14.rotation.x = -Math.PI / 2;
 
@@ -301,7 +296,7 @@ var cylinder77 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder77.position.set(50.0, 5.0, -205.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle15 = new THREE.Mesh(circleGeometry, cilit);
+var circle15 = new THREE.Mesh(circleGeometry, barrilc);
 circle15.position.set(50.0, 10, -205);
 circle15.rotation.x = -Math.PI / 2;
 
@@ -312,7 +307,7 @@ var cylinder78 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder78.position.set(-570.0, 5.0, -850.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle16 = new THREE.Mesh(circleGeometry, cilit);
+var circle16 = new THREE.Mesh(circleGeometry, barrilc);
 circle16.position.set(-570.0, 10, -850);
 circle16.rotation.x = -Math.PI / 2;
 
@@ -323,7 +318,7 @@ var cylinder79 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder79.position.set(-870.0, 5.0, -850.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle17 = new THREE.Mesh(circleGeometry, cilit);
+var circle17 = new THREE.Mesh(circleGeometry, barrilc);
 circle17.position.set(-870.0, 10, -850);
 circle17.rotation.x = -Math.PI / 2;
 
@@ -334,7 +329,7 @@ var cylinder80 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder80.position.set(-820.0, 5.0, -615.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle18 = new THREE.Mesh(circleGeometry, cilit);
+var circle18 = new THREE.Mesh(circleGeometry, barrilc);
 circle18.position.set(-820.0, 10, -615);
 circle18.rotation.x = -Math.PI / 2;
 
@@ -345,7 +340,7 @@ var cylinder81 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder81.position.set(-440.0, 5.0, -620.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle19 = new THREE.Mesh(circleGeometry, cilit);
+var circle19 = new THREE.Mesh(circleGeometry, barrilc);
 circle19.position.set(-440.0, 10, -620);
 circle19.rotation.x = -Math.PI / 2;
 
@@ -356,7 +351,7 @@ var cylinder82 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder82.position.set(-980.0, 5.0, -1080.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle20 = new THREE.Mesh(circleGeometry, cilit);
+var circle20 = new THREE.Mesh(circleGeometry, barrilc);
 circle20.position.set(-980.0, 10,-1080);
 circle20.rotation.x = -Math.PI / 2;
 
@@ -367,7 +362,7 @@ var cylinder83 = new THREE.Mesh(cylinderGeometry,cilit);
 cylinder83.position.set(-150.0, 5.0, -470.0);
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
-var circle21 = new THREE.Mesh(circleGeometry, cilit);
+var circle21 = new THREE.Mesh(circleGeometry, barrilc);
 circle21.position.set(-150.0, 10, -470);
 circle21.rotation.x = -Math.PI / 2;
  
@@ -402,6 +397,5 @@ circle21.rotation.x = -Math.PI / 2;
  obj4.add(circle19);
  obj4.add(circle20);
  obj4.add(circle21);
-
 
 

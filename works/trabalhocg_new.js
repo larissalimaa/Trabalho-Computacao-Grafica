@@ -77,7 +77,7 @@ totalTimer.start();
 //bounding box
 
 var knotCar = new THREE.Mesh(
-new THREE.TorusKnotGeometry(5,5), new THREE.MeshNormalMaterial({opacity: 0, transparent: true}));
+new THREE.TorusKnotGeometry(1,1), new THREE.MeshNormalMaterial({opacity: 0, transparent: true}));
 //knotCar.position.x = -270;
 //knotCar.position.z = 0;
 //knotCar.position.y = 5;
@@ -86,13 +86,12 @@ var knotBoxHelper = new THREE.BoxHelper(knotCar, 0x00ff00);
 knotBoxHelper.update();
 
 var knotBBox = new THREE.Box3();
-
 //knotBBox.setFromObject(knotBoxHelper);
 
 knotBBox.setFromObject(knotCar);
 
 knotCar.add(knotBoxHelper);
-
+knotCar.rotateY(degreesToRadians(90));
 knotBoxHelper.visible = true;
 //knotCar.visible = false;
 
@@ -645,8 +644,9 @@ let textura_t = textureLoader.load('../assets/textures/t.jpg');
 let textura_a = textureLoader.load('../assets/textures/sky.png');
 let textura_d = textureLoader.load('../assets/textures/d.png');
 let textura_e = textureLoader.load('../assets/textures/e.png');
+let textura_fs = textureLoader.load('../assets/textures/psiu.jpg');
 
-var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/ar.jpg');
+var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/fun.jpg');
 floorTexture4.wrapS = floorTexture4.wrapT = THREE.RepeatWrapping;
 floorTexture4.repeat.set(1, 1);
 
@@ -656,7 +656,7 @@ materialArray.push(new THREE.MeshBasicMaterial({ map: textura_f }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_t }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_d }));//
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_e }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_fs }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
 
 for (let i = 0; i < 6; i++) {
@@ -700,7 +700,7 @@ function commandKeyboard() {
 
     if (keyboard.pressed("left")) {
 
-        if (angulo < 60) {
+        if (angulo <= 60) {
             roda1.matrix.multiply(mat4.makeRotationY(angle[0]));
             roda2.matrix.multiply(mat4.makeRotationY(angle[0]));
             angulo = angulo + 1.1;
@@ -709,13 +709,12 @@ function commandKeyboard() {
 
     else if (keyboard.pressed("right")) {
 
-        if (angulo > -60) {
+        if (angulo >= -60) {
             roda1.matrix.multiply(mat4.makeRotationY(angle[1]));
             roda2.matrix.multiply(mat4.makeRotationY(angle[1]));
             angulo = angulo - 1.1;
         }
     }
-
     if (keyboard.pressed("X")) {
         if (speed > 0) {
             roda1.matrix.multiply(mat4.makeRotationZ(angle[2]));
@@ -748,7 +747,7 @@ roda3.matrix.multiply(mat4.makeRotationY(degreesToRadians(90)));
 roda4.matrix.multiply(mat4.makeTranslation(-3.8, -0.1, -8.0));
 roda4.matrix.multiply(mat4.makeRotationY(degreesToRadians(90)));
 
-var angle = [-1.57, 0, 0, 0];
+var angle = [3.8, -0.1, 8.0];
 
 angle[0] = degreesToRadians(0.3);
 angle[1] = degreesToRadians(-0.3);
@@ -1031,9 +1030,9 @@ function verificaObjetos(){
             //var pos = new THREE.Vector3();
             //pos.position.copy(arrayObjetos[i].position);
             
-            arrayObjetos[i].position.set(arrayObjetos[i].position.x + 0.15, arrayObjetos[i].position.y, arrayObjetos[i].position.z + 0.15 )
+            arrayObjetos[i].position.set(arrayObjetos[i].position.x , arrayObjetos[i].position.y, arrayObjetos[i].position.z  )
             console.log('conflito')
-            speed = speed - 0.25 ;
+            speed = speed / 2 ;
         }
         else{
             //arrayObjetos[2].material.color.set(0x00ff00)
@@ -1101,7 +1100,7 @@ function acceleration() {
             speed += additional_speed_speed;
         }
     }
-    if (speed < 0 && keyboard.pressed("XX")) {
+    if (speed < 0 && keyboard.pressed("X")) {
         speed += additional_speed_speed * 2;
     }
 

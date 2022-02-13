@@ -37,7 +37,37 @@ export default class Pista extends THREE.Mesh {
         });
         const cubeGeometry = new THREE.BoxGeometry(60, 0.3, 60);
         var cubeMaterial;
-        //Larissa: 23/12/////////////////////////////////////////////////////
+        
+        const asfaltotexturar = loader.load('../assets/textures/asfaltonew.jpg');
+        asfaltotexturar.repeat.set(1,1);
+        const asfalto1 = new THREE.MeshLambertMaterial({
+          map: asfaltotexturar
+        });
+        const asfaltov = loader.load('../assets/textures/asfaltonewnew.jpg');
+        asfaltov.repeat.set(1,1);
+        const asfalto2 = new THREE.MeshLambertMaterial({
+          map: asfaltov
+        });
+        const asfaltor2 = loader.load('../assets/textures/asfaltonew - Copia.jpg');
+        asfaltor2.repeat.set(1,1);
+        const asfalto3 = new THREE.MeshLambertMaterial({
+          map: asfaltor2
+        });
+        const asfaltor3 = loader.load('../assets/textures/asfaltonewnew2.jpg');
+        asfaltor3.repeat.set(1,1);
+        const asfalto4 = new THREE.MeshLambertMaterial({
+          map: asfaltor3
+        });
+        const asfaltor4 = loader.load('../assets/textures/asfaltonewnew3.jpg');
+        asfaltor4.repeat.set(1,1);
+        const asfalto5 = new THREE.MeshLambertMaterial({
+          map: asfaltor4
+        });
+        const asfaltor5 = loader.load('../assets/textures/asfaltonewnew4.jpg');
+        asfaltor5.repeat.set(1,1);
+        const asfalto6 = new THREE.MeshLambertMaterial({
+          map: asfaltor5
+        });
         if (inicio) {
             
             cubeMaterial = chegada;
@@ -51,27 +81,48 @@ export default class Pista extends THREE.Mesh {
         //j ->> cubo 
 
         
-       // if(i==0 && j != 9){
-           // cubeMaterial = chegada;
-      //  }
+        if(i==0 && j != 9){
+            cubeMaterial = asfalto1;
+        }
+        if(i==2 && j != 9){
+            cubeMaterial = asfalto1;
+        }
+        if(i==1 && j != 9){
+            cubeMaterial = asfalto3;
+        }
+        if(i==3 && j != 9){
+            cubeMaterial = asfalto3;
+        }
+        if(i==0 && j == 9){
+            cubeMaterial = asfalto2;
+        }
+        if(i==2 && j == 9){
+            cubeMaterial = asfalto5;
+        }
+        if(i==1 && j == 9){
+            cubeMaterial = asfalto4;
+        }
+        if(i==3 && j == 9){
+            cubeMaterial = asfalto6;
+        }
         
         
-
+        
         //Larissa: 23/12/////////////////////////////////////////////////////
-        else{
+        // else{
 
            
-        var floorTexture = new THREE.TextureLoader().load('asfalto5.jpg');
-        floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
-        floorTexture.repeat.set(repeatFactor, repeatFactor);
+        // var floorTexture = new THREE.TextureLoader().load('asfalto5.jpg');
+        // floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
+        // floorTexture.repeat.set(repeatFactor, repeatFactor);
 
-        //var textureLoader = new THREE.TextureLoader();
-        //var floor  = textureLoader.load('asfalto.jpg');
+        // //var textureLoader = new THREE.TextureLoader();
+        // //var floor  = textureLoader.load('asfalto.jpg');
         
-        cubeMaterial = new THREE.MeshPhongMaterial({map: floorTexture , side: THREE.DoubleSide });
+        // cubeMaterial = new THREE.MeshPhongMaterial({map: floorTexture , side: THREE.DoubleSide });
         
-            //cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x999999 });
-        }
+        //     //cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x999999 });
+        // }
 
 
         

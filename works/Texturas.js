@@ -244,14 +244,14 @@ planoCentral4.position.z = -150;
 var textureLoader = new THREE.TextureLoader();
 //Skybox
 let materialArray = [];
-let textura_ft = textureLoader.load('../assets/textures/t.jpg');
+let textura_ft = textureLoader.load('../assets/textures/sky2.jpg');
 let textura_f = textureLoader.load('../assets/textures/floresta.jpg');
 let textura_t = textureLoader.load('../assets/textures/t.jpg');
 let textura_a = textureLoader.load('../assets/textures/sky.png');
 let textura_d = textureLoader.load('../assets/textures/d.png');
 let textura_e = textureLoader.load('../assets/textures/e.png');
 
-var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/ar.jpg');
+var floorTexture4 = new THREE.TextureLoader().load('../assets/textures/sky2.jpg');
 floorTexture4.wrapS = floorTexture4.wrapT = THREE.RepeatWrapping;
 floorTexture4.repeat.set(1, 1);
 
@@ -261,8 +261,8 @@ materialArray.push(new THREE.MeshBasicMaterial({ map: textura_f }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_t }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_d }));//
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_e }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft}));
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_ft }));
 
 for (let i = 0; i < 6; i++) {
     materialArray[i].side = THREE.BackSide;
