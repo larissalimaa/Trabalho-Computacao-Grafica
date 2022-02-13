@@ -18,8 +18,8 @@ import {
 import { createTruck, getRoda1, getRoda2, getRoda3, getRoda4 } from "./createTruck.js";
 import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArrayPistaThree, getArrayPistaFour } from "./Pista.js";
 import { planoCentral, planoCentral2, planoCentral3, planoCentral4 } from './Texturas.js';
-import { arrayBondBoxes, arrayObjetos ,  obj, obj2 } from './objetos.js';
-import { obj3, obj4 } from './objetos2.js';
+import { arrayBondBoxes, arrayObjetos, obj, obj2 } from './objetos.js';
+import { arrayBondBoxes_2, arrayObjetos_2, obj3, obj4 } from './objetos2.js';
 
 //Constantes e Variaveis Globais
 
@@ -77,7 +77,7 @@ totalTimer.start();
 //bounding box
 
 var knotCar = new THREE.Mesh(
-new THREE.TorusKnotGeometry(1,4), new THREE.MeshNormalMaterial({opacity: 0, transparent: true}));
+    new THREE.TorusKnotGeometry(1, 1), new THREE.MeshNormalMaterial({ opacity: 0, transparent: true }));
 //knotCar.position.x = -270;
 //knotCar.position.z = 0;
 //knotCar.position.y = 5;
@@ -489,11 +489,6 @@ function keyboardUpdate() {
 
     }
 
-
-
-
-
-
     // Criacao das Pistas
 
     if (keyboard.pressed("1")) {
@@ -514,7 +509,13 @@ function keyboardUpdate() {
 
         resetThings(-270, 2.2, 0, degreesToRadians(-90));
         scene.add(obj);
+        scene.remove(obj2);
+        scene.remove(obj3);
+        scene.remove(obj4);
+        
         scene.add(planoCentral);  //plano central
+        
+        
         //TODO: nao zera quando aperta as teclas
 
 
@@ -549,6 +550,11 @@ function keyboardUpdate() {
         }
         resetThings(30, 2.2, -120, degreesToRadians(180));
         scene.add(obj2);
+        scene.remove(obj);
+        scene.remove(obj3);
+        scene.remove(obj4);
+        
+        
         //cube7.rotation.y =  - Math.PI;
         //2truck.rotation.y = -Math.PI /2;
         scene.add(planoCentral2);  //plano central
@@ -579,6 +585,10 @@ function keyboardUpdate() {
         }
         resetThings(-570, 2.2, -420, degreesToRadians(-360));
         scene.add(obj3);
+        scene.remove(obj2);
+        scene.remove(obj);
+        scene.remove(obj4);
+        
         //cube7.rotation.y =   Math.PI ;
         scene.add(planoCentral3);  //plano central
 
@@ -608,6 +618,11 @@ function keyboardUpdate() {
         }
         resetThings(-270, 2.2, 0, degreesToRadians(-90));
         scene.add(obj4);
+        scene.remove(obj2);
+        scene.remove(obj3);
+        scene.remove(obj);
+        
+        
         //cube7.rotation.y =   Math.PI ;
         //var camera2 = new THREE.PerspectiveCamera(50, MP_Width / MP_Heidth, 1.0, 1000 + 2);
         scene.add(planoCentral4);  //plano central
@@ -654,7 +669,7 @@ floorTexture4.repeat.set(1, 1);
 
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_f }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_t }));
-materialArray.push(new THREE.MeshBasicMaterial({ map: textura_d }));//
+materialArray.push(new THREE.MeshBasicMaterial({ map: textura_d }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_e }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: textura_fs }));
 materialArray.push(new THREE.MeshBasicMaterial({ map: floorTexture4 }));
@@ -696,7 +711,6 @@ roda4.matrix.identity();
 function commandKeyboard() {
 
     keyboard.update();
-
 
     if (keyboard.pressed("left")) {
 
@@ -1011,35 +1025,38 @@ function verificaDentroPista(truck, road) {
     return blocks
 
 }
+
+
 //////////////////////////---alterado dia 27/12 por larissa---//////////////////////////////////////
-function verificaObjetos(){
+function verificaObjetos() {
 
-    //larissa 12/02
+    if (pista == 1 || pista == 2) {
 
-    //console.log('entrei')
-    //console.log(arrayBondBoxes.length)
+        for (let i = 0; i < arrayBondBoxes.length; i++) {
 
-    for(let i=0 ; i < arrayBondBoxes.length; i++){
 
-        //var Box = arrayBondBoxes[i];
-        //console.log(arrayBondBoxes[i]);
-        //console.log(knotBBox.intersectsBox(arrayBondBoxes[i]));
+            if (knotBBox.intersectsBox(arrayBondBoxes[i])) {
 
-        if(knotBBox.intersectsBox(arrayBondBoxes[i])){
-            //arrayObjetos[2].material.color.set(0xff0000)
-            //var pos = new THREE.Vector3();
-            //pos.position.copy(arrayObjetos[i].position);
-            
-            arrayObjetos[i].position.set(arrayObjetos[i].position.x , arrayObjetos[i].position.y, arrayObjetos[i].position.z  )
-            console.log('conflito')
-            speed = speed / 2 ;
+                arrayObjetos[i].position.set(arrayObjetos[i].position.x, arrayObjetos[i].position.y, arrayObjetos[i].position.z)
+                console.log('conflito')
+                speed = speed / 2;
+            }
         }
-        else{
-            //arrayObjetos[2].material.color.set(0x00ff00)
+    }
+    if (pista == 3 || pista == 4) {
+
+        for (let i = 0; i < arrayBondBoxes_2.length; i++) {
+
+
+            if (knotBBox.intersectsBox(arrayBondBoxes_2[i])) {
+
+                arrayObjetos_2[i].position.set(arrayObjetos_2[i].position.x, arrayObjetos_2[i].position.y, arrayObjetos_2[i].position.z)
+                console.log('conflito')
+                speed = speed / 2;
+            }
         }
     }
 }
-
 function acceleration() {
 
 
@@ -1060,7 +1077,7 @@ function acceleration() {
     //posicao atual do carrinho em z  
     var zTruck = cube7.position.z;
 
-    
+    var yTruck = cube7.position.y;
 
     //console.log(knotBBox.intersectsBox(BoxCone3));
 
@@ -1071,9 +1088,9 @@ function acceleration() {
     //Debug
     //Descomente aqui caso queira ver posicao do cube7 ou truck
 
-    //console.log(`Posicaox = ${xTruck}`);
-    //console.log(`Posicaoz = ${zTruck}`);
-
+    // console.log(`Posicaox = ${xTruck}`);
+    // console.log(`Posicaoz = ${zTruck}`);
+    // console.log(`Posicaoy = ${yTruck}`);
     //20/12 Larissa-------------------------------------------//
 
     //seta as coordenadas do carrinho no ponto
@@ -1195,8 +1212,7 @@ function controlledRender() {
     renderer.clear();
     renderer.render(scene, camera2);
 
-
-    if (keyboard.pressed("B")) {
+    if (!keyboard.pressed("B")) {
         scene.remove(camera);
         scene.remove(camera2);
         renderer.setViewport(0, 0, width, height);
@@ -1213,7 +1229,6 @@ function controlledRender() {
         renderer.render(scene, camera2);
 
     }
-
 
 }
 

@@ -198,7 +198,7 @@ var circle11 = new THREE.Mesh(circleGeometry, barrilc);
 circle11.position.set(30.0, 10, 20);
 circle11.rotation.x = -Math.PI / 2;
 
-obj.add(cone1);
+//obj.add(cone1);
 obj.add(cone2);
 obj.add(cone3);
 obj.add(cone4);
@@ -209,7 +209,7 @@ obj.add(cone8);
 obj.add(cone9);
 obj.add(cone10);
 obj.add(cone11);
-obj.add(cylinder63);
+//obj.add(cylinder63);
 obj.add(cylinder64);
 obj.add(cylinder65);
 obj.add(cylinder66);
@@ -288,6 +288,7 @@ cone21.castShadow = true;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder74 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder74.position.set(-200.0, 5.0, -315.0);
+cylinder74.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle12 = new THREE.Mesh(circleGeometry, barrilc);
@@ -299,6 +300,7 @@ circle12.rotation.x = -Math.PI / 2;
 var cylinder75 = new THREE.Mesh(cylinderGeometry, cilit);
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 cylinder75.position.set(-180.0, 5.0, -20.0)
+cylinder75.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle13 = new THREE.Mesh(circleGeometry, barrilc);
@@ -311,6 +313,7 @@ circle13.rotation.x = -Math.PI / 2;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder76 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder76.position.set(-400.0, 5.0, 5.0);
+cylinder76.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle14 = new THREE.Mesh(circleGeometry, barrilc);
@@ -322,6 +325,7 @@ circle14.rotation.x = -Math.PI / 2;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder77 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder77.position.set(50.0, 5.0, -205.0);
+cylinder77.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle15 = new THREE.Mesh(circleGeometry, barrilc);
@@ -333,6 +337,7 @@ circle15.rotation.x = -Math.PI / 2;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder78 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder78.position.set(-570.0, 5.0, -205.0);
+cylinder78.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle16 = new THREE.Mesh(circleGeometry, barrilc);
@@ -344,6 +349,7 @@ circle16.rotation.x = -Math.PI / 2;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder79 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder79.position.set(-570.0, 5.0, -55.0);
+cylinder79.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle17 = new THREE.Mesh(circleGeometry, barrilc);
@@ -355,6 +361,7 @@ circle17.rotation.x = -Math.PI / 2;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder80 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder80.position.set(-570.0, 5.0, -615.0);
+cylinder80.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle18 = new THREE.Mesh(circleGeometry, barrilc);
@@ -366,6 +373,7 @@ circle18.rotation.x = -Math.PI / 2;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder81 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder81.position.set(-440.0, 5.0, -620.0);
+cylinder81.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle19 = new THREE.Mesh(circleGeometry, barrilc);
@@ -377,6 +385,7 @@ circle19.rotation.x = -Math.PI / 2;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder82 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder82.position.set(-280.0, 5.0, -580.0);
+cylinder82.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle20 = new THREE.Mesh(circleGeometry, barrilc);
@@ -388,6 +397,7 @@ circle20.rotation.x = -Math.PI / 2;
 var cylinderGeometry = new THREE.CylinderGeometry(4, 4, 10, 32, 32, true);
 var cylinder83 = new THREE.Mesh(cylinderGeometry, cilit);
 cylinder83.position.set(30.0, 5.0, 20.0);
+cylinder83.castShadow = true;
 
 var circleGeometry = new THREE.CircleGeometry(4, 32);
 var circle21 = new THREE.Mesh(circleGeometry, barrilc);
@@ -430,7 +440,7 @@ obj2.add(circle21);
 //TODO:
 export var arrayObjetos = new Array();
 //add larissa 12/02
-arrayObjetos.push(cone1);
+//arrayObjetos.push(cone1);
 arrayObjetos.push(cone2);
 arrayObjetos.push(cone3);
 arrayObjetos.push(cone4);
@@ -441,9 +451,18 @@ arrayObjetos.push(cone8);
 arrayObjetos.push(cone9);
 arrayObjetos.push(cone10);
 arrayObjetos.push(cone11);
-
+arrayObjetos.push(cone12);
+arrayObjetos.push(cone13);
+arrayObjetos.push(cone14);
+arrayObjetos.push(cone15);
+arrayObjetos.push(cone16);
+arrayObjetos.push(cone17);
+arrayObjetos.push(cone18);
+arrayObjetos.push(cone19);
+arrayObjetos.push(cone20);
+arrayObjetos.push(cone21);
 //
-arrayObjetos.push(cylinder63);
+//arrayObjetos.push(cylinder63);
 arrayObjetos.push(cylinder64);
 arrayObjetos.push(cylinder65);
 arrayObjetos.push(cylinder66);
@@ -454,14 +473,20 @@ arrayObjetos.push(cylinder70);
 arrayObjetos.push(cylinder71);
 arrayObjetos.push(cylinder72);
 arrayObjetos.push(cylinder73);
-
+arrayObjetos.push(cylinder74);
+arrayObjetos.push(cylinder75);
+arrayObjetos.push(cylinder76);
+arrayObjetos.push(cylinder77);
+arrayObjetos.push(cylinder78);
+arrayObjetos.push(cylinder79);
+arrayObjetos.push(cylinder80);
+arrayObjetos.push(cylinder81);
+arrayObjetos.push(cylinder82);
+arrayObjetos.push(cylinder83);
 //FIXME: //add larissa 12/02
 
 export var arrayBondBoxes = new Array();
 
-var BoxCone1 = new THREE.Box3();
-BoxCone1.setFromObject(cone1);
-arrayBondBoxes.push(BoxCone1);
 
 var BoxCone2 = new THREE.Box3();
 BoxCone2.setFromObject(cone2);
@@ -499,9 +524,50 @@ var BoxCone10 = new THREE.Box3();
 BoxCone10.setFromObject(cone10);
 arrayBondBoxes.push(BoxCone10);
 
-var BoxCilinder63 = new THREE.Box3();
-BoxCilinder63.setFromObject(cylinder63);
-arrayBondBoxes.push(BoxCilinder63);
+var BoxCone11 = new THREE.Box3();
+BoxCone11.setFromObject(cone11);
+arrayBondBoxes.push(BoxCone11);
+
+var BoxCone12 = new THREE.Box3();
+BoxCone12.setFromObject(cone12);
+arrayBondBoxes.push(BoxCone12);
+
+var BoxCone13 = new THREE.Box3();
+BoxCone13.setFromObject(cone13);
+arrayBondBoxes.push(BoxCone13);
+
+var BoxCone14 = new THREE.Box3();
+BoxCone14.setFromObject(cone14);
+arrayBondBoxes.push(BoxCone14);
+
+var BoxCone15 = new THREE.Box3();
+BoxCone15.setFromObject(cone15);
+arrayBondBoxes.push(BoxCone15);
+
+var BoxCone16 = new THREE.Box3();
+BoxCone16.setFromObject(cone16);
+arrayBondBoxes.push(BoxCone16);
+
+var BoxCone17 = new THREE.Box3();
+BoxCone17.setFromObject(cone17);
+arrayBondBoxes.push(BoxCone17);
+
+var BoxCone18 = new THREE.Box3();
+BoxCone18.setFromObject(cone18);
+arrayBondBoxes.push(BoxCone18);
+
+var BoxCone19 = new THREE.Box3();
+BoxCone19.setFromObject(cone19);
+arrayBondBoxes.push(BoxCone19);
+
+
+var BoxCone20 = new THREE.Box3();
+BoxCone20.setFromObject(cone20);
+arrayBondBoxes.push(BoxCone20);
+
+var BoxCone21 = new THREE.Box3();
+BoxCone21.setFromObject(cone21);
+arrayBondBoxes.push(BoxCone21);
 
 var BoxCilinder64 = new THREE.Box3();
 BoxCilinder64.setFromObject(cylinder64);
@@ -542,3 +608,43 @@ arrayBondBoxes.push(BoxCilinder72);
 var BoxCilinder73 = new THREE.Box3();
 BoxCilinder73.setFromObject(cylinder73);
 arrayBondBoxes.push(BoxCilinder73);
+
+var BoxCilinder74 = new THREE.Box3();
+BoxCilinder74.setFromObject(cylinder74);
+arrayBondBoxes.push(BoxCilinder74);
+
+var BoxCilinder75 = new THREE.Box3();
+BoxCilinder75.setFromObject(cylinder75);
+arrayBondBoxes.push(BoxCilinder75);
+
+var BoxCilinder76 = new THREE.Box3();
+BoxCilinder76.setFromObject(cylinder76);
+arrayBondBoxes.push(BoxCilinder76);
+
+var BoxCilinder77 = new THREE.Box3();
+BoxCilinder77.setFromObject(cylinder77);
+arrayBondBoxes.push(BoxCilinder77);
+
+var BoxCilinder78 = new THREE.Box3();
+BoxCilinder78.setFromObject(cylinder78);
+arrayBondBoxes.push(BoxCilinder78);
+
+var BoxCilinder79 = new THREE.Box3();
+BoxCilinder79.setFromObject(cylinder79);
+arrayBondBoxes.push(BoxCilinder79);
+
+var BoxCilinder80 = new THREE.Box3();
+BoxCilinder80.setFromObject(cylinder80);
+arrayBondBoxes.push(BoxCilinder80);
+
+var BoxCilinder81 = new THREE.Box3();
+BoxCilinder81.setFromObject(cylinder81);
+arrayBondBoxes.push(BoxCilinder81);
+
+var BoxCilinder82 = new THREE.Box3();
+BoxCilinder82.setFromObject(cylinder82);
+arrayBondBoxes.push(BoxCilinder82);
+
+var BoxCilinder83 = new THREE.Box3();
+BoxCilinder83.setFromObject(cylinder83);
+arrayBondBoxes.push(BoxCilinder83);

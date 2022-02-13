@@ -223,9 +223,9 @@ planoCentral3.position.z = -150;
 //Cria o plano centro da pista 1
 var planeGeometry4 = new THREE.PlaneGeometry(2000,2000);
 var floorTexture4 = new THREE.TextureLoader().load('grass1.jpg');
-floorTexture4.wrapS = floorTexture2.wrapT = THREE.RepeatWrapping;
+floorTexture4.wrapS = floorTexture4.wrapT = THREE.RepeatWrapping;
 floorTexture4.repeat.set(25,25);
-var planeMaterial4 = new THREE.MeshPhongMaterial({ map: floorTexture2, side: THREE.DoubleSide });
+var planeMaterial4 = new THREE.MeshPhongMaterial({ map: floorTexture4, side: THREE.DoubleSide });
 //var planeMaterial2 = new THREE.MeshPhongMaterial({
 //color: 0x4F614F,
 //side: THREE.DoubleSide,

@@ -68,6 +68,36 @@ export default class Pista extends THREE.Mesh {
         const asfalto6 = new THREE.MeshLambertMaterial({
           map: asfaltor5
         });
+        
+        const asfaltor6 = loader.load('../assets/textures/asfaltoteste.jpg');
+        asfaltor6.repeat.set(1,1);
+        const asfalto7 = new THREE.MeshLambertMaterial({
+          map: asfaltor6
+        });
+        
+        const asfaltor7 = loader.load('../assets/textures/asfaltott.jpg');
+        asfaltor7.repeat.set(1,1);
+        const asfalto8 = new THREE.MeshLambertMaterial({
+          map: asfaltor7
+        });
+        
+        const asfaltor8 = loader.load('../assets/textures/stone.jpg');
+        asfaltor8.repeat.set(1,1);
+        const asfalto9 = new THREE.MeshLambertMaterial({
+          map: asfaltor8
+        });
+        const asfaltor9 = loader.load('../assets/textures/terra2.jpg');
+        asfaltor9.repeat.set(1,1);
+        const asfalto10 = new THREE.MeshLambertMaterial({
+          map: asfaltor9
+        });
+        const asfaltor10 = loader.load('../assets/textures/asfalto23.jpg');
+        asfaltor10.repeat.set(1,1);
+        const asfalto11 = new THREE.MeshLambertMaterial({
+          map: asfaltor10
+        });
+        
+        
         if (inicio) {
             
             cubeMaterial = chegada;
@@ -79,33 +109,74 @@ export default class Pista extends THREE.Mesh {
 
         //i ->> Fileira
         //j ->> cubo 
+        if (npista == 1  ) {
+           
+            cubeMaterial = asfalto11;
+            if (inicio) {
+            
+                cubeMaterial = chegada;
+                //createFinishLine(x, z, scene, npista);
+            
+            }
         
-        if(i==0 && j != 9){
-            cubeMaterial = asfalto1;
-        }
-        if(i==2 && j != 9){
-            cubeMaterial = asfalto1;
-        }
-        if(i==1 && j != 9){
-            cubeMaterial = asfalto3;
-        }
-        if(i==3 && j != 9){
-            cubeMaterial = asfalto3;
-        }
-        if(i==0 && j == 9){
-            cubeMaterial = asfalto2;
-        }
-        if(i==2 && j == 9){
-            cubeMaterial = asfalto5;
-        }
-        if(i==1 && j == 9){
-            cubeMaterial = asfalto4;
-        }
-        if(i==3 && j == 9){
-            cubeMaterial = asfalto6;
-        }
+            //     if(i==0 && j != 9){
+        //     cubeMaterial = asfalto1;
+        // }
+        // if(i==2 && j != 9){
+        //     cubeMaterial = asfalto1;
+        // }
+        // if(i==1 && j != 9){
+        //     cubeMaterial = asfalto3;
+        // }
+        // if(i==3 && j != 9){
+        //     cubeMaterial = asfalto3;
+        // }
+        // if(i==0 && j == 9){
+        //     cubeMaterial = asfalto2;
+        // }
+        // if(i==2 && j == 9){
+        //     cubeMaterial = asfalto5;
+        // }
+        // if(i==1 && j == 9){
+        //     cubeMaterial = asfalto4;
+        // }
+        // if(i==3 && j == 9){
+        //     cubeMaterial = asfalto6;
+        // }
+    }
         
+    if (npista == 2  ) {
         
+        cubeMaterial = asfalto8;
+        if (inicio) {
+            
+            cubeMaterial = chegada;
+            //createFinishLine(x, z, scene, npista);
+        
+        }
+    }
+    
+    if (npista == 3 || npista == 5  ) {
+        
+        cubeMaterial = asfalto10;
+        if (inicio) {
+            
+            cubeMaterial = chegada;
+            //createFinishLine(x, z, scene, npista);
+        
+        }
+    }
+    if (npista == 4  ) {
+        
+        cubeMaterial = asfalto9;
+        if (inicio) {
+            
+            cubeMaterial = chegada;
+            //createFinishLine(x, z, scene, npista);
+        
+        }
+    }
+
         
         //Larissa: 23/12/////////////////////////////////////////////////////
         // else{
