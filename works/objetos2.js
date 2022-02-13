@@ -399,3 +399,118 @@ circle21.rotation.x = -Math.PI / 2;
  obj4.add(circle21);
 
 
+ export var arrayObjetos_2 = new Array();
+ //add larissa 12/02
+ arrayObjetos_2.push(cone12);
+ arrayObjetos_2.push(cone13);
+ arrayObjetos_2.push(cone14);
+ arrayObjetos_2.push(cone15);
+ arrayObjetos_2.push(cone16);
+ arrayObjetos_2.push(cone17);
+ arrayObjetos_2.push(cone18);
+ arrayObjetos_2.push(cone19);
+ arrayObjetos_2.push(cone20);
+ arrayObjetos_2.push(cone21);
+
+ 
+ //
+ arrayObjetos_2.push(cylinder74);
+ arrayObjetos_2.push(cylinder75);
+ arrayObjetos_2.push(cylinder76);
+ arrayObjetos_2.push(cylinder77);
+ arrayObjetos_2.push(cylinder78);
+ arrayObjetos_2.push(cylinder79);
+ arrayObjetos_2.push(cylinder80);
+ arrayObjetos_2.push(cylinder81);
+ arrayObjetos_2.push(cylinder82);
+ arrayObjetos_2.push(cylinder83);
+
+ 
+  //FIXME: //add larissa 12/02
+ 
+ export var arrayBondBoxes_2 = new Array();
+ 
+ var BoxCone1 = new THREE.Box3();
+ BoxCone1.setFromObject(cone1);
+ arrayBondBoxes_2.push(BoxCone1);
+ 
+ var BoxCone2 = new THREE.Box3();
+ BoxCone2.setFromObject(cone2);
+ arrayBondBoxes_2.push(BoxCone2);
+ 
+ var BoxCone3 = new THREE.Box3();
+ BoxCone3.setFromObject(cone3);
+ arrayBondBoxes_2.push(BoxCone3);
+ 
+ var BoxCone4 = new THREE.Box3();
+ BoxCone4.setFromObject(cone4);
+ arrayBondBoxes_2.push(BoxCone4);
+ 
+ var BoxCone5 = new THREE.Box3();
+ BoxCone5.setFromObject(cone5);
+ arrayBondBoxes_2.push(BoxCone5);
+ 
+ var BoxCone6 = new THREE.Box3();
+ BoxCone6.setFromObject(cone6);
+ arrayBondBoxes_2.push(BoxCone6);
+ 
+ var BoxCone7 = new THREE.Box3();
+ BoxCone7.setFromObject(cone7);
+ arrayBondBoxes_2.push(BoxCone7);
+ 
+ var BoxCone8 = new THREE.Box3();
+ BoxCone8.setFromObject(cone8);
+ arrayBondBoxes_2.push(BoxCone8);
+ 
+ var BoxCone9 = new THREE.Box3();
+ BoxCone9.setFromObject(cone9);
+ arrayBondBoxes_2.push(BoxCone9);
+ 
+ var BoxCone10 = new THREE.Box3();
+ BoxCone10.setFromObject(cone10);
+ arrayBondBoxes_2.push(BoxCone10);
+ 
+ var BoxCilinder63 = new THREE.Box3();
+ BoxCilinder63.setFromObject(cylinder63);
+ arrayBondBoxes_2.push(BoxCilinder63);
+ 
+ var BoxCilinder64 = new THREE.Box3();
+ BoxCilinder64.setFromObject(cylinder64);
+ arrayBondBoxes_2.push(BoxCilinder64);
+ 
+ var BoxCilinder65 = new THREE.Box3();
+ BoxCilinder65.setFromObject(cylinder65);
+ arrayBondBoxes_2.push(BoxCilinder65);
+ 
+ var BoxCilinder66 = new THREE.Box3();
+ BoxCilinder66.setFromObject(cylinder66);
+ arrayBondBoxes_2.push(BoxCilinder66);
+ 
+ var BoxCilinder67 = new THREE.Box3();
+ BoxCilinder67.setFromObject(cylinder67);
+ arrayBondBoxes_2.push(BoxCilinder67);
+ 
+ var BoxCilinder68 = new THREE.Box3();
+ BoxCilinder68.setFromObject(cylinder68);
+ arrayBondBoxes_2.push(BoxCilinder68);
+ 
+ var BoxCilinder69 = new THREE.Box3();
+ BoxCilinder69.setFromObject(cylinder69);
+ arrayBondBoxes_2.push(BoxCilinder69);
+ 
+ var BoxCilinder70 = new THREE.Box3();
+ BoxCilinder70.setFromObject(cylinder70);
+ arrayBondBoxes_2.push(BoxCilinder70);
+ 
+ var BoxCilinder71 = new THREE.Box3();
+ BoxCilinder71.setFromObject(cylinder71);
+ arrayBondBoxes_2.push(BoxCilinder71);
+ 
+ var BoxCilinder72 = new THREE.Box3();
+ BoxCilinder72.setFromObject(cylinder72);
+ arrayBondBoxes_2.push(BoxCilinder72);
+ 
+ var BoxCilinder73 = new THREE.Box3();
+ BoxCilinder73.setFromObject(cylinder73);
+ arrayBondBoxes_2.push(BoxCilinder73);
+

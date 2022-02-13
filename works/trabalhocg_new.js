@@ -77,7 +77,7 @@ totalTimer.start();
 //bounding box
 
 var knotCar = new THREE.Mesh(
-new THREE.TorusKnotGeometry(1,1), new THREE.MeshNormalMaterial({opacity: 0, transparent: true}));
+new THREE.TorusKnotGeometry(1,4), new THREE.MeshNormalMaterial({opacity: 0, transparent: true}));
 //knotCar.position.x = -270;
 //knotCar.position.z = 0;
 //knotCar.position.y = 5;
