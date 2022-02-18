@@ -1,4 +1,4 @@
-import { arrayCubeBBox } from "./trabalhocg_new.js";
+import { arrayCubeBBox } from "./trabalhocg.js";
 import * as THREE from '../build/three.module.js';
 
 
