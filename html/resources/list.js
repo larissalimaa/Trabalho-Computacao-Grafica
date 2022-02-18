@@ -70,5 +70,10 @@ var list = {
 				"Audio": "html/exampleAudioInfo",
 			},
 		},
+		"Trabalho":{
+			"Rock Roll Racing": {
+				"Trabalho": "works/trabalho03",
+			},
+		},
 	},
 };
