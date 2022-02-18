@@ -20,7 +20,7 @@ import { createPista, cleanAmbient, getArrayPistaOne, getArrayPistaTwo, getArray
 //Constantes e Variaveis Globais
 
 //velocidade maxima a ser atingida 
-var top_speed = 2.0;
+export var top_speed = 2.0;
 
 //velocidade minima a ser atingida
 var min_speed = -5.0;
