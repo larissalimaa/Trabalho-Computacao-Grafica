@@ -72,7 +72,7 @@ var list = {
 		},
 		"Trabalho":{
 			"Rock Roll Racing": {
-				"Trabalho": "works/trabalhocg",
+				"Trabalho": "works/trabalhocg_new",
 			},
 		},
 	},
